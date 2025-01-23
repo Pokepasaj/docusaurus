@@ -88,15 +88,20 @@ const config = {
             position: 'left',
             label: 'Tutorial',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          {
+            type: 'docSidebar',
+            sidebarId: 'konnSidebar', // Link to the new konn tab
+            position: 'left',
+            label: 'Konn',
+          },
+          { to: '/blog', label: 'Blog', position: 'left' },
           {
             href: 'https://github.com/facebook/docusaurus',
             label: 'GitHub',
             position: 'right',
           },
         ],
-      },
-      footer: {
+      },      footer: {
         style: 'dark',
         links: [
           {

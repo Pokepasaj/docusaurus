@@ -41,13 +41,13 @@ $ GIT_USER=<Your GitHub username> yarn deploy
 If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
 
 
-1. edit docasaurus.config to use github
-2. npm install --save-dev gh-pages to deploy your build folder to the gh-pages branch.
-3. edit the package.json script to use gh-pages
-4. npm run deploy -> deploy to GH pages
+1. edit docasaurus.config    -> to use github
+2. npm install --save-dev gh-pages    -> to deploy your build folder to the gh-pages branch.
+3. edit the package.json    script to use gh-pages
+4. npm run deploy     -> deploy to GH pages
 
 if you change anything use
 npm run build  
 GIT_USER=Pokepasaj npm run deploy   
 
-https://pokepasaj.github.io/docusaurus/my-website/
+https://pokepasaj.github.io/docusaurus/
