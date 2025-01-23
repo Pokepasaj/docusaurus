@@ -1,24 +1,39 @@
 module.exports = {
   tutorialSidebar: [
-    'intro', // Existing items
+    'intro', // Include existing document IDs
     {
       type: 'category',
-      label: 'Getting Started',
-      items: ['getting-started', 'setup'], // Existing items
+      label: 'Tutorial Basics',
+      items: [
+        'tutorial-basics/create-a-document',
+        'tutorial-basics/create-a-page',
+        'tutorial-basics/create-a-blog-post',
+        'tutorial-basics/deploy-your-site',
+        'tutorial-basics/markdown-features',
+        'tutorial-basics/congratulations',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Tutorial Extras',
+      items: [
+        'tutorial-extras/manage-docs-versions',
+        'tutorial-extras/translate-your-site',
+      ],
     },
   ],
   konnSidebar: [
     {
       type: 'doc',
-      id: 'konn-intro', // Corresponds to docs/konn-intro.md
+      id: 'konn-intro', // Existing document ID
       label: 'Introduction',
     },
     {
       type: 'category',
       label: 'Konn Features',
       items: [
-        'konn-feature1', // Corresponds to docs/konn-feature1.md
-        'konn-feature2', // Corresponds to docs/konn-feature2.md
+        'konn-feature1',
+        'konn-feature2', // This ID is now available
       ],
     },
   ],
