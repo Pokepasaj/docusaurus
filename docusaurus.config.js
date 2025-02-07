@@ -25,8 +25,8 @@ const config = {
   organizationName: 'Pokepasaj', // Usually your GitHub org/user name.
   projectName: 'docusaurus', // Usually your repo name.
 
-  onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  // onBrokenLinks: 'throw',
+  // onBrokenMarkdownLinks: 'warn',
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -43,7 +43,7 @@ const config = {
       ({
         docs: {
           routeBasePath: '/',
-          sidebarPath: './sidebars.js',
+          sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
@@ -87,17 +87,10 @@ const config = {
         items: [
           {
             type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
-            position: 'left',
-            label: 'Examples',
-          },
-          {
-            type: 'docSidebar',
-            sidebarId: 'konnSidebar', // Link to the new konn tab
+            sidebarId: 'konnSidebar', // Use konnSidebar here
             position: 'left',
             label: 'Konn',
           },
-          // { to: '/blog', label: 'Blog', position: 'left' },
           {
             href: 'https://github.com/facebook/docusaurus',
             label: 'GitHub',
@@ -116,7 +109,7 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
+                label: 'Konn',
                 to: '/docs/intro',
               },
             ],
