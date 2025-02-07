@@ -36,7 +36,7 @@ Konn brings several advantages over plain Jsonnet, especially in the context of 
   > While plain Jsonnet allows you to define functions and objects, the feature and extension model in Konn makes it much easier to modify and extend parts of the configuration based on different use cases, without repeating logic.
 
 
-• Dynamic Configuration Rendering : provides dynamic rendering of configurations based on profiles, context, and properties, making it ideal for scenarios where configurations need to adapt to runtime conditions.
+• Dynamic Configuration Rendering : provides dynamic rendering of configurations based on profiles, context, and properties, making it ideal for scenarios where configurations need to adapt to    runtime conditions.
    > In plain Jsonnet, you would need to manually manage this dynamic behavior, often requiring more verbose and less flexible code.
 
 • Simplified Overrides: you can easily override specific parts of your configuration (e.g., the name of resources) without affecting other parts, allowing for greater flexibility and less duplication.
