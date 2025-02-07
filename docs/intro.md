@@ -289,95 +289,89 @@ svcname:
           name: node
 ```
 
-<!-- ```bash
-npm init docusaurus@latest my-website classic
-```
-
-- [Node.js](https://nodejs.org/en/download/) version 18.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
-
-
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
-
-
-let`s say we want to make a deployment and a service we will start by creating templates (I know this looks like HELM but bare with me it`s way more flexible)
- -->
-
-
-
-
-
-
-<!-- =============================================================
-Let`s say you don`t want main.libsonnet to edit the name of the svc and we want to keep the name in our extension example-svc.libsonnet
+## props
 
 
 ```jsonnet
 local k = import 'konn/main.libsonnet';
-local svc = import 'example-svc.libsonnet';
 
-k.feature(
-    props={
-        name: 'example123',
+k.manifest(
+  props={
+    replicas
+    name: 'example',
+    image: '750126809429.dkr.ecr.eu-central-1.amazonaws.com/flaskapp',
+    ports: {
+      node: 3000,
     },
-    configs=[
-        import 'example-deployment.libsonnet',
-       // import 'example-svc.libsonnet'  → we comment out this import unless we want service with the name example123 and the one we imported below
-    ]
-) +{
-    svcname:svc,
-}
+    //
+  },
+    render=function(ctx, props) (
+    [k.yaml(importstr './template-deploy.yaml', props + {
+
+      "ports.node": props.ports.node, replicas: 1,
+     }),
+    
+     ] 
+  ),
+) 
 ```
-Notice i imported the svc after the props are introduced and after the function is closed. 
-Now every value and prop from the extension will be taken in account instead for the SVC
-```yaml
-body:
-  - apiVersion: apps/v1
-    kind: Deployment
-    metadata:
-      labels:
-        name: example123
-      name: example123
-    spec:
-      replicas: 1
-      selector:
-        matchLabels:
-          name: example123
-      template:
-        metadata:
-          labels:
-            name: example123
-        spec:
-          containers:
-            - image: 750126809429.dkr.ecr.eu-central-1.amazonaws.com/flaskapp
-              imagePullPolicy: IfNotPresent
-              name: node
-              ports:
-                - containerPort: 3000
-svcname:
-  body:
-    - apiVersion: v1
-      kind: Service
-      metadata:
-        name: node
-      spec:
-        ports:
-          - name: http
-            port: 80
-            targetPort: 3000
-        selector:
-          name: node
-``` -->
+
+
+This also works because it has to get the variable replicas from somewhere.
+The way that the templating is working is that every overrides from top to bottom so those props that are being passed into the manifest
+get passed into that function and those props get passed into the YAML evaluation and the yaml passes it down as a template and that will keep going up the tree if you include the manifest inside of a feature then any props set in the feature will passed down into here and when you pass the feauture inside of an application then the props will
+also continue to be passed down.
+
+```jsonnet
+local k = import 'konn/main.libsonnet';
+
+k.manifest(
+  props={
+    replicas: 2,  → this gets overriten by the replicas below so the yaml will evaluate replicas to 3 (this happens because I have overriten props)
+    name: 'example',
+    image: '750126809429.dkr.ecr.eu-central-1.amazonaws.com/flaskapp',
+    ports: {
+      node: 3000,
+    },
+    //
+  },
+    render=function(ctx, props) (
+    [k.yaml(importstr './template-deploy.yaml', props + {
+
+      "ports.node": props.ports.node, replicas:3,
+     }),
+    
+     ] 
+  ),
+) 
+```
+
+
+
+
+Another example for props usage previously we were using props + the object but if I place the object + props
+
+```jsonnet
+local k = import 'konn/main.libsonnet';
+
+k.manifest(
+  props={
+    replicas: 2,
+    name: 'example',
+    image: '750126809429.dkr.ecr.eu-central-1.amazonaws.com/flaskapp',
+    ports: {
+      node: 3000,
+    },
+    //
+  },
+    render=function(ctx, props) (
+    [k.yaml(importstr './template-deploy.yaml',  {
+
+      "ports.node": props.ports.node, replicas:3,
+     }+ props),  → notice props is here now
+    
+     ] 
+  ),
+) 
+```
+When you do + props your props will already have replicas:2 in it but when props is at the start of that object replicas: 3 is replacing it
