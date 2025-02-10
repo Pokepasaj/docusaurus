@@ -13,10 +13,12 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Konn Features',
+      label: 'Konn Modules',
       items: [
-        'konn-feature1',
-        'konn-feature2', // This ID is now available
+        'app',
+        'config', 
+        'context',
+        'extensions',
       ],
     },
   ],
