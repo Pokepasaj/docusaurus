@@ -43,4 +43,217 @@ Returns defaultValue if the path does not exist.
 • Checks whether the configuration matches a given kind (e.g., "Deployment").
 If name is provided, also checks if the resource has the specified name.
 
-### Examples
+## Examples
+
+### config
+
+```
+local config = import '../../config.libsonnet';
+
+local testConfig = config.new(function(ctx, props) {
+  kind: 'config',
+  metadata: {
+    name: props.name,
+  },
+}, {
+  name: 'test',
+});
+
+{
+  actual: testConfig.render(),
+  expect: {
+    kind: 'config',
+    metadata: {
+      name: 'test',
+    },
+  },
+}
+```
+### YAML output
+```yaml
+actual:
+  kind: config
+  metadata:
+    name: test
+expect:
+  kind: config
+  metadata:
+    name: test
+```
+### config extend
+
+```
+local config = import '../../config.libsonnet';
+
+local config = import '../../config.libsonnet';
+
+local testConfig = config.new(function(ctx, props) {
+  kind: 'config',
+  metadata: {
+    name: props.name,
+  },
+}, {
+  name: 'test',
+}).extend(
+  function(ctx, config, props) (
+    config {
+      extended: true,
+    }
+  ), {
+    name: 'not-test',
+  }
+);
+
+{
+  actual: testConfig.render(),
+  expect: {
+    extended: true,
+    kind: 'config',
+    metadata: {
+      name: 'not-test',
+    },
+  },
+}
+```
+### YAML output
+```yaml
+actual:
+  extended: true
+  kind: config
+  metadata:
+    name: not-test
+expect:
+  extended: true
+  kind: config
+  metadata:
+    name: not-test
+```
+### config from object
+```
+local config = import '../../config.libsonnet';
+local test = import 'jsonnetunit/test.libsonnet';
+
+local configFrom = config.from({
+  kind: 'config',
+  metadata: {
+    name: 'one',
+  },
+});
+
+{
+  type: {
+    actual: configFrom.type,
+    expect: 'config',
+  },
+  render: {
+    actual: configFrom.render(),
+    expect: {
+      kind: 'config',
+      metadata: {
+        name: 'one',
+      },
+    },
+  },
+}
+```
+### YAML output
+```yaml
+render:
+  actual:
+    kind: config
+    metadata:
+      name: one
+  expect:
+    kind: config
+    metadata:
+      name: one
+type:
+  actual: config
+  expect: config
+```
+### config override function
+
+```
+local config = import '../../config.libsonnet';
+
+local config = import '../../config.libsonnet';
+
+local testConfig = config.new(function(ctx, props) {
+  kind: 'config',
+  metadata: {
+    name: props.name,
+  },
+}, {
+  name: 'test',
+}).override(
+  function(props)
+    {
+      name: 'override-' + props.name,
+    }
+);
+
+{
+  actual: testConfig.render(),
+  expect: {
+    kind: 'config',
+    metadata: {
+      name: 'override-test',
+    },
+  },
+}
+```
+
+### YAML output
+```yaml
+actual:
+  kind: config
+  metadata:
+    name: override-test
+expect:
+  kind: config
+  metadata:
+    name: override-test
+```
+
+### config override
+
+```
+local config = import '../../config.libsonnet';
+
+local config = import '../../config.libsonnet';
+
+local testConfig = config.new(function(ctx, props) {
+  kind: 'config',
+  metadata: {
+    name: props.name,
+  },
+}, {
+  name: 'test',
+}).override(
+  {
+    name: 'not-test',
+  }
+);
+
+{
+  actual: testConfig.render(),
+  expect: {
+    kind: 'config',
+    metadata: {
+      name: 'not-test',
+    },
+  },
+}
+```
+
+### YAML output
+```yaml
+actual:
+  kind: config
+  metadata:
+    name: not-test
+expect:
+  kind: config
+  metadata:
+    name: not-test
+```
