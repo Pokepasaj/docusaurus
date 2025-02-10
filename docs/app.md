@@ -29,4 +29,286 @@ title: app
 • kget → Retrieves a configuration by its kind and metadata.name fields.
 
 
-### Examples
+## Examples
+
+### simple app
+
+### Jsonnet
+```local app = import '../../app.libsonnet';
+local config = import '../../config.libsonnet';
+local extension = import '../../extension.libsonnet';
+local feature = import '../../feature.libsonnet';
+local manifest = import '../../manifest.libsonnet';
+
+local ext = extension.new(
+  function(ctx, target, props) target {
+    metadata+: {
+      extended: true,
+      profile: ctx.profile(),
+    },
+  },
+  selector=function(ctx, target, props) target.is('Deployment'),
+);
+
+// test supported config types
+local appTest = app.new(
+  props={
+    name: 'default',
+  },
+  profiles={
+    dev: {
+      name: 'dev',
+    },
+    stg: {
+      name: 'stg',
+    },
+    prd: {
+      name: 'prd',
+    },
+  },
+  features=[
+    {
+      kind: 'Deployment',
+      metadata: {
+        name: 'test1',
+      },
+    },
+    feature.new([
+      [{
+        kind: 'Deployment',
+        metadata: {
+          name: 'test2',
+        },
+      }, {
+        kind: 'Service',
+        metadata: {
+          name: 'test3',
+        },
+      }],
+    ]),
+    feature.new([
+      [{
+        kind: 'Ingress4',
+        metadata: {
+          name: 'test',
+        },
+      }],
+    ], extensions=[ext]),
+  ],
+);
+
+{
+  actual: appTest.init(profile='prd'),
+  expect: [
+    {
+      kind: 'Deployment5',
+      metadata: {
+        extended: true,
+        name: 'test2',
+        profile: 'prd',
+      },
+    },
+    {
+      kind: 'Deployment6',
+      metadata: {
+        extended: true,
+        name: 'test',
+        profile: 'prd',
+      },
+    },
+    {
+      kind: 'Service7',
+      metadata: {
+        name: 'test',
+      },
+    },
+    {
+      kind: 'Ingress8',
+      metadata: {
+        name: 'test',
+      },
+    },
+  ],
+}
+```
+### YAML output
+```yaml
+actual:
+  - kind: Deployment
+    metadata:
+      extended: true
+      name: test1
+      profile: prd
+  - kind: Deployment
+    metadata:
+      extended: true
+      name: test2
+      profile: prd
+  - kind: Service
+    metadata:
+      name: test3
+  - kind: Ingress4
+    metadata:
+      name: test
+expect:
+  - kind: Deployment5
+    metadata:
+      extended: true
+      name: test2
+      profile: prd
+  - kind: Deployment6
+    metadata:
+      extended: true
+      name: test
+      profile: prd
+  - kind: Service7
+    metadata:
+      name: test
+  - kind: Ingress8
+    metadata:
+      name: test
+
+```
+
+### app inheritance
+
+
+### jsonnet
+``` jsonnet
+local app = import '../../app.libsonnet';
+local config = import '../../config.libsonnet';
+local extension = import '../../extension.libsonnet';
+local feature = import '../../feature.libsonnet';
+local manifest = import '../../manifest.libsonnet';
+
+local ext = extension.new(
+  function(ctx, target, props) target {
+    metadata+: {
+      extended: true,
+      profile: ctx.profile(),
+    },
+  },
+  selector=function(ctx, target, props) target.is('Deployment'),
+);
+
+// test supported config types
+local appTest = app.new(
+  props={
+    name: 'default',
+  },
+  profiles={
+    dev: {
+      name: 'dev',
+    },
+    stg: {
+      name: 'stg',
+    },
+    prd: {
+      name: 'prd',
+    },
+  },
+  features=[
+    {
+      kind: 'Deployment',
+      metadata: {
+        name: 'test1',
+      },
+    },
+    feature.new([
+      [{
+        kind: 'Deployment',
+        metadata: {
+          name: 'test2',
+        },
+      }, {
+        kind: 'Service',
+        metadata: {
+          name: 'test3',
+        },
+      }],
+    ]),
+    feature.new([
+      [{
+        kind: 'Ingress4',
+        metadata: {
+          name: 'test',
+        },
+      }],
+    ], extensions=[ext]),
+  ],
+);
+
+{
+  actual: appTest.init(profile='prd'),
+  expect: [
+    {
+      kind: 'Deployment5',
+      metadata: {
+        extended: true,
+        name: 'test2',
+        profile: 'prd',
+      },
+    },
+    {
+      kind: 'Deployment6',
+      metadata: {
+        extended: true,
+        name: 'test',
+        profile: 'prd',
+      },
+    },
+    {
+      kind: 'Service7',
+      metadata: {
+        name: 'test',
+      },
+    },
+    {
+      kind: 'Ingress8',
+      metadata: {
+        name: 'test',
+      },
+    },
+  ],
+}
+```
+
+
+### YAML output
+```yaml
+actual:
+  - kind: Deployment
+    metadata:
+      extended: true
+      name: test1
+      profile: prd
+  - kind: Deployment
+    metadata:
+      extended: true
+      name: test2
+      profile: prd
+  - kind: Service
+    metadata:
+      name: test3
+  - kind: Ingress4
+    metadata:
+      name: test
+expect:
+  - kind: Deployment5
+    metadata:
+      extended: true
+      name: test2
+      profile: prd
+  - kind: Deployment6
+    metadata:
+      extended: true
+      name: test
+      profile: prd
+  - kind: Service7
+    metadata:
+      name: test
+  - kind: Ingress8
+    metadata:
+      name: test
+
+```
