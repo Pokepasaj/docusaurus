@@ -79,7 +79,7 @@ const config = {
       // Replace with your project's social card
       image: 'img/konn.jpg',
       navbar: {
-        title: 'Welcome to Konn :)',
+        title: 'Welcome to Konn',
         logo: {
           alt: 'My Site Logo',
           src: 'img/konn.jpg',

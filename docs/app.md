@@ -27,3 +27,6 @@ title: app
 • get → Retrieves a configuration by a specific path in its body.
 
 • kget → Retrieves a configuration by its kind and metadata.name fields.
+
+
+### Examples

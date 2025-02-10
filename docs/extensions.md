@@ -40,3 +40,5 @@ A function → computes overrides based on existing props.
 
 • configure → 
 Alias of override, used for configuring the extension.
+
+### Examples

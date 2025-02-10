@@ -38,3 +38,6 @@ title: Installation
 3. Go to extension in vscode and install Jsonnet Language Server
 
 Make sure you have a vendor folder in your base directory if you don`t create one and have konn inside of it (this can be change but keep in mind you need to change settings.json for your lib location)
+
+
+### Examples

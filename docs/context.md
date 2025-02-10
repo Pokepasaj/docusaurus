@@ -35,3 +35,5 @@ Makes sure that name matches the provided name
 
 • profile →
 Returns the current profile name from the metadata
+
+### Examples

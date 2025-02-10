@@ -53,3 +53,4 @@ Konn enhances the ability to write maintainable, reusable, and flexible configur
 especially in complex environments where managing multiple profiles, features, and extensions is necessary. 
 It abstracts away much of the boilerplate and manual configuration management found in plain Jsonnet, 
 making it easier to maintain and evolve your configuration over time.
+

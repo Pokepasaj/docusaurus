@@ -42,3 +42,5 @@ Returns defaultValue if the path does not exist.
 
 • Checks whether the configuration matches a given kind (e.g., "Deployment").
 If name is provided, also checks if the resource has the specified name.
+
+### Examples
