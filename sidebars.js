@@ -11,6 +11,9 @@ module.exports = {
       id: 'konn-install', // Existing document ID
       label: 'Installation',
     },
+  ],
+
+  LearnSidebar: [
     {
       type: 'category',
       label: 'Konn Modules',

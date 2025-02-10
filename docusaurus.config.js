@@ -89,7 +89,13 @@ const config = {
             type: 'docSidebar',
             sidebarId: 'konnSidebar', // Use konnSidebar here
             position: 'left',
-            label: 'Konn',
+            label: 'Get Started',
+          },
+          {
+            type: 'docSidebar',
+            sidebarId: 'LearnSidebar', // Use konnSidebar here
+            position: 'left',
+            label: 'Learn',
           },
           {
             href: 'https://github.com/facebook/docusaurus',
