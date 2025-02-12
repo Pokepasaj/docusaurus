@@ -66,4 +66,3 @@ k.config(function(ctx, props)
 })
 ```
 
-### from
