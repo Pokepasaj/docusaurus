@@ -2,7 +2,7 @@
 id: config
 title: config
 ---
-What is a [Config](api/config/api-config-new)
+What is a [Config](/docs/api/config/new)
 
 At its essence, a config in Konn is simply an object with key-value pairs. It serves as the foundation for templating configurations—whether for Kubernetes, infrastructure, applications, or any system that supports structured configuration formats like YAML, JSON, or TOML.
 
