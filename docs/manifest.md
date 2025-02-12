@@ -1,5 +1,5 @@
 ---
-id: manifest
+id: manifests
 title: manifest
 ---
 Responsible for creating, processing, and transforming manifests.

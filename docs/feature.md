@@ -1,5 +1,5 @@
 ---
-id: feature
+id: features
 title: feature
 ---
 

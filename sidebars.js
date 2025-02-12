@@ -98,8 +98,18 @@ module.exports = {
     tutorialSidebar: [
       {
         type: 'doc',
-        id: 'config', // Existing document ID
-        label: 'placeholder',
+        id: 'config', 
+        label: 'Config',
+      },
+      {
+        type: 'doc',
+        id: 'features', 
+        label: 'Features',
+      },
+      {
+        type: 'doc',
+        id: 'manifests', 
+        label: 'Manifests',
       },
     ],
     // api: [
