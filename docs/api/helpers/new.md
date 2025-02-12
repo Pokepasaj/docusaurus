@@ -1,5 +1,5 @@
 ---
-id: api-helper-new
+id: api-helpers-new
 title: new
 ---
 

@@ -32,7 +32,15 @@ module.exports = {
           label: 'Config',
           collapsed: true,
           items: [
+            'api/config/api-config-from', 
+            'api/config/api-config-fromYaml', 
+            'api/config/api-config-fromJson', 
             'api/config/api-config-new', 
+            'api/config/api-config-render', 
+            'api/config/api-config-extend', 
+            'api/config/api-config-override', 
+            'api/config/api-config-get', 
+            'api/config/api-config-is', 
           ],
         },
         {
@@ -61,10 +69,10 @@ module.exports = {
         },
         {
           type: 'category',
-          label: 'Helper',
+          label: 'Helpers',
           collapsed: true,
           items: [
-            'api/helper/api-helper-new', 
+            'api/helpers/api-helpers-new', 
           ],
         },
         {
