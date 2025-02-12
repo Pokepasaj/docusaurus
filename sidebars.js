@@ -78,12 +78,20 @@ module.exports = {
         {
           type: 'category',
           label: 'util',
-          collapsed: true,
+          collapsed: true,  
           items: [
             'api/util/api-util-new', 
           ],
         },
       ],
+      },
+    ],
+
+    tutorialSidebar: [
+      {
+        type: 'doc',
+        id: 'config', // Existing document ID
+        label: 'placeholder',
       },
     ],
     // api: [

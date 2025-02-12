@@ -50,6 +50,12 @@ const config = {
           position: 'left',
           label: 'API Reference',
         },
+        {
+          type: 'docSidebar',
+          sidebarId: 'tutorialSidebar',
+          position: 'left',
+          label: 'Tutorial',
+        },
         
         {
           href: 'https://github.com/facebook/docusaurus',

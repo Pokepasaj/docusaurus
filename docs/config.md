@@ -2,258 +2,67 @@
 id: config
 title: config
 ---
+What is a [Config](api/config/api-config-new)
 
-This module manages and transforms configuration objects.It provides functions to create, modify, and extract configurations while maintaining flexibility for dynamic adjustments.
+At its essence, a config in Konn is simply an object with key-value pairs. It serves as the foundation for templating configurations—whether for Kubernetes, infrastructure, applications, or any system that supports structured configuration formats like YAML, JSON, or TOML.
+
+Why Konn for Configuration Management?
+
+Unlike Helm, which relies heavily on find-and-replace templating, Konn offers a more powerful and flexible way to create configuration variants. Instead of managing multiple Helm charts or complex overlays, Konn allows you to define a single base configuration and generate different variations based on context.
+
+For example:
+
+•You might have multiple environments (e.g., dev, staging, production).
+
+•One environment may require an additional debugging pod.
+
+•Instead of maintaining multiple Helm releases, Konn enables you to express these     variations efficiently.
+
+In Konn, every configuration is ultimately a render function that returns an object. This approach ensures that configurations remain declarative, reusable
 
 
-• from → Creates a new configuration from an object or a renderable object
-   If the source is already a configuration, it returns the original source.
-   Uses a manifest render function to handle the source if it's renderable.
-   Ensures that the result is a valid object; otherwise, it throws an error.
 
-• fromYaml →
-Creates a configuration from a YAML string.
-Ensures the YAML document is a single configuration (not an array).
-
-• fromJson →
-Similar to fromYaml, but for JSON strings.
-Converts the JSON into a configuration while ensuring it is a single document.
-
-• new →
-Creates a new configuration object.
-Stores the configurations render function and properties.
-
-• render →
-Resolves properties and renders the configuration using the stored render function.
-
-• extend →
-Extends an existing configuration by applying a transformation function.
-The function receives the current configuration and modifies it.
-
-• override →
-Overrides specific properties of a configuration.
-Accepts either an object (new properties) or a function (to compute the new properties dynamically).
-
-• get (path, defaultValue=null)→
-Retrieves a value from the configuration using a dot-separated path.
-Returns defaultValue if the path does not exist.
-
-• is (kind, name=null)→
-
-• Checks whether the configuration matches a given kind (e.g., "Deployment").
-If name is provided, also checks if the resource has the specified name.
-
-## Examples
-
-### config
-
+This is a valid config 
+``` js
+{
+    type: 'test',
+}
 ```
-local config = import '../../config.libsonnet';
 
-local testConfig = config.new(function(ctx, props) {
-  kind: 'config',
-  metadata: {
-    name: props.name,
-  },
+But let`s say we want to add properties to it and we add it in a way that we are going to be able to edit trough various different profiles and we need some way to get the props to the right place.
+
+A config is a function that renders an object and all basic configs no matter how they are supplied while using this will end up wrapped like this
+
+`ctx` -> determines where the config is used and making changes to it based on what is included in the context
+What is the context? -> list of other included configs
+
+
+`props` -> props are the current props down at any give point of time of initiation
+
+``` js
+local k = import 'konn/main.libsonnet';
+k.config(function(ctx, props)
+{
+    type: 'test',
+})
+``` 
+
+:::tip Tip
+It`s built with preview in mind. 
+
+Any time you are using Konn you can render in place to preview and test what you are working on at the smallest level.
+:::
+
+
+From this point onwards you will notice that the examples will be using the render function first and props second:
+``` js
+local k = import 'konn/main.libsonnet';
+k.config(function(ctx, props)
+{
+    type: props.type,
 }, {
-  name: 'test',
-});
+    type: 'test'
 
-{
-  actual: testConfig.render(),
-  expect: {
-    kind: 'config',
-    metadata: {
-      name: 'test',
-    },
-  },
-}
-```
-### YAML output
-```yaml
-actual:
-  kind: config
-  metadata:
-    name: test
-expect:
-  kind: config
-  metadata:
-    name: test
-```
-### config extend
-
-```
-local config = import '../../config.libsonnet';
-
-local config = import '../../config.libsonnet';
-
-local testConfig = config.new(function(ctx, props) {
-  kind: 'config',
-  metadata: {
-    name: props.name,
-  },
-}, {
-  name: 'test',
-}).extend(
-  function(ctx, config, props) (
-    config {
-      extended: true,
-    }
-  ), {
-    name: 'not-test',
-  }
-);
-
-{
-  actual: testConfig.render(),
-  expect: {
-    extended: true,
-    kind: 'config',
-    metadata: {
-      name: 'not-test',
-    },
-  },
-}
-```
-### YAML output
-```yaml
-actual:
-  extended: true
-  kind: config
-  metadata:
-    name: not-test
-expect:
-  extended: true
-  kind: config
-  metadata:
-    name: not-test
-```
-### config from object
-```
-local config = import '../../config.libsonnet';
-local test = import 'jsonnetunit/test.libsonnet';
-
-local configFrom = config.from({
-  kind: 'config',
-  metadata: {
-    name: 'one',
-  },
-});
-
-{
-  type: {
-    actual: configFrom.type,
-    expect: 'config',
-  },
-  render: {
-    actual: configFrom.render(),
-    expect: {
-      kind: 'config',
-      metadata: {
-        name: 'one',
-      },
-    },
-  },
-}
-```
-### YAML output
-```yaml
-render:
-  actual:
-    kind: config
-    metadata:
-      name: one
-  expect:
-    kind: config
-    metadata:
-      name: one
-type:
-  actual: config
-  expect: config
-```
-### config override function
-
-```
-local config = import '../../config.libsonnet';
-
-local config = import '../../config.libsonnet';
-
-local testConfig = config.new(function(ctx, props) {
-  kind: 'config',
-  metadata: {
-    name: props.name,
-  },
-}, {
-  name: 'test',
-}).override(
-  function(props)
-    {
-      name: 'override-' + props.name,
-    }
-);
-
-{
-  actual: testConfig.render(),
-  expect: {
-    kind: 'config',
-    metadata: {
-      name: 'override-test',
-    },
-  },
-}
+})
 ```
 
-### YAML output
-```yaml
-actual:
-  kind: config
-  metadata:
-    name: override-test
-expect:
-  kind: config
-  metadata:
-    name: override-test
-```
-
-### config override
-
-```
-local config = import '../../config.libsonnet';
-
-local config = import '../../config.libsonnet';
-
-local testConfig = config.new(function(ctx, props) {
-  kind: 'config',
-  metadata: {
-    name: props.name,
-  },
-}, {
-  name: 'test',
-}).override(
-  {
-    name: 'not-test',
-  }
-);
-
-{
-  actual: testConfig.render(),
-  expect: {
-    kind: 'config',
-    metadata: {
-      name: 'not-test',
-    },
-  },
-}
-```
-
-### YAML output
-```yaml
-actual:
-  kind: config
-  metadata:
-    name: not-test
-expect:
-  kind: config
-  metadata:
-    name: not-test
-```
