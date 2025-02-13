@@ -2,77 +2,66 @@
 id: manifests
 title: manifest
 ---
-Responsible for creating, processing, and transforming manifests.
 
-Handles Kubernetes manifests efficiently.
-Supports Jsonnet-based templating.
-Allows dynamic filtering & transformation.
-Makes querying configs easy (get(), kget()).
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
+### What are manifests?
 
-## Creating a Manifest
-• from(source, props={})
-Converts an input (source) into a manifest.
-Accepts:
-A renderable object (calls .render()).
-An object (wraps it in an array).
-An array (returns it directly).
-A manifest (returns as-is).
-
-Use case: Dynamically wrapping objects into manifests.
-
-• fromYaml(yaml, props={}, filter, map, single, template)
-Parses YAML strings into a manifest.
-
-Use case: Converting Kubernetes manifests from YAML to Jsonnet.
-
-• fromJson(json, props={}, filter, map)
-Similar to fromYaml(), but for JSON.
+Manifests are an array of configs.
+It`s just like a [Config](config) except it should return an array
 
 
-## Rendering and Resolving Manifests
+:::note
+This is an empty valid manifest
+The [Render](api/manifest/api-manifest-render) function cannot return an object it has to be an array but if you are converting it will automatically convert it for you.
+:::
 
-• new(render, props, filter, map)
-Creates a new manifest instance which takes data from the brackets above
+<Tabs>
+    <TabItem value="jsonnet" label="Jsonnet" default>
+    ```js
+    local k = import 'konn/main.libsonnet';
 
-• render
-Calls .resolve() and processes all configs.
-Uses lib.renderConfigs() to generate final output.
+    k.manifest(function(ctx, props)[
+        {},
+    ])
+    ```
+  </TabItem>
+  <TabItem value="yaml" label="YAML Output">
 
-• resolve
-Runs the .render() function.
-Converts each object in the manifest into a config object (config.new()).
-Applies filtering (filter()) and transformation (map()).
-Ensures output is always an array.
-Use case: Processing and preparing Kubernetes manifests.
+    ```yaml
+    body:
+    - {}
+    ```
+    </TabItem>
+</Tabs>
 
+:::tip
+It can be any number of objects to create a config except it has to be an array.
+In the same way of when you run [new.config](api/config/api-config-new)
+:::
 
-## Extending and Modifying Manifests
-• extend(render, props, filter, map)
-Returns a new manifest with additional transformations.
-Calls the provided render() function on existing manifests.
-Use case: Applying global transformations.
+<Tabs>
+    <TabItem value="jsonnet" label="Jsonnet" default>
+    ```js
+    local k = import 'konn/main.libsonnet';
 
-• override
-Overrides properties.
-Supports both objects and functions as overrides.
-Alias: configure().
+    k.manifest(function(ctx, props)[
+        {
+            foo: 'bar',  // all of these 
+        },
+        {
+            foo: 'bar', // are getting converted to configs
+        },
+    ])
+    ```
+  </TabItem>
+  <TabItem value="yaml" label="YAML Output">
 
-• filter
-Applies a filter function to remove unwanted configs.
-
-• map
-Transforms each config using a function.
-
-## Querying Configs
-• find(fn)
-Returns the first config that matches the function.
-
-• get(path, matcher)
-Retrieves a config by a specific path.
-
-• kget(kind, name='')
-Retrieves a config by kind and metadata.name.
-Use case: Finding a specific Kubernetes resource in the manifest.
-
-### Examples
+    ```yaml
+    body:
+      - foo: bar
+      - foo: bar
+    ```
+    </TabItem>
+</Tabs>

@@ -81,6 +81,7 @@ module.exports = {
           collapsed: true,
           items: [
             'api/manifest/api-manifest-new', 
+            'api/manifest/api-manifest-render', 
           ],
         },
         {
