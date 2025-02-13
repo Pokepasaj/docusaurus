@@ -15,11 +15,10 @@ Unlike Helm, which relies heavily on find-and-replace templating, Konn offers a 
 
 For example:
 
-•You might have multiple environments (e.g., dev, staging, production).
+You might have multiple environments (e.g., dev, staging, production).
+One environment may require an additional debugging pod.
 
-•One environment may require an additional debugging pod.
-
-•Instead of maintaining multiple Helm releases, Konn enables you to express these     variations efficiently.
+•Instead of maintaining multiple Helm releases, Konn enables you to express these variations efficiently.
 
 In Konn, every configuration is ultimately a render function that returns an object. This approach ensures that configurations remain declarative, reusable
 
