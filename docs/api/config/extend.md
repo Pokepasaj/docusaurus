@@ -3,55 +3,56 @@ id: api-config-extend
 title: extend
 ---
 
-Lets say you made a reasonable config and you just want to use it as a template.
-In this example you can get `c` and extend it 
+Let's say you made a reasonable config and you just want to use it as a template.  
+In this example, you can get `c` and extend it.
 
-<div style={{ display: 'flex', gap: '20px' }}>
-  <div style={{ flex: 1 }}>
-    <h3>Jsonnet</h3>
-```js
-local k = import 'konn/main.libsonnet';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-local a = {
-  type: 'config',
-};
+<Tabs>
+  <TabItem value="jsonnet" label="Jsonnet" default>
 
-local b = {
-  render(ctx, props):: {
-    type: 'config',
-  },
-};
+    ```js
+    local k = import 'konn/main.libsonnet';
 
-local c = k.config(function(ctx, props) {
-  type: 'config',
-  props: props,
-  metadata: {
-    name: 'bananas',
-  },
-}, {
-  bar: 'foo',
-});
+    local a = {
+      type: 'config',
+    };
 
-local e = c.extend(function(ctx, config, props) config {
-  type: 'config2',
-  props: props,
-  
-});
+    local b = {
+      render(ctx, props):: {
+        type: 'config',
+      },
+    };
 
-{
-  a: a,
-  b: b,
-  c: c.render(props={
-    foo: 'bar',
-  }),
-  e: e
-}
-```
+    local c = k.config(function(ctx, props) {
+      type: 'config',
+      props: props,
+      metadata: {
+        name: 'bananas',
+      },
+    }, {
+      bar: 'foo',
+    });
 
- </div>
-  
-  <div style={{ flex: 1 }}>
-    <h3>YAML Output</h3>
+    local e = c.extend(function(ctx, config, props) config {
+      type: 'config2',
+      props: props,
+    });
+
+    {
+      a: a,
+      b: b,
+      c: c.render(props={
+        foo: 'bar',
+      }),
+      e: e
+    }
+    ```
+
+  </TabItem>
+  <TabItem value="yaml" label="YAML Output">
+
     ```yaml
     a:
       type: config
@@ -71,5 +72,6 @@ local e = c.extend(function(ctx, config, props) config {
           bar: foo
         type: config2
     ```
-  </div>
-</div>
+
+  </TabItem>
+</Tabs>

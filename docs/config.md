@@ -1,3 +1,6 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 ---
 id: config
 title: config
@@ -23,11 +26,28 @@ In Konn, every configuration is ultimately a render function that returns an obj
 
 
 This is a valid config 
-``` js
-{
-    type: 'test',
-}
-```
+
+
+<Tabs>
+  <TabItem value="jsonnet" label="Jsonnet" default>
+
+    ```js
+    {
+      type: 'test',
+    }
+    ```
+
+  </TabItem>
+  <TabItem value="yaml" label="YAML Output">
+
+    ```yaml
+    type: test
+    ```
+
+  </TabItem>
+</Tabs>
+
+
 
 But let`s say we want to add properties to it and we add it in a way that we are going to be able to edit trough various different profiles and we need some way to get the props to the right place.
 
@@ -39,13 +59,25 @@ What is the context? -> list of other included configs
 
 `props` -> props are the current props down at any give point of time of initiation
 
-``` js
-local k = import 'konn/main.libsonnet';
-k.config(function(ctx, props)
-{
-    type: 'test',
-})
-``` 
+<Tabs>
+  <TabItem value="jsonnet" label="Jsonnet" default>
+    ``` js
+    local k = import 'konn/main.libsonnet';
+    k.config(function(ctx, props)
+    {
+        type: 'test',
+    })
+    ``` 
+  </TabItem>
+  <TabItem value="yaml" label="YAML Output">
+
+    ```yaml
+    body:
+    type: test
+    ```
+  </TabItem>
+</Tabs>
+
 
 :::tip Tip
 It`s built with preview in mind. 
@@ -55,6 +87,9 @@ Any time you are using Konn you can render in place to preview and test what you
 
 
 From this point onwards you will notice that the examples will be using the render function first and props second:
+
+<Tabs>
+  <TabItem value="jsonnet" label="Jsonnet" default>
 ``` js
 local k = import 'konn/main.libsonnet';
 k.config(function(ctx, props)
@@ -65,4 +100,15 @@ k.config(function(ctx, props)
 
 })
 ```
+
+  </TabItem>
+  <TabItem value="yaml" label="YAML Output">
+
+    ```yaml
+    body:
+    type: test
+    ```
+  </TabItem>
+</Tabs>
+
 
