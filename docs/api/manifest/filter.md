@@ -1,14 +1,14 @@
 ---
-id: api-manifest-render
-title: render
+id: api-manifest-filter
+title: filter
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## Overview
-The `render` function generates the final manifest configurations by resolving all the props and contexts. It calls the `resolve` function to gather the configurations and then processes them using the `lib.renderConfigs` function, which ensures the configurations are properly rendered.
 
+## Overview
+The `filter` function applies a custom filtering function to the manifest’s configurations. It returns a new manifest with the filter applied.
 
 ### Parameters
 - **`ctx`** - (context) The context object, created using the provided props and config.
