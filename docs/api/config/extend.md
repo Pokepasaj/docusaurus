@@ -43,7 +43,6 @@ The `extend` function returns a new configuration object, combining the original
     output: testConfig.render(),
 
     }
-
     ``` 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
@@ -53,7 +52,6 @@ The `extend` function returns a new configuration object, combining the original
     kind: Deployment
     metadata:
         name: nginx
-
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">

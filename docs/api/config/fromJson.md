@@ -50,7 +50,6 @@ Convert a JSON string into a config object:
         }
     ]
     }
-
     ```
   </TabItem>
 </Tabs>

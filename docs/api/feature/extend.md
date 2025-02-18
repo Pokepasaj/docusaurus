@@ -53,7 +53,6 @@ A new feature object with the extended configurations, properties, and extension
     {
     output: testFeature.render(),
     }
-
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
@@ -68,10 +67,9 @@ A new feature object with the extended configurations, properties, and extension
         metadata:
         name: two
         name: random
-
     ```
   </TabItem>
-  <TabItem value="json" label="JSON">
+  <TabItem value="json" label="JSON Output">
     ```json
     {
     "output": [
@@ -91,7 +89,6 @@ A new feature object with the extended configurations, properties, and extension
         }
     ]
     }
-
     ```  
     </TabItem>
 </Tabs>

@@ -46,7 +46,6 @@ The function returns an object with:
     kind: Service
     metadata:
       name: default
-
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
@@ -60,7 +59,6 @@ The function returns an object with:
         }
       }
     }
-
     ```
     </TabItem>
 </Tabs>

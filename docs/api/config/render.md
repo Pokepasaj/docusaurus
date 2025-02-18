@@ -80,7 +80,6 @@ if you dont supply a ctx it will supply a ctx and if you dont supply props it wi
     render_test:
       props: {}
       type: config2
-
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
@@ -91,7 +90,6 @@ if you dont supply a ctx it will supply a ctx and if you dont supply props it wi
         "type": "config2"
       }
     }
-
     ```
   </TabItem>
 </Tabs>

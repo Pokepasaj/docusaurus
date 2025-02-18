@@ -45,7 +45,6 @@ The resolved configurations, including any extensions or transformations applied
     {
     resolve: testFeature.resolve()
     }
-
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
@@ -62,10 +61,9 @@ The resolved configurations, including any extensions or transformations applied
           metadata:
             name: bar
           type: config2
-
     ```
   </TabItem>
-  <TabItem value="json" label="JSON">
+  <TabItem value="json" label="JSON Output">
     ```json
     {
     "resolve": [
@@ -89,7 +87,6 @@ The resolved configurations, including any extensions or transformations applied
         }
     ]
     }
-
     ```  
     </TabItem>
 </Tabs>

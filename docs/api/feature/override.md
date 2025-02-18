@@ -63,10 +63,9 @@ The feature object with overridden properties.
         labels:
             label: nginx
         name: override-nginx-deployment
-
     ```
   </TabItem>
-  <TabItem value="json" label="JSON">
+  <TabItem value="json" label="JSON Output">
     ```json
     {
     "output": [
@@ -81,7 +80,6 @@ The feature object with overridden properties.
         }
     ]
     }
-
     ```  
     </TabItem>
 </Tabs>

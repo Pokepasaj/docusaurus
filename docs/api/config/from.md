@@ -52,14 +52,13 @@ When resolving `from`, Konn will prioritize a render function if one is availabl
     ``` 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
-    ```yaml
+    ```yml
     deploy_output: {}
     from_example:
     body:
         type: Deployment
     svc_output:
     type: Service
-
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
@@ -75,7 +74,6 @@ When resolving `from`, Konn will prioritize a render function if one is availabl
         "type": "Service"
     }
     }
-
     ```
   </TabItem>
 </Tabs>

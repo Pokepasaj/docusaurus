@@ -9,8 +9,8 @@ import TabItem from '@theme/TabItem';
 ## Overview
 The `extensions` function processes and applies extensions to the feature configurations, allowing for conditional extensions based on the properties.
 ### Parameters
-- **`ctx`**: (object) The context in which the extensions are applied.
-- **`props`**: (object) The properties used to resolve the extensions.
+- **`ctx`** - (object) The context in which the extensions are applied.
+- **`props`** - (object) The properties used to resolve the extensions.
 
 ### Return Value
 An array of applied extensions, filtered and transformed based on the provided properties.
@@ -57,8 +57,6 @@ An array of applied extensions, filtered and transformed based on the provided p
     {
     actual: lib.render(testFeature),
     }
-
-
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
@@ -71,7 +69,7 @@ An array of applied extensions, filtered and transformed based on the provided p
           name: nginx-deploy
     ```
   </TabItem>
-  <TabItem value="json" label="JSON">
+  <TabItem value="json" label="JSON Output">
     ```json
     {
       "actual": [
@@ -84,7 +82,6 @@ An array of applied extensions, filtered and transformed based on the provided p
         }
       ]
     }
-
     ```  
     </TabItem>
 </Tabs>

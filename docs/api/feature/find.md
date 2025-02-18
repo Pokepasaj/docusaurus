@@ -16,3 +16,53 @@ The `find` function searches through the configurations and returns the first ma
 The first matching configuration found.
 
 ## Usage Examples
+
+<Tabs>
+    <TabItem value="jsonnet" label="Jsonnet" default>
+    ```js
+    local feature = import '../../vendor/konn/feature.libsonnet';
+
+    local testFeature = feature.new(
+    [{
+        kind: 'Service',
+        metadata: {
+            name: 'nginx',
+        },
+    }, {
+        kind: 'Deployment',
+        metadata: {
+            name: 'flask',
+        },
+    }]
+    );
+
+    // Using `find` to get the first Deployment 
+    {
+    found_config: testFeature.find(
+        function(ctx, config, props) config.get('kind') == 'Deployment'
+    ).render(),
+    }
+    ```
+  </TabItem>
+  <TabItem value="yaml" label="YAML Output">
+
+    ```yaml
+    found_config:
+    kind: Deployment
+    metadata:
+        name: flask
+    ```
+  </TabItem>
+  <TabItem value="json" label="JSON Output">
+    ```json
+    {
+    "found_config": {
+        "kind": "Deployment",
+        "metadata": {
+            "name": "flask"
+        }
+    }
+    }
+    ```  
+    </TabItem>
+</Tabs>

@@ -18,3 +18,81 @@ The `overrides` function is used to define custom properties that can supersede 
 `self`: The current feature instance with updated `overrides` applied.
 
 ### Usage Example
+
+:::note
+it does not replace previously overridden values—it merges new props with the existing overrides.
+:::
+
+<Tabs>
+    <TabItem value="jsonnet" label="Jsonnet" default>
+    ```js
+    local feature = import '../../vendor/konn/feature.libsonnet';
+    local lib = import '../../vendor/konn/helpers.libsonnet';
+    local manifest = import '../../vendor/konn/manifest.libsonnet';
+
+    local testFeature = feature.new([
+    manifest.new(
+        function(ctx, props) [{
+        kind: 'Deployment',
+        metadata: {
+            name: props.name,
+            labels: {
+            label: props.label,
+            },
+        },
+        }],
+        {
+        name: 'default-name', 
+        label: 'default-label',
+        }
+    ),
+    ]).override({
+    name: 'overridden-name',
+    });
+
+    {
+    Unchanged: testFeature,
+    custom_props: testFeature.overrides({ label: 'custom-label', name: 'this wont change override'}),
+    
+    }
+    ```
+  </TabItem>
+  <TabItem value="yaml" label="YAML Output">
+
+    ```yaml
+    Unchanged:
+    body:
+        - kind: Deployment
+        metadata:
+            labels:
+            label: default-label
+            name: overridden-name
+    custom_props:
+    label: custom-label
+    name: overridden-name
+    ```
+  </TabItem>
+  <TabItem value="json" label="JSON Output">
+    ```json
+    {
+    "Unchanged": {
+        "body": [
+            {
+                "kind": "Deployment",
+                "metadata": {
+                "labels": {
+                    "label": "default-label"
+                },
+                "name": "overridden-name"
+                }
+            }
+        ]
+    },
+    "custom_props": {
+        "label": "custom-label",
+        "name": "overridden-name"
+    }
+    }
+    ```  
+    </TabItem>
+</Tabs>
