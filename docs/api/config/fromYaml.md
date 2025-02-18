@@ -18,7 +18,7 @@ This approach is particularly helpful when working with Kubernetes manifests or 
     ```js
 
     local k = import 'konn/main.libsonnet';
-    k.lib.config.fromYaml('{"apiVersion":"v1", "kind":"Pod", "metadata":{"name": "%(name)s"}}',{
+    k.fromYaml('{"apiVersion":"v1", "kind":"Pod", "metadata":{"name": "%(name)s"}}',{
         name: 'nginx',
     })
     ```
@@ -32,5 +32,20 @@ This approach is particularly helpful when working with Kubernetes manifests or 
     metadata:
         name: nginx
     ```
+  </TabItem>
+  <TabItem value="json" label="JSON Output">
+    ```json
+    {
+      "body": [
+         {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+              "name": "nginx"
+            }
+         }
+      ]
+    }
+    ```  
     </TabItem>
 </Tabs>

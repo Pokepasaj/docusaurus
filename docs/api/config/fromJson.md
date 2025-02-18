@@ -8,26 +8,6 @@ import TabItem from '@theme/TabItem';
 
 ### In Konn, you can generate a plain object using k.config(). This function allows you to define an object with specific properties:
 
-<Tabs>
-  <TabItem value="jsonnet" label="Jsonnet" default>
-    ``` js
-    local k = import 'konn/main.libsonnet';
-    k.config(function(ctx, props)
-    {
-        type: 'test',
-    })
-    ``` 
-  </TabItem>
-  <TabItem value="yaml" label="YAML Output">
-
-    ```yaml
-    body:
-    type: test
-    ```
-  </TabItem>
-</Tabs>
-
-
 
 ### Using .fromJson() for Template-Based Object Creation
 
@@ -36,20 +16,30 @@ If you prefer to generate an object from a JSON string instead, Konn provides .f
 
 
 <Tabs>
-    <TabItem value="jsonnet" label="Jsonnet" default>
+  <TabItem value="jsonnet" label="Jsonnet" default>
     ```js
     local k = import 'konn/main.libsonnet';
     k.fromJson('{ "kind" : "ConfigMap"}')
-    ```
+    ``` 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
-
     ```yaml
     body:
     - kind: ConfigMap
+    ```
+  </TabItem>
+  <TabItem value="json" label="JSON Output">
+    ```json
+    {
+    "body": [
+        {
+            "kind": "ConfigMap"
+        }
+    ]
+    }
 
     ```
-    </TabItem>
+  </TabItem>
 </Tabs>
 
 
@@ -58,7 +48,7 @@ If you prefer to generate an object from a JSON string instead, Konn provides .f
     ```js
 
     local k = import 'konn/main.libsonnet';
-    k.lib.config.fromJson('{"apiVersion":"v1", "kind":"Pod", "metadata":{"name": "%(name)s"}}',{
+    k.fromJson('{"apiVersion":"v1", "kind":"Pod", "metadata":{"name": "%(name)s"}}',{
         name: 'nginx',
     })
     ```
@@ -72,6 +62,21 @@ If you prefer to generate an object from a JSON string instead, Konn provides .f
     metadata:
         name: nginx
     ```
+  </TabItem>
+  <TabItem value="json" label="JSON Output">
+    ```json
+    {
+      "body": [
+         {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+              "name": "nginx"
+            }
+         }
+      ]
+    }
+    ```  
     </TabItem>
 </Tabs>
 

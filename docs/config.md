@@ -62,7 +62,7 @@ What is the context? -> list of other included configs
 
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
-    ``` js
+    ```js
     local k = import 'konn/main.libsonnet';
     k.config(function(ctx, props)
     {
@@ -71,10 +71,18 @@ What is the context? -> list of other included configs
     ``` 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
-
     ```yaml
     body:
     type: test
+    ```
+  </TabItem>
+  <TabItem value="json" label="JSON">
+    ```json
+    {
+      "body": {
+        "type": "test"
+      }
+    }
     ```
   </TabItem>
 </Tabs>

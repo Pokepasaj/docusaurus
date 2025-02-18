@@ -13,122 +13,79 @@ Whenever you are using context you cant reference objects inside of it directly 
 The configs inside of an object are actual config objects.
 :::
 
-Get will help you get a specific thing from inside of an existing config.
+Get will help you get something specific from inside of an existing config.
 
-So lets say we want want to get the metadata name
+So lets say we want want to get the metadata name:
+
+
+We import konn, assign service the k.config function which takes ctx and props.
+
+
 <Tabs>
-    <TabItem value="jsonnet" label="Jsonnet" default>
-    ``` js
-    local k = import 'konn/main.libsonnet';
+  <TabItem value="jsonnet" label="Jsonnet" default>
+    ```js
+    local k = import 'konn/main.libsonnet'; 
+    // import konn and assign it as k
 
-    local a = {
-    type: 'config',
-    };
 
-    local b = {
-    render(ctx, props):: {
-        type: 'config',
-    },
-    };
-
-    local c = k.config(function(ctx, props) {
-    type: 'config',
-
-    props: props,
-
-    }, {
-    bar: 'foo',
-    });
-
-    local e = c.override({
-    bar: 'baz',
+    local service = k.config(function(ctx, props) {
+    kind: 'Service',
+    //assign service the k.config function which takes ctx and props.
     });
 
     {
-    a: a, 
-    b: b,
-    c: c.render(props={
-        foo: 'bar',
-    }),
-    e: e.get('metadata.name', 'default'), // we use 'default' in case it doesn`t return anything
-    
+    output: service.get('metadata.name', 'default'), 
+    // we use 'default' in case we don`t have a match just like this example
     }
-    ```
+    ``` 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
     ```yaml
-    a:
-    type: config
-    b: {}
-    c:
-    props:
-        bar: foo
-        foo: bar
-    type: config
-    e: default  // it`s the default value because it doesn`t exist
+    output: default
     ```
-    </TabItem>
+  </TabItem>
+  <TabItem value="json" label="JSON Output">
+    ```json
+    {
+      "output": "default"
+    }
+    ```
+  </TabItem>
 </Tabs>
 
-:::info
+:::info adding metadata name 
 Okay lets introduce metadata name now and lets see the results
 :::
 
 <Tabs>
-    <TabItem value="jsonnet" label="Jsonnet" default>
+  <TabItem value="jsonnet" label="Jsonnet" default>
     ```js
     local k = import 'konn/main.libsonnet';
 
-    local a = {
-    type: 'config',
-    };
 
-    local b = {
-    render(ctx, props):: {
-        type: 'config',
-    },
-    };
-
-    local c = k.config(function(ctx, props) {
-    type: 'config',
-
-    props: props,
+    local service = k.config(function(ctx, props) {
+    kind: 'Service',
     metadata: {
-        name: 'bananas',
+        name: "my-svc",
     },
-    }, {
-    bar: 'foo',
-    });
-
-    local e = c.override({
-    bar: 'baz',
     });
 
     {
-    a: a, 
-    b: b,
-    c: c.render(props={
-        foo: 'bar',
-    }),
-    e: e.get('metadata.name', 'default')
-    
+    output: service.get('metadata.name', 'default'), 
     }
-    ```
+    ``` 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
-
     ```yaml
-    a:
-    type: config
-    b: {}
-    c:
-    metadata:
-        name: bananas
-    props:
-        bar: foo
-        foo: bar
-    type: config
-    e: bananas
+    output: my-svc
     ```
-    </TabItem>
+  </TabItem>
+  <TabItem value="json" label="JSON Output">
+    ```json
+    {
+      "output": "my-svc"
+    }
+
+    ```
+  </TabItem>
 </Tabs>

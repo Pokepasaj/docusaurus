@@ -19,14 +19,12 @@ Hence why when you, if you look at the code and you make a new one, it's the cur
 
     k.lib.config.new(function(ctx,props){
 
-        apiVersion: 'v1',
-        kind: 'Service',
-        metadata: {
-        name: "default",
-        }
-        }
-
-    )
+    apiVersion: 'v1',
+    kind: 'Service',
+    metadata: {
+      name: "default",
+      }
+    })
     ``` 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
@@ -39,5 +37,19 @@ Hence why when you, if you look at the code and you make a new one, it's the cur
       name: default
 
     ```
-     </TabItem>
+  </TabItem>
+  <TabItem value="json" label="JSON Output">
+    ```json
+    {
+    "body": {
+        "apiVersion": "v1",
+        "kind": "Service",
+        "metadata": {
+            "name": "default"
+        }
+      }
+    }
+
+    ```
+    </TabItem>
 </Tabs>

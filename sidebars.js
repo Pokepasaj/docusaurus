@@ -65,6 +65,18 @@ module.exports = {
           collapsed: true,
           items: [
             'api/feature/api-feature-new', 
+            'api/feature/api-feature-render', 
+            'api/feature/api-feature-resolve', 
+            'api/feature/api-feature-extensions', 
+            'api/feature/api-feature-extend',
+            'api/feature/api-feature-overrides',
+            'api/feature/api-feature-override',
+            'api/feature/api-feature-configure',
+            'api/feature/api-feature-filter',
+            'api/feature/api-feature-map',
+            'api/feature/api-feature-find',
+            'api/feature/api-feature-get',
+            'api/feature/api-feature-kget',
           ],
         },
         {

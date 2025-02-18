@@ -15,68 +15,45 @@ otherwise if a config renders it will get all of the props but if we want to get
 :::
 
 <Tabs>
-    <TabItem value="jsonnet" label="Jsonnet" default>
+  <TabItem value="jsonnet" label="Jsonnet" default>
     ```js
-    local k = import 'konn/main.libsonnet';
-
-    local a = {
-    type: 'config',
-    };
-
-    local b = {
-    render(ctx, props):: {
-        type: 'config',
-    },
-    };
-
-    local c = k.config(function(ctx, props) {
-    type: 'config',
-    kind: 'Service',
-    props: props,
+    local config = import '../../vendor/konn/config.libsonnet';
+    local testConfig = config.new(function(ctx, props) {
+    kind: 'Deployment',
     metadata: {
-        name: 'bananas',
+        name: props.name,
     },
     }, {
-    bar: 'foo',
-    });
-
-    local e = c.override({
-    bar: 'baz',
-    });
-
+    name: 'my-deployment',
+    }).override(
+    function(props)
+        {
+        name: 'override-' + props.name,
+        }
+    );
     {
-    a: a, 
-    b: b,
-    c: c.render(props={
-        foo: 'bar',
-    }),
-    e: e.render(props= {
-        bar: 'foo',  // we try to change bar to foo here but it will not change due to override
-    })
+    output: testConfig.render(),
     }
-    ```
+    ``` 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
     ```yaml
-    a:
-    type: config
-    b: {}
-    c:
-    kind: Service
-    metadata:
-        name: bananas
-    props:
-        bar: foo
-        foo: bar
-    type: config
-    e:
-    kind: Service
-    metadata:
-        name: bananas
-    props:
-        bar: baz
-    type: config
-
+    output:
+      kind: Deployment
+      metadata:
+        name: override-my-deployment
     ```
-    </TabItem>
+  </TabItem>
+  <TabItem value="json" label="JSON Output">
+    ```json
+    {
+    "output": {
+        "kind": "Deployment",
+        "metadata": {
+            "name": "override-my-deployment"
+        }
+      }
+    }
+    ```
+  </TabItem>
 </Tabs>

@@ -16,63 +16,35 @@ Best recommendation to test either of these out is to get your hands dirty and e
 :::
 
 <Tabs>
-    <TabItem value="jsonnet" label="Jsonnet" default>
+  <TabItem value="jsonnet" label="Jsonnet" default>
     ```js
     local k = import 'konn/main.libsonnet';
 
-    local a = {
-    type: 'config',
-    };
-
-    local b = {
-    render(ctx, props):: {
+    local service = k.config(function(ctx, props) {
+        kind: 'Namespace',  // if we replace Namespace with Service e will still return true
         type: 'config',
+        metadata: {
+        name: 'random',
     },
-    };
-
-    local c = k.config(function(ctx, props) {
-    kind: 'Namespace',  // if we replace Namespace with Service e will still return true
-    type: 'config',
-    props: props,
-    metadata: {
-        name: 'bananas',
-    },
-    }, {
-    bar: 'foo',
-    });
-
-    local e = c.override({
-    bar: 'baz',
     });
 
     {
-    a: a, 
-    b: b,
-    c: c.render(props={
-        foo: 'bar',
-    }),
-    e: e.is(['Namespace', 'Service'])
-    
+    output: service.is(['Namespace', 'Service'])
+    }
+    ``` 
+  </TabItem>
+  <TabItem value="yaml" label="YAML Output">
+    ```yaml
+    output: true
+    ```
+  </TabItem>
+  <TabItem value="json" label="JSON Output">
+    ```json
+    {
+      "output": true
     }
     ```
   </TabItem>
-  <TabItem value="yaml" label="YAML Output">
-
-    ```yaml
-    a:
-    type: config
-    b: {}
-    c:
-    kind: Namespace
-    metadata:
-        name: bananas
-    props:
-        bar: foo
-        foo: bar
-    type: config
-    e: true
-    ```
-    </TabItem>
 </Tabs>
 
 
@@ -81,62 +53,35 @@ Best recommendation to test either of these out is to get your hands dirty and e
 
 
 <Tabs>
-    <TabItem value="jsonnet" label="Jsonnet" default>
+  <TabItem value="jsonnet" label="Jsonnet" default>
     ```js
     local k = import 'konn/main.libsonnet';
 
-    local a = {
-    type: 'config',
-    };
-
-    local b = {
-    render(ctx, props):: {
+    local service = k.config(function(ctx, props) {
+        kind: 'Namespace',  // if we replace Namespace with Service e will still return true
         type: 'config',
+        metadata: {
+        name: 'not default or random',
     },
-    };
-
-    local c = k.config(function(ctx, props) {
-    kind: 'Namespace',  // if we replace Namespace with Service it will still return true
-    type: 'config',
-    props: props,
-    metadata: {
-        name: 'bananas',
-    },
-    }, {
-    bar: 'foo',
-    });
-
-    local e = c.override({
-    bar: 'baz',
     });
 
     {
-    a: a, 
-    b: b,
-    c: c.render(props={
-        foo: 'bar',
-    }),
-    e: e.is(['Namespace', 'Service'], ['default', 'bananas']) // names will also takes arrays
-   // if metadata/name is not default or bananas it will return false
-    
+    output: service.is(['Namespace', 'Service'], ['default', 'random'])
+    }
+    // names will also takes arrays
+    // if metadata/name is not default or random it will return false
+    ``` 
+  </TabItem>
+  <TabItem value="yaml" label="YAML Output">
+    ```yaml
+    output: false
+    ```
+  </TabItem>
+  <TabItem value="json" label="JSON Output">
+    ```json
+    {
+      "output": false
     }
     ```
   </TabItem>
-  <TabItem value="yaml" label="YAML Output">
-
-    ```yaml
-    a:
-    type: config
-    b: {}
-    c:
-    kind: Namespace
-    metadata:
-        name: bananas
-    props:
-        bar: foo
-        foo: bar
-    type: config
-    e: true
-    ```
-    </TabItem>
 </Tabs>
