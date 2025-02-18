@@ -6,10 +6,18 @@ title: extend
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-If you have made a reasonable config and you just want to use it as a template, you can extend in the same way as you would anything else.
+## Overview
+The `extend` function allows for the extension of an existing feature by adding new configurations, properties, or extensions, as well as modifying the filtering and mapping behavior.
+### Parameters
+- **`configs`** - (array) Additional configurations to extend the feature.
+- **`props`** - (object) Additional properties to extend the feature.
+- **`extensions`** - (array)  Additional extensions to apply to the feature.
+- **`filter`** - (function) A filter function to refine which configurations are included.
+- **`map`** - (function) A map function to modify the configurations.
+### Return Value
+A new feature object with the extended configurations, properties, and extensions.
 
-
-
+## Usage Examples
 <Tabs>
     <TabItem value="jsonnet" label="Jsonnet" default>
     ```js

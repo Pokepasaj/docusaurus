@@ -6,7 +6,16 @@ title: extensions
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+## Overview
+The `extensions` function processes and applies extensions to the feature configurations, allowing for conditional extensions based on the properties.
+### Parameters
+- **`ctx`**: (object) The context in which the extensions are applied.
+- **`props`**: (object) The properties used to resolve the extensions.
 
+### Return Value
+An array of applied extensions, filtered and transformed based on the provided properties.
+
+## Usage Examples
 
 <Tabs>
     <TabItem value="jsonnet" label="Jsonnet" default>
