@@ -5,22 +5,17 @@ title: get
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## *Why use get?*
-`Get` is a helper
-Whenever you are using context you cant reference objects inside of it directly because they are not rendered yet.
+## Overview
+`get` is a helper function used to retrieve specific values from a configuration object. This is especially useful when you are dealing with context (`ctx`) and need to extract specific attributes from the configuration, such as a `metadata` field. Since the objects are not rendered immediately, `get` provides a way to safely access these values.
 
-:::tip configs
-The configs inside of an object are actual config objects.
-:::
+### Parameters
+- **`path`** - (string) The path to the property you want to retrieve from the configuration (e.g., '`metadata.name`').
+- **`defaultValue`** - (any) The value to return if the property is not found (e.g., '`default`').
 
-Get will help you get something specific from inside of an existing config.
+### Return Value
+The `get` function returns the value of the specified property from the configuration. If the property doesn't exist, it returns the provided `defaultValue`.
 
-So lets say we want want to get the metadata name:
-
-
-We import konn, assign service the k.config function which takes ctx and props.
-
-
+## Usage Examples
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
     ```js
@@ -54,7 +49,7 @@ We import konn, assign service the k.config function which takes ctx and props.
 </Tabs>
 
 :::info adding metadata name 
-Okay lets introduce metadata name now and lets see the results
+We introduced `metadata.name` now. Let's see the updated results.
 :::
 
 <Tabs>

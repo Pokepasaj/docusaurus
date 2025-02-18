@@ -6,11 +6,22 @@ title: new
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-`new` serves as a base object template for rendering configurations dynamically
+## Overview
+The new function in Konn is used to create a new configuration instance by applying a rendering function and initial properties (props).
 
-It takes the current props for the entire render the manifest and metadata.
 
-Hence why when you, if you look at the code and you make a new one, it's the current props for the entire render,, the manifest and some metadata
+### Parameters
+- **`render`** – A function that defines how the object should be rendered.
+- **`props`** – An object containing initial values.
+
+### Return Value
+The function returns an object with:
+- **`body`** – The rendered output based on `ctx` and `props`.
+- **`props`** – The initial properties for reference.
+- **`args`** – Stores the `render` function and `props` used.
+
+## Usage Examples
+
 
 <Tabs>
      <TabItem value="jsonnet" label="Jsonnet" default>

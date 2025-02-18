@@ -5,9 +5,16 @@ title: render
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-### To actually get the content you need to call the render function
+## Overview
+The `render` function is used to generate the final configuration output by processing the provided props. It takes the configuration defined with config and outputs the rendered result in the form of a structured object (JSON or YAML).
 
+### Parameters
 
+- **`props`** – (object) A set of key-value pairs that are passed to the configuration function. These are used within the configuration function to generate the output.
+### Return Value
+The `render` function returns the rendered configuration, which includes the evaluated props along with any other defined parameters in the configuration.
+
+## Usage Examples
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
     ```js

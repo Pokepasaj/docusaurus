@@ -6,14 +6,16 @@ title: is
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-*is* - kubernetes specific (it`s the same as [get](api-config-get) except it checks if a config a certain kind of config) 
+## Overview
+`is` is a Kubernetes-specific function that works similarly to [get](api-config-get), but checks if the configuration matches a certain kind of configuration. It’s useful to verify whether a config matches certain criteria (like being of type `Namespace` or `Service`).
+### Parameters
+- **`kinds`** -  (array of strings) An array of valid configuration kinds (e.g., `['Namespace', 'Service']`).
+- **`names`** - (array of strings, optional) An array of valid names to match (e.g., `['default', 'random']`). If not specified, it checks only the kind.
 
+### Return Value
+The `is` function returns a Boolean (`true` or `false`), indicating whether the configuration matches the specified kinds and names.
 
-:::tip
-Works like a Boolean
-
-Best recommendation to test either of these out is to get your hands dirty and experiment
-:::
+## Usage Examples
 
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>

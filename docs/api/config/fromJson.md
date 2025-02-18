@@ -6,15 +6,28 @@ title: fromJson
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-### In Konn, you can generate a plain object using k.config(). This function allows you to define an object with specific properties:
+## Overview
 
 
-### Using .fromJson() for Template-Based Object Creation
+The fromJson function converts a JSON string into an equivalent Jsonnet object. It is similar to [fromYaml](api-config-fromYaml)
+but specifically handles JSON-formatted text.
 
-Similar to [fromYaml](api-config-fromYaml)
-If you prefer to generate an object from a JSON string instead, Konn provides .fromJson(), which allows you to convert JSON text into an equivalent object.
+### Parameters
+- **`json`** (string): A JSON-formatted string representing a configuration.
+- **`props`** (object, optional): Key-value pairs used for templating within the JSON string.  
+:::note
+ props defaults to `{}`
+:::
+
+### Return Value
+A config object derived from the JSON input, with placeholders resolved using props.
 
 
+## Usage Examples
+
+
+### Basic Usage
+Convert a JSON string into a config object:
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
     ```js
@@ -42,6 +55,7 @@ If you prefer to generate an object from a JSON string instead, Konn provides .f
   </TabItem>
 </Tabs>
 
+### Using props 
 
 <Tabs>
     <TabItem value="jsonnet" label="Jsonnet" default>
@@ -81,5 +95,5 @@ If you prefer to generate an object from a JSON string instead, Konn provides .f
 </Tabs>
 
 :::tip Use case
-Using .fromJson() is useful when you have JSON-based configurations and need to transform them dynamically while maintaining JSON format.
+Using fromJson is useful when you have JSON-based configurations and need to transform them dynamically while maintaining JSON format.
 :::

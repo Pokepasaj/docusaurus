@@ -5,14 +5,14 @@ title: override
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Override is way of completely overriding props no matter what if you override it it will not change.
-if it`s overridden it locks it at that point meaning that anything that passed from a higher point will never change it.
+## Overview
+The `override` function allows you to lock props at a certain point in the configuration flow. Once overridden, the prop values will not change, ensuring that the configuration does not unintentionally modify key properties passed to it.
+### Parameters
+- **`props`** – (object) The props object to be overridden. The function will replace or modify the values of the specified props with the overridden values.
+### Return Value
+The `override` function does not return a direct value but modifies the `props` object in place. It ensures that no higher-level configurations can alter the overridden properties.
 
-
-:::tip Use Case
-If you want to stop pollution from your props because you want to take only props from a particular place and passed them down in your function
-otherwise if a config renders it will get all of the props but if we want to get particular props we use override
-:::
+## Usage Examples
 
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
