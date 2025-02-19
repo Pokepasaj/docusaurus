@@ -23,24 +23,24 @@ The first matching configuration found.
     local feature = import '../../vendor/konn/feature.libsonnet';
 
     local testFeature = feature.new(
-    [{
+      [{
         kind: 'Service',
         metadata: {
-            name: 'nginx',
+          name: 'nginx',
         },
-    }, {
+      }, {
         kind: 'Deployment',
         metadata: {
-            name: 'flask',
+          name: 'flask',
         },
-    }]
+      }]
     );
 
-    // Using `find` to get the first Deployment 
+    // Using `find` to get the first Deployment
     {
-    found_config: testFeature.find(
+      found_config: testFeature.find(
         function(ctx, config, props) config.get('kind') == 'Deployment'
-    ).render(),
+      ).render(),
     }
     ```
   </TabItem>
@@ -48,20 +48,20 @@ The first matching configuration found.
 
     ```yaml
     found_config:
-    kind: Deployment
-    metadata:
+      kind: Deployment
+      metadata:
         name: flask
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
     {
-    "found_config": {
-        "kind": "Deployment",
-        "metadata": {
-            "name": "flask"
-        }
-    }
+       "found_config": {
+          "kind": "Deployment",
+          "metadata": {
+             "name": "flask"
+          }
+       }
     }
     ```  
     </TabItem>

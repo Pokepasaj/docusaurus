@@ -21,32 +21,31 @@ An object representing the new feature, including its body (rendered configurati
 <Tabs>
     <TabItem value="jsonnet" label="Jsonnet" default>
     ```js
-
-    local feature = import '../../vendor/konn/feature.libsonnet'; // import feature
-    local helper = import '../../vendor/konn/helpers.libsonnet'; // import helpers to render this 
+    local feature = import '../../vendor/konn/feature.libsonnet';
+    local helper = import '../../vendor/konn/helpers.libsonnet';
 
     local testFeature = feature.new(
-    [
-    {
-        type: 'config1',
-        kind: 'Namespace',
-        metadata: {
-        name: 'foo',
+      [
+        {
+          type: 'config1',
+          kind: 'Namespace',
+          metadata: {
+            name: 'foo',
+          },
         },
-    },
-    {
-        type: 'config2',
-        kind: 'Namespace2',
-        metadata: {
-        name: 'bar',
+        {
+          type: 'config2',
+          kind: 'Namespace2',
+          metadata: {
+            name: 'bar',
+          },
         },
-    },
-    ],
-    
+      ],
+
     );
 
     {
-    rendered: helper.render(testFeature), // feature does not have a render function we use helpers to render
+      rendered: helper.render(testFeature),  // feature does not have a render function we use helpers to render
     }
     ```
   </TabItem>
@@ -54,11 +53,11 @@ An object representing the new feature, including its body (rendered configurati
 
     ```yaml
     rendered:
-    - kind: Namespace
+      - kind: Namespace
         metadata:
           name: foo
         type: config1
-    - kind: Namespace2
+      - kind: Namespace2
         metadata:
           name: bar
         type: config2
@@ -67,21 +66,21 @@ An object representing the new feature, including its body (rendered configurati
   <TabItem value="json" label="JSON Output">
     ```json
     {
-    "rendered": [
-      {
+      "rendered": [
+          {
             "kind": "Namespace",
             "metadata": {
                 "name": "foo"
-         },
-           "type": "config1"
-      },
-      {
+            },
+            "type": "config1"
+          },
+          {
             "kind": "Namespace2",
             "metadata": {
                 "name": "bar"
-         },
+            },
             "type": "config2"
-        }
+          }
       ]
     }
     ```  

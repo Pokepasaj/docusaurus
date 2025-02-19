@@ -18,68 +18,49 @@ The rendered configurations with applied extensions, resolved properties, and fi
 ## Usage Examples
 
 <Tabs>
-    <TabItem value="jsonnet" label="Jsonnet" default>
-    ```js
-    local config = import '../../vendor/konn/config.libsonnet';
-    local feature = import '../../vendor/konn/feature.libsonnet';
+  <TabItem value="jsonnet" label="Jsonnet" default>
+  ```js
+  local config = import '../../vendor/konn/config.libsonnet';
+  local feature = import '../../vendor/konn/feature.libsonnet';
 
 
-    local renderFeature = feature.new(
+  local renderFeature = feature.new(
     [
-        {
+      {
         kind: 'Deployment',
         metadata: {
-            name: 'nginx',
+          name: 'nginx',
         },
-        },
+      },
     ],
-    );
-    {
-    actual: renderFeature.render(),
-    expect: [
-        {
-        kind: 'Service',
-        metadata: {
-            name: 'nginx-service',
-        },
-        },
-    ],
-    }
-    ```
+  );
+  {
+    output: renderFeature.render(),
+  }
+  ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
     ```yaml
-    actual:
+    output:
       - kind: Deployment
         metadata:
           name: nginx
-    expect:
-      - kind: Service
-        metadata:
-          name: nginx-service
-    ```
+        ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
     {
-    "actual": [
-        {
-            "kind": "Deployment",
-            "metadata": {
+       "output": [
+          {
+             "kind": "Deployment",
+             "metadata": {
                 "name": "nginx"
-            }
-        }
-    ],
-    "expect": [
-        {
-            "kind": "Service",
-            "metadata": {
-                "name": "nginx-service"
-            }
-        }
-    ]
+             }
+          }
+       ]
     }
+
     ```  
     </TabItem>
 </Tabs>

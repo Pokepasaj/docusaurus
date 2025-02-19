@@ -5,9 +5,21 @@
   "proseWrap": "preserve",
   "overrides": [
     {
-      "files": "*.md",
+      "files": "*.yaml",
       "options": {
-        "parser": "markdown"
+        "parser": "yaml"
+      }
+    },
+    {
+      "files": "*.jsonnet",
+      "options": {
+        "parser": "json"
+      }
+    },
+    {
+      "files": "*.json",
+      "options": {
+        "parser": "json"
       }
     }
   ]

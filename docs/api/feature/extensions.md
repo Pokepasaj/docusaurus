@@ -25,45 +25,45 @@ An array of applied extensions, filtered and transformed based on the provided p
     local lib = import '../../vendor/konn/helpers.libsonnet';
 
     local testExtension = extension.new(
-    function(ctx, config, props) config {
+      function(ctx, config, props) config {
         metadata+: {
-        labels: props.labels,
+          labels: props.labels,
         },
-    },
-    {
+      },
+      {
         labels: 'default',
-    },
+      },
     );
     local testFeature = feature.new(
-    [
+      [
         {
-        kind: 'Deployment',
-        metadata: {
+          kind: 'Deployment',
+          metadata: {
             name: 'nginx-deploy',
+          },
         },
-        },
-    ],
-    {
-        labels: 'label-from-feature' // if labels does not exist here it will take the prop from override
-                                    // if override and feature labels do not exist it will take the default prop
-    },
-    extensions=[
+      ],
+      {
+        labels: 'label-from-feature',  // if labels does not exist here it will take the prop from override
+        // if override and feature labels do not exist it will take the default prop
+      },
+      extensions=[
         testExtension.override({
-        labels: 'label-from-override', // if labels does not exist here it will take the previous prop of labels from feature
+          labels: 'label-from-override',  // if labels does not exist here it will take the previous prop of labels from feature
         }),
-    ],
+      ],
     );
 
     {
-    actual: lib.render(testFeature),
+      output: lib.render(testFeature),
     }
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
     ```yaml
-    actual:
-    - kind: Deployment
+    output:
+      - kind: Deployment
         metadata:
           labels: label-from-override
           name: nginx-deploy
@@ -72,15 +72,15 @@ An array of applied extensions, filtered and transformed based on the provided p
   <TabItem value="json" label="JSON Output">
     ```json
     {
-      "actual": [
-        {
-          "kind": "Deployment",
-          "metadata": {
-            "labels": "label-from-override",
-            "name": "nginx-deploy"
+       "output": [
+          {
+             "kind": "Deployment",
+             "metadata": {
+                "labels": "label-from-override",
+                "name": "nginx-deploy"
+             }
           }
-        }
-      ]
+       ]
     }
     ```  
     </TabItem>

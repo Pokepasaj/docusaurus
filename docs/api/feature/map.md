@@ -26,39 +26,38 @@ The extended feature object with the map function applied to the configurations.
 
 
     local testFeature = feature.new(
-    [
+      [
         manifest.new(
-        function(ctx, props) [{
+          function(ctx, props) [{
             kind: 'Deployment',
             metadata: {
-            name: props.name,
-            labels: {
+              name: props.name,
+              labels: {
                 app: 'nginx',
+              },
             },
-            },
-        }, {
+          }, {
             kind: 'Deployment',
             metadata: {
-            name: props.name,
-            labels: {
+              name: props.name,
+              labels: {
                 app: 'flask',
+              },
             },
-            },
-        }],
-        {
+          }],
+          {
             name: 'test',
-        },
+          },
         ),
-    ],
-    map=function(ctx, config, props) config {
+      ],
+      map=function(ctx, config, props) config {
         metadata+: {
-        name: props.name + '-app', // adding -app to every props.name
+          name: props.name + '-app',  // adding -app to every props.name
         },
-    }
+      }
     );
-
     {
-    mapped_output: testFeature.render(),
+      mapped_output: testFeature.render(),
     }
     ```
   </TabItem>
@@ -66,41 +65,41 @@ The extended feature object with the map function applied to the configurations.
 
     ```yaml
     mapped_output:
-    - kind: Deployment
+      - kind: Deployment
         metadata:
-        labels:
+          labels:
             app: nginx
-        name: test-app
-    - kind: Deployment
+          name: test-app
+      - kind: Deployment
         metadata:
-        labels:
+          labels:
             app: flask
-        name: test-app
+          name: test-app
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
     {
-    "mapped_output": [
-        {
-            "kind": "Deployment",
-            "metadata": {
+       "mapped_output": [
+          {
+             "kind": "Deployment",
+             "metadata": {
                 "labels": {
-                "app": "nginx"
+                   "app": "nginx"
                 },
                 "name": "test-app"
-            }
-        },
-        {
-            "kind": "Deployment",
-            "metadata": {
+             }
+          },
+          {
+             "kind": "Deployment",
+             "metadata": {
                 "labels": {
-                "app": "flask"
+                   "app": "flask"
                 },
                 "name": "test-app"
-            }
-        }
-    ]
+             }
+          }
+       ]
     }
     ```  
     </TabItem>

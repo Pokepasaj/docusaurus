@@ -28,28 +28,29 @@ The feature object with overridden properties.
     local manifest = import '../../vendor/konn/manifest.libsonnet';
 
     local testFeature = feature.new([
-    manifest.new(function(ctx, props) [{
-        kind: 'Deployment',
-        metadata: {
-        name: props.name,
-        labels: {
-            label: props.label,
+      manifest.new(function(ctx, props) [
+        {
+          kind: 'Deployment',
+          metadata: {
+            name: props.name,
+            labels: {
+              label: props.label,
+            },
+          },
         },
-        },
-    }, 
-    ], {
-        name: 'placeholder', // commenting out the output props these props will be used instead
+      ], {
+        name: 'placeholder',  // commenting out the output props these props will be used instead
         label: 'placeholder',
-    }),
+      }),
     ]).configure(function(props) {
-    name: 'override-' + props.name,  // override passed props
+      name: 'override-' + props.name,  // override passed props
     });
 
     {
-    output: lib.render(testFeature, {
+      output: lib.render(testFeature, {
         name: 'nginx-deployment',  // this propr will be overidden
         label: 'nginx',  // this one wont be overidden (we did not specify it under override func)
-    }),
+      }),
 
     }
     ```
@@ -58,27 +59,27 @@ The feature object with overridden properties.
 
     ```yaml
     output:
-    - kind: Deployment
+      - kind: Deployment
         metadata:
-        labels:
+          labels:
             label: nginx
-        name: override-nginx-deployment
+          name: override-nginx-deployment
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
     {
-    "output": [
-        {
-            "kind": "Deployment",
-            "metadata": {
+       "output": [
+          {
+             "kind": "Deployment",
+             "metadata": {
                 "labels": {
-                "label": "nginx"
+                   "label": "nginx"
                 },
                 "name": "override-nginx-deployment"
-            }
-        }
-    ]
+             }
+          }
+       ]
     }
     ```  
     </TabItem>

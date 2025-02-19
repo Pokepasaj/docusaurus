@@ -28,33 +28,33 @@ Returns the properties after applying the overrides.
     local manifest = import '../../vendor/konn/manifest.libsonnet';
 
     local testManifest = manifest.new(function(ctx, props) [{
-    kind: 'Deployment',
-    metadata: {
+      kind: 'Deployment',
+      metadata: {
         name: props.name,
         labels: {
-        label: props.label,
-        app: 'nginx',
+          label: props.label,
+          app: 'nginx',
         },
-    },
+      },
     }, {
-    kind: 'Deployment',
-    metadata: {
+      kind: 'Deployment',
+      metadata: {
         name: props.name,
         labels: {
-        label: props.label,
-        app: 'flask',
+          label: props.label,
+          app: 'flask',
         },
-    },
+      },
     }], {
-    name: 'placeholder',
-    label: 'placeholder',
+      name: 'placeholder',
+      label: 'placeholder',
     }).override(function(props) {
-    name:  'override-name',
+      name: 'override-name',
     });
 
     {
-    Unchanged: testManifest,
-    custom_props: testManifest.overrides({label: 'custom-label', name: 'this wont change override'})
+      Unchanged: testManifest,
+      custom_props: testManifest.overrides({ label: 'custom-label', name: 'this wont change override' }),
     }
     ```
   </TabItem>
@@ -62,55 +62,55 @@ Returns the properties after applying the overrides.
 
     ```yaml
     Unchanged:
-    body:
+      body:
         - kind: Deployment
-        metadata:
+          metadata:
             labels:
-            app: nginx
-            label: placeholder
+              app: nginx
+              label: placeholder
             name: override-name
         - kind: Deployment
-        metadata:
+          metadata:
             labels:
-            app: flask
-            label: placeholder
+              app: flask
+              label: placeholder
             name: override-name
     custom_props:
-    label: custom-label
-    name: override-name
+      label: custom-label
+      name: override-name
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
-        {
-    "Unchanged": {
-        "body": [
-            {
+    {
+       "Unchanged": {
+          "body": [
+             {
                 "kind": "Deployment",
                 "metadata": {
-                "labels": {
-                    "app": "nginx",
-                    "label": "placeholder"
-                },
-                "name": "override-name"
+                   "labels": {
+                      "app": "nginx",
+                      "label": "placeholder"
+                   },
+                   "name": "override-name"
                 }
-            },
-            {
+             },
+             {
                 "kind": "Deployment",
                 "metadata": {
-                "labels": {
-                    "app": "flask",
-                    "label": "placeholder"
-                },
-                "name": "override-name"
+                   "labels": {
+                      "app": "flask",
+                      "label": "placeholder"
+                   },
+                   "name": "override-name"
                 }
-            }
-        ]
-    },
-    "custom_props": {
-        "label": "custom-label",
-        "name": "override-name"
-    }
+             }
+          ]
+       },
+       "custom_props": {
+          "label": "custom-label",
+          "name": "override-name"
+       }
     }
     ```  
     </TabItem>

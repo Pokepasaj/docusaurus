@@ -27,21 +27,21 @@ The configuration that matches the kind and name.
     local feature = import '../../vendor/konn/feature.libsonnet';
 
     local testFeature = feature.new(
-    [{
+      [{
         kind: 'Deployment',
         metadata: {
-        name: 'nginx',
+          name: 'nginx',
         },
-    }, {
+      }, {
         kind: 'Deployment',
         metadata: {
-        name: 'flask',
+          name: 'flask',
         },
-    }]
+      }]
     );
 
     {
-    output: testFeature.kget('Deployment', 'nginx').render(),
+      output: testFeature.kget('Deployment', 'nginx').render(),
     }
     ```
   </TabItem>
@@ -49,20 +49,20 @@ The configuration that matches the kind and name.
 
     ```yaml
     output:
-    kind: Deployment
-    metadata:
+      kind: Deployment
+      metadata:
         name: nginx
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
     {
-    "output": {
-        "kind": "Deployment",
-        "metadata": {
-            "name": "nginx"
-        }
-    }
+       "output": {
+          "kind": "Deployment",
+          "metadata": {
+             "name": "nginx"
+          }
+       }
     }
     ```  
     </TabItem>

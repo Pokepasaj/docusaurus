@@ -23,47 +23,46 @@ The `extend` function returns a new configuration object, combining the original
     local config = import 'konn/config.libsonnet';
 
     local testConfig = config.new(function(ctx, props) {
-    kind: 'Deployment',
-    metadata: {
+      kind: 'Deployment',
+      metadata: {
         name: props.name,
-    },
+      },
     }, {
-    name: 'test',
+      name: 'test',
     }).extend(
-    function(ctx, config, props) (
+      function(ctx, config, props) (
         config {
-        extended: true,
+          extended: true,
         }
-    ), {
+      ), {
         name: 'nginx',
-    }
+      }
     );
 
     {
-    output: testConfig.render(),
-
+      output: testConfig.render(),
     }
     ``` 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
     ```yaml
     output:
-    extended: true
-    kind: Deployment
-    metadata:
+      extended: true
+      kind: Deployment
+      metadata:
         name: nginx
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
     {
-    "output": {
-        "extended": true,
-        "kind": "Deployment",
-        "metadata": {
+      "output": {
+          "extended": true,
+          "kind": "Deployment",
+          "metadata": {
             "name": "nginx"
-        }
-    }
+          }
+      }
     }
     ```
    </TabItem>

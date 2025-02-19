@@ -26,60 +26,60 @@ Returns a new manifest with the provided extensions applied.
     local manifest = import '../../vendor/konn/manifest.libsonnet';
 
     local testManifest = manifest.new(
-    function(ctx, props) [ {
+      function(ctx, props) [{
         kind: 'Deployment',
         metadata: {
-        name: 'nginx',
+          name: 'nginx',
         },
-    }], {
+      }], {
         name: 'flask',
-    }
+      }
     ).extend(
-    function(ctx, manifest, props) (
-        manifest + [ // we add the Deployment flask to Deployment nginx
-        {
+      function(ctx, manifest, props) (
+        manifest + [  // we add the Deployment flask to Deployment nginx
+          {
             kind: 'Deployment',
             metadata: {
-            name: props.name,
+              name: props.name,
             },
-        },
+          },
         ]
-    )
+      )
     );
 
     {
-    output: testManifest.render(), 
+      output: testManifest.render(),
     }
     ``` 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
     ```yaml
     output:
-    - kind: Deployment
+      - kind: Deployment
         metadata:
-        name: nginx
-    - kind: Deployment
+          name: nginx
+      - kind: Deployment
         metadata:
-        name: flask
+          name: flask
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
     {
-    "output": [
-        {
-            "kind": "Deployment",
-            "metadata": {
+       "output": [
+          {
+             "kind": "Deployment",
+             "metadata": {
                 "name": "nginx"
-            }
-        },
-        {
-            "kind": "Deployment",
-            "metadata": {
+             }
+          },
+          {
+             "kind": "Deployment",
+             "metadata": {
                 "name": "flask"
-            }
-        }
-      ]
+             }
+          }
+       ]
     }
     ```
   </TabItem>

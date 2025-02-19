@@ -25,22 +25,22 @@ The extended feature object with the filter applied to the configurations.
     local feature = import '../../vendor/konn/feature.libsonnet';
 
     local testFeature = feature.new(
-    [{
+      [{
         kind: 'Deployment',
         metadata: {
-        name: 'nginx',
+          name: 'nginx',
         },
-    }, {
+      }, {
         kind: 'Deployment',
         metadata: {
-        name: 'flask',
+          name: 'flask',
         },
-    }],
-    filter=function(ctx, config, props) config.get('metadata').name == 'flask'
+      }],
+      filter=function(ctx, config, props) config.get('metadata').name == 'flask'
     );
 
     {
-    filter_output: testFeature.render(),
+      filter_output: testFeature.render(),
     }
     ```
   </TabItem>
@@ -48,22 +48,22 @@ The extended feature object with the filter applied to the configurations.
 
     ```yaml
     filter_output:
-    - kind: Deployment
+      - kind: Deployment
         metadata:
-        name: flask
+          name: flask
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
     {
-    "filter_output": [
-        {
-            "kind": "Deployment",
-            "metadata": {
+       "filter_output": [
+          {
+             "kind": "Deployment",
+             "metadata": {
                 "name": "flask"
-            }
-        }
-      ]
+             }
+          }
+       ]
     }
     ```  
     </TabItem>

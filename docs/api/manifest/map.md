@@ -22,75 +22,75 @@ Returns a new manifest with the map function applied to its configurations.
     local manifest = import '../../vendor/konn/manifest.libsonnet';
 
     local testManifest = manifest.new(
-    function(ctx, props) [{
+      function(ctx, props) [{
         kind: 'Deployment',
         metadata: {
-        name: props.name,
-        labels: {
-        app: 'nginx',
+          name: props.name,
+          labels: {
+            app: 'nginx',
+          },
         },
-        },
-    }, {
+      }, {
         kind: 'Deployment',
         metadata: {
-        name: props.name,
-        labels: {
-        app: 'flask',
+          name: props.name,
+          labels: {
+            app: 'flask',
+          },
         },
-        },
-    }],
-    {
+      }],
+      {
         name: 'random',
-    },
-    map=function(ctx, config, props) config {
+      },
+      map=function(ctx, config, props) config {
         metadata+: {
-        name: props.name + '-app',  // adding -app to every props.name
+          name: props.name + '-app',  // adding -app to every props.name
         },
-    }
+      }
     );
     {
-    output: testManifest.render(),
+      output: testManifest.render(),
     }
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
     ```yaml
     output:
-    - kind: Deployment
+      - kind: Deployment
         metadata:
-        labels:
+          labels:
             app: nginx
-        name: random-app
-    - kind: Deployment
+          name: random-app
+      - kind: Deployment
         metadata:
-        labels:
+          labels:
             app: flask
-        name: random-app
+          name: random-app
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
     {
-    "output": [
-        {
-            "kind": "Deployment",
-            "metadata": {
+       "output": [
+          {
+             "kind": "Deployment",
+             "metadata": {
                 "labels": {
-                "app": "nginx"
+                   "app": "nginx"
                 },
                 "name": "random-app"
-            }
-        },
-        {
-            "kind": "Deployment",
-            "metadata": {
+             }
+          },
+          {
+             "kind": "Deployment",
+             "metadata": {
                 "labels": {
-                "app": "flask"
+                   "app": "flask"
                 },
                 "name": "random-app"
-            }
-        }
-    ]
+             }
+          }
+       ]
     }
     ```  
     </TabItem>

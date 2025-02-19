@@ -24,21 +24,21 @@ The configuration matching the path or matcher.
     local feature = import '../../vendor/konn/feature.libsonnet';
 
     local testFeature = feature.new(
-    [{
+      [{
         kind: 'Deployment',
         metadata: {
-        name: 'nginx',
+          name: 'nginx',
         },
-    }, {
+      }, {
         kind: 'Deployment',
         metadata: {
-        name: 'flask',
+          name: 'flask',
         },
-    }]
+      }]
     );
 
     {
-    output: testFeature.get('metadata.name', 'flask').render(),
+      output: testFeature.get('metadata.name', 'flask').render(),
     }
     ```
   </TabItem>
@@ -46,20 +46,20 @@ The configuration matching the path or matcher.
 
     ```yaml
     output:
-    kind: Deployment
-    metadata:
+      kind: Deployment
+      metadata:
         name: flask
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
     {
-    "output": {
-        "kind": "Deployment",
-        "metadata": {
-            "name": "flask"
-        }
-    }
+       "output": {
+          "kind": "Deployment",
+          "metadata": {
+             "name": "flask"
+          }
+       }
     }
     ```  
     </TabItem>

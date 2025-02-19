@@ -24,43 +24,43 @@ Returns a new manifest with the filter applied to its configurations.
     local manifest = import '../../vendor/konn/manifest.libsonnet';
 
     local testManifest = manifest.new(
-    function(ctx, props) [{
-        kind: 'Service', // Changing Service to Deployment will make filter this in account as well
+      function(ctx, props) [{
+        kind: 'Service',  // Changing Service to Deployment will make filter this in account as well
         metadata: {
-        name: 'nginx',
+          name: 'nginx',
         },
-    }, {
+      }, {
         kind: 'Deployment',
         metadata: {
-        name: 'flask',
+          name: 'flask',
         },
-    }],
-    filter=function(ctx, cfg, props) cfg.is('Deployment')
+      }],
+      filter=function(ctx, cfg, props) cfg.is('Deployment')
     );
     {
-    output: testManifest.render(),
+      output: testManifest.render(),
     }
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
     ```yaml
     output:
-    - kind: Deployment
+      - kind: Deployment
         metadata:
-        name: flask
+          name: flask
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
     {
-    "output": [
-        {
-            "kind": "Deployment",
-            "metadata": {
+       "output": [
+          {
+             "kind": "Deployment",
+             "metadata": {
                 "name": "flask"
-            }
-        }
-    ]
+             }
+          }
+       ]
     }
     ```  
     </TabItem>

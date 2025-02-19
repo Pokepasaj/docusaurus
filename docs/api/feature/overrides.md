@@ -32,29 +32,29 @@ it merges new props with the existing overrides.
     local manifest = import '../../vendor/konn/manifest.libsonnet';
 
     local testFeature = feature.new([
-    manifest.new(
+      manifest.new(
         function(ctx, props) [{
-        kind: 'Deployment',
-        metadata: {
+          kind: 'Deployment',
+          metadata: {
             name: props.name,
             labels: {
-            label: props.label,
+              label: props.label,
             },
-        },
+          },
         }],
         {
-        name: 'default-name', 
-        label: 'default-label',
+          name: 'default-name',
+          label: 'default-label',
         }
-    ),
+      ),
     ]).override({
-    name: 'overridden-name',
+      name: 'overridden-name',
     });
 
     {
-    Unchanged: testFeature,
-    custom_props: testFeature.overrides({ label: 'custom-label', name: 'this wont change override'}),
-    
+      Unchanged: testFeature,
+      custom_props: testFeature.overrides({ label: 'custom-label', name: 'this wont change override' }),
+
     }
     ```
   </TabItem>
@@ -62,37 +62,37 @@ it merges new props with the existing overrides.
 
     ```yaml
     Unchanged:
-    body:
+      body:
         - kind: Deployment
-        metadata:
+          metadata:
             labels:
-            label: default-label
+              label: default-label
             name: overridden-name
     custom_props:
-    label: custom-label
-    name: overridden-name
+      label: custom-label
+      name: overridden-name
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
     {
-    "Unchanged": {
-        "body": [
-            {
+       "Unchanged": {
+          "body": [
+             {
                 "kind": "Deployment",
                 "metadata": {
-                "labels": {
-                    "label": "default-label"
-                },
-                "name": "overridden-name"
+                   "labels": {
+                      "label": "default-label"
+                   },
+                   "name": "overridden-name"
                 }
-            }
-        ]
-    },
-    "custom_props": {
-        "label": "custom-label",
-        "name": "overridden-name"
-    }
+             }
+          ]
+       },
+       "custom_props": {
+          "label": "custom-label",
+          "name": "overridden-name"
+       }
     }
     ```  
     </TabItem>

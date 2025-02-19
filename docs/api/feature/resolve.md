@@ -22,28 +22,25 @@ The resolved configurations, including any extensions or transformations applied
     local feature = import '../../vendor/konn/feature.libsonnet';
 
     local testFeature = feature.new(
-    [
+      [
         {
-        type: 'config1',
-        kind: 'Namespace',
-        metadata: {
+          type: 'config1',
+          kind: 'Namespace',
+          metadata: {
             name: 'foo',
-        },
+          },
         },
         {
-        type: 'config2',
-        kind: 'Namespace2',
-        metadata: {
+          type: 'config2',
+          kind: 'Namespace2',
+          metadata: {
             name: 'bar',
+          },
         },
-        },
-    ],
+      ],
     );
-
-
-
     {
-    resolve: testFeature.resolve()
+      resolve: testFeature.resolve(),
     }
     ```
   </TabItem>
@@ -61,31 +58,32 @@ The resolved configurations, including any extensions or transformations applied
           metadata:
             name: bar
           type: config2
+
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
     {
-    "resolve": [
-        {
-            "body": {
+       "resolve": [
+          {
+             "body": {
                 "kind": "Namespace",
                 "metadata": {
-                "name": "foo"
+                   "name": "foo"
                 },
                 "type": "config1"
-            }
-        },
-        {
-            "body": {
+             }
+          },
+          {
+             "body": {
                 "kind": "Namespace2",
                 "metadata": {
-                "name": "bar"
+                   "name": "bar"
                 },
                 "type": "config2"
-            }
-        }
-    ]
+             }
+          }
+       ]
     }
     ```  
     </TabItem>

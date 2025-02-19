@@ -27,81 +27,83 @@ Returns an array of resolved and filtered configuration objects after applying t
     local manifest = import '../../vendor/konn/manifest.libsonnet';
 
     local testManifest = manifest.new(
-        function(ctx, props) [{
-            kind: 'Deployment',
-            metadata: {
-                name: 'nginx',
-            },
+      function(ctx, props) [
+        {
+          kind: 'Deployment',
+          metadata: {
+            name: 'nginx',
+          },
         },
         {
-            kind: 'Service',
-            metadata: {
-                name: props.serviceName,
-            },
+          kind: 'Service',
+          metadata: {
+            name: props.serviceName,
+          },
         },
         {
-            kind: 'ConfigMap',
-            metadata: {
-                name: props.configMapName,
-            },
-        }],
-        {
-            serviceName: 'flask-service',
-            configMapName: 'flask-config',
-        }
+          kind: 'ConfigMap',
+          metadata: {
+            name: props.configMapName,
+          },
+        },
+      ],
+      {
+        serviceName: 'flask-service',
+        configMapName: 'flask-config',
+      }
     );
 
     {
-        resolvedConfigs: testManifest.resolve(), // Resolving multiple configs in the manifest
+      resolvedConfigs: testManifest.resolve(),  // Resolving multiple configs in the manifest
     }
     ``` 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
     ```yaml
-        resolvedConfigs:
-    - body:
-        kind: Deployment
-        metadata:
+    resolvedConfigs:
+      - body:
+          kind: Deployment
+          metadata:
             name: nginx
-    - body:
-        kind: Service
-        metadata:
+      - body:
+          kind: Service
+          metadata:
             name: flask-service
-    - body:
-        kind: ConfigMap
-        metadata:
+      - body:
+          kind: ConfigMap
+          metadata:
             name: flask-config
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
     {
-    "resolvedConfigs": [
-        {
-            "body": {
+       "resolvedConfigs": [
+          {
+             "body": {
                 "kind": "Deployment",
                 "metadata": {
-                "name": "nginx"
+                   "name": "nginx"
                 }
-            }
-        },
-        {
-            "body": {
+             }
+          },
+          {
+             "body": {
                 "kind": "Service",
                 "metadata": {
-                "name": "flask-service"
+                   "name": "flask-service"
                 }
-            }
-        },
-        {
-            "body": {
+             }
+          },
+          {
+             "body": {
                 "kind": "ConfigMap",
                 "metadata": {
-                "name": "flask-config"
+                   "name": "flask-config"
                 }
-            }
-        }
-      ]
+             }
+          }
+       ]
     }
     ```
   </TabItem>

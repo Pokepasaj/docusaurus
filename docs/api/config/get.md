@@ -19,18 +19,19 @@ The `get` function returns the value of the specified property from the configur
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
     ```js
-    local k = import 'konn/main.libsonnet'; 
+    local k = import 'konn/main.libsonnet';
     // import konn and assign it as k
 
 
     local service = k.config(function(ctx, props) {
-    kind: 'Service',
-    //assign service the k.config function which takes ctx and props.
+      kind: 'Service',
+
+      //assign service the k.config function which takes ctx and props.
+
     });
 
     {
-    output: service.get('metadata.name', 'default'), 
-    // we use 'default' in case we don`t have a match just like this example
+      output: service.get('metadata.name', 'default'),  // we use 'default' in case it doesn`t return anything
     }
     ``` 
   </TabItem>
@@ -80,7 +81,6 @@ We introduced `metadata.name` now. Let's see the updated results.
     {
       "output": "my-svc"
     }
-
     ```
   </TabItem>
 </Tabs>

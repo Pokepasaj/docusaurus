@@ -21,37 +21,38 @@ A new feature object with the extended configurations, properties, and extension
 <Tabs>
     <TabItem value="jsonnet" label="Jsonnet" default>
     ```js
-        local config = import '../../vendor/konn/config.libsonnet';
+    local config = import '../../vendor/konn/config.libsonnet';
     local feature = import '../../vendor/konn/feature.libsonnet';
 
     local testFeature = feature.new(
-    [{
-        kind: 'config',
-        metadata: {
-        name: 'one',
-        },
-    },
-    ], {
-        name: 'two',
-        adding_here: 'makes NO difference'
-    }
-    ).extend(
-    [
-        config.new(function(ctx, props) {
-        kind: 'config',
-        metadata: {
-            name: props.name,
-        },
-        }
+      [
         {
-            name: 'random',
-            adding_here: 'makes a difference'
+          kind: 'config',
+          metadata: {
+            name: 'one',
+          },
+        },
+      ], {
+        name: 'two',
+        adding_here: 'makes no difference',
+      }
+    ).extend(
+      [
+        config.new(function(ctx, props) {
+          kind: 'config',
+          metadata: {
+            name: props.name,
+          },
+        }
+                                        {
+          name: 'random',
+          adding_here: 'makes a difference',
         }),
-    ]
+      ]
     );
 
     {
-    output: testFeature.render(),
+      output: testFeature.render(),
     }
     ```
   </TabItem>
@@ -59,35 +60,35 @@ A new feature object with the extended configurations, properties, and extension
 
     ```yaml
     output:
-    - kind: config
+      - kind: config
         metadata:
-        name: one
-    - adding_here: makes a difference
+          name: one
+      - adding_here: makes a difference
         kind: config
         metadata:
-        name: two
+          name: two
         name: random
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
     {
-    "output": [
-        {
-            "kind": "config",
-            "metadata": {
+       "output": [
+          {
+             "kind": "config",
+             "metadata": {
                 "name": "one"
-            }
-        },
-        {
-            "adding_here": "makes a difference",
-            "kind": "config",
-            "metadata": {
+             }
+          },
+          {
+             "adding_here": "makes a difference",
+             "kind": "config",
+             "metadata": {
                 "name": "two"
-            },
-            "name": "random"
-        }
-    ]
+             },
+             "name": "random"
+          }
+       ]
     }
     ```  
     </TabItem>

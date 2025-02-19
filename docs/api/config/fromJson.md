@@ -44,11 +44,11 @@ Convert a JSON string into a config object:
   <TabItem value="json" label="JSON Output">
     ```json
     {
-    "body": [
-        {
+      "body": [
+          {
             "kind": "ConfigMap"
-        }
-    ]
+          }
+      ]
     }
     ```
   </TabItem>

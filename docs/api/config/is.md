@@ -23,15 +23,15 @@ The `is` function returns a Boolean (`true` or `false`), indicating whether the 
     local k = import 'konn/main.libsonnet';
 
     local service = k.config(function(ctx, props) {
-        kind: 'Namespace',  // if we replace Namespace with Service e will still return true
-        type: 'config',
-        metadata: {
+      kind: 'Namespace',  // if we replace Namespace with Service e will still return true
+      type: 'config',
+      metadata: {
         name: 'random',
-    },
+      },
     });
 
     {
-    output: service.is(['Namespace', 'Service'])
+      output: service.is(['Namespace', 'Service']),
     }
     ``` 
   </TabItem>
@@ -60,15 +60,15 @@ The `is` function returns a Boolean (`true` or `false`), indicating whether the 
     local k = import 'konn/main.libsonnet';
 
     local service = k.config(function(ctx, props) {
-        kind: 'Namespace',  // if we replace Namespace with Service e will still return true
-        type: 'config',
-        metadata: {
+      kind: 'Namespace',  // if we replace Namespace with Service e will still return true
+      type: 'config',
+      metadata: {
         name: 'not default or random',
-    },
+      },
     });
 
     {
-    output: service.is(['Namespace', 'Service'], ['default', 'random'])
+      output: service.is(['Namespace', 'Service'], ['default', 'random']),
     }
     // names will also takes arrays
     // if metadata/name is not default or random it will return false
