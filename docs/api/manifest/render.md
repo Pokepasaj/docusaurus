@@ -19,3 +19,66 @@ The `render` function generates the final manifest configurations by resolving a
 Returns the rendered configurations by applying the `lib.renderConfigs` function to the resolved configs.
 
 ## Usage Examples
+
+
+<Tabs>
+  <TabItem value="jsonnet" label="Jsonnet" default>
+    ```js
+    local manifest = import '../../vendor/konn/manifest.libsonnet';
+
+    local testManifest = manifest.new(
+    function(ctx, props) [{
+        kind: 'Deployment',
+        metadata: {
+        name: 'nginx',
+        },
+    }, 
+    {
+        kind: 'Deployment',
+        metadata: {
+        name: props.name,
+        },
+    }],
+    {
+        name: 'flask',
+    },
+    );
+
+    {
+        output: testManifest.render(), // without render we can`t display the output
+    }
+    ``` 
+  </TabItem>
+  <TabItem value="yaml" label="YAML Output">
+    ```yaml
+    output:
+    - kind: Deployment
+        metadata:
+        name: nginx
+    - kind: Deployment
+        metadata:
+        name: flask
+    ```
+  </TabItem>
+  <TabItem value="json" label="JSON Output">
+    ```json
+    {
+    "output": [
+        {
+            "kind": "Deployment",
+            "metadata": {
+                "name": "nginx"
+            }
+        },
+        {
+            "kind": "Deployment",
+            "metadata": {
+                "name": "flask"
+            }
+        }
+    ]
+    }
+    ```
+  </TabItem>
+</Tabs>
+

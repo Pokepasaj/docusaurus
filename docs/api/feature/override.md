@@ -38,7 +38,7 @@ The feature object with overridden properties.
         },
     }, 
     ], {
-        name: 'placeholder', // commenting out the output props these props will be used instead
+        name: 'placeholder', // if we comment out the output props, these props will be used instead
         label: 'placeholder',
     }),
     ]).override(function(props) {

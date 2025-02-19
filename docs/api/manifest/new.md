@@ -3,6 +3,10 @@ id: api-manifest-new
 title: new
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
 ## Overview
 The `new` function creates a new manifest object. It initializes the manifest with a provided render function, props, filter, and map functions. This function sets up the context and resolves any defaults or properties before rendering the manifest.
 ### Parameters
@@ -25,3 +29,65 @@ Returns a new manifest object with the following structure:
 - **`props`** - The properties passed to the function.
 - **`args`** - Contains the render function, props, filter, and map functions for further customization.
 ## Usage Examples
+
+<Tabs>
+  <TabItem value="jsonnet" label="Jsonnet" default>
+    ```js
+    local manifest = import '../../vendor/konn/manifest.libsonnet';
+
+    local testManifest = manifest.new(
+    function(ctx, props) [{
+        kind: 'Deployment',
+        metadata: {
+        name: 'nginx',
+        },
+    }, 
+    {
+        kind: 'Deployment',
+        metadata: {
+        name: props.name,
+        },
+    }],
+    {
+        name: 'flask',
+    },
+    );
+
+    {
+        output: testManifest.render(), // without render we can`t display the output
+    }
+    ``` 
+  </TabItem>
+  <TabItem value="yaml" label="YAML Output">
+    ```yaml
+    output:
+    - kind: Deployment
+        metadata:
+        name: nginx
+    - kind: Deployment
+        metadata:
+        name: flask
+    ```
+  </TabItem>
+  <TabItem value="json" label="JSON Output">
+    ```json
+    {
+    "output": [
+        {
+            "kind": "Deployment",
+            "metadata": {
+                "name": "nginx"
+            }
+        },
+        {
+            "kind": "Deployment",
+            "metadata": {
+                "name": "flask"
+            }
+        }
+    ]
+    }
+    ```
+  </TabItem>
+</Tabs>
+

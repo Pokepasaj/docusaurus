@@ -20,7 +20,8 @@ The `overrides` function is used to define custom properties that can supersede 
 ### Usage Example
 
 :::note
-it does not replace previously overridden values—it merges new props with the existing overrides.
+Does not replace previously overridden values 
+it merges new props with the existing overrides.
 :::
 
 <Tabs>
