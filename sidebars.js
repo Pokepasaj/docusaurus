@@ -24,7 +24,18 @@ module.exports = {
           label: 'App',
           collapsed: true,
           items: [
-            'api/app/api-app-new'
+            'api/app/api-app-new',
+            'api/app/api-app-render',
+            'api/app/api-app-resolve',
+            'api/app/api-app-extensions',
+            'api/app/api-app-extend',
+            'api/app/api-app-filter',
+            'api/app/api-app-map',
+            'api/app/api-app-find',
+            'api/app/api-app-get',
+            'api/app/api-app-kget',
+            'api/app/api-app-init',
+            'api/app/api-app-features',
           ]
         },
         {

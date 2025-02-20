@@ -1,13 +1,18 @@
 ---
-id: api-app-new
-title: new
+id: api-app-render
+title: render
 ---
-This module handles application configurations, allowing for the creation and rendering of configurations through multiple stages.
-
-`new` module creates a new manifest
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+
+## Overview
+
+### Parameters
+- **`config`** -  
+### Return Value
+
+## Usage Examples
 
 <Tabs>
     <TabItem value="jsonnet" label="Jsonnet" default>
@@ -26,7 +31,7 @@ import TabItem from '@theme/TabItem';
     );
 
     {
-      output: myApp.render(),
+      output: myApp.render(),  // we use render just like anywhere else
     }
     ```
   </TabItem>
@@ -42,14 +47,14 @@ import TabItem from '@theme/TabItem';
   <TabItem value="json" label="JSON Output">
     ```json
     {
-      "output": [
+       "output": [
           {
-            "kind": "Deployment",
-            "metadata": {
+             "kind": "Deployment",
+             "metadata": {
                 "name": "nginx"
-            }
+             }
           }
-      ]
+       ]
     }
     ```  
     </TabItem>

@@ -18,3 +18,40 @@ The `fromYaml` function creates a manifest from a YAML string or array of YAML s
 Returns a new manifest object created from the YAML source.
 
 ## Usage Examples
+
+<Tabs>
+  <TabItem value="jsonnet" label="Jsonnet" default>
+    ```js
+    local manifest = import '../../vendor/konn//manifest.libsonnet';
+
+    manifest.fromYaml('{"apiVersion":"v1", "kind":"Pod", "metadata":{"name": "%(name)s"}}', {
+      name: 'nginx',
+    })
+    ``` 
+  </TabItem>
+  <TabItem value="yaml" label="YAML Output">
+    ```yaml
+    body:
+      - apiVersion: v1
+        kind: Pod
+        metadata:
+          name: nginx
+    ```
+  </TabItem>
+  <TabItem value="json" label="JSON Output">
+    ```json
+    {
+       "body": [
+          {
+             "apiVersion": "v1",
+             "kind": "Pod",
+             "metadata": {
+                "name": "nginx"
+             }
+          }
+       ]
+    }
+    ```
+  </TabItem>
+</Tabs>
+

@@ -19,3 +19,73 @@ The `from` function creates a new manifest from an object, array, or an existing
 Returns a new manifest object.
 
 ## Usage Examples
+
+
+<Tabs>
+  <TabItem value="jsonnet" label="Jsonnet" default>
+    ```js
+    local config = import '../../vendor/konn/config.libsonnet';
+    local manifest = import '../../vendor/konn/manifest.libsonnet';
+
+    local svc = {
+      type: 'Service',
+      name: 'example',
+    };
+
+    local deploy = config.new(
+      function(ctx, props) {
+        kind: 'Deployment',
+        metadata: {
+          name: 'nginx',
+        },
+      },
+    );
+
+    local manifestFrom = manifest.from(svc);
+
+    {
+      render: {
+        output: manifestFrom.render(),  // notice this is not rendering the Deployment
+
+        deployment_rendered_separately: deploy,  // we render our deployment separately if we need to 
+      },
+    }
+    ``` 
+  </TabItem>
+  <TabItem value="yaml" label="YAML Output">
+    ```yaml
+    render:
+      deployment_rendered_separately:
+        body:
+          kind: Deployment
+          metadata:
+            name: nginx
+      output:
+        - name: example
+          type: Service
+    ```
+  </TabItem>
+  <TabItem value="json" label="JSON Output">
+    ```json
+    {
+       "render": {
+          "deployment_rendered_separately": {
+             "body": {
+                "kind": "Deployment",
+                "metadata": {
+                   "name": "nginx"
+                }
+             }
+          },
+          "output": [
+             {
+                "name": "example",
+                "type": "Service"
+             }
+          ]
+       }
+    }
+    ```
+  </TabItem>
+</Tabs>
+
