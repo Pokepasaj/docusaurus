@@ -66,3 +66,75 @@ The first matching configuration found.
     ```  
     </TabItem>
 </Tabs>
+
+<Tabs>
+    <TabItem value="jsonnet" label="Jsonnet" default>
+    ```js
+    local feature = import '../../vendor/konn/feature.libsonnet';
+
+    local testFeature = feature.new(
+      [
+        {
+          kind: 'Service',
+          metadata: {
+            name: 'nginx',
+            labels: {
+              app: 'web',
+            },
+          },
+        },
+        {
+          kind: 'Service',
+          metadata: {
+            name: 'flask',
+            labels: {
+              app: 'api',
+            },
+          },
+        },
+        {
+          kind: 'Service',
+          metadata: {
+            name: 'kong',
+            labels: {
+              app: 'api',
+            },
+          },
+        },
+      ]
+    );
+
+    // find will only take in account the first hit only
+    {
+      found_service: testFeature.find(function(ctx, config, props)
+        config.get('metadata.labels.app') == 'api').render(),
+    }
+    ```
+  </TabItem>
+  <TabItem value="yaml" label="YAML Output">
+
+    ```yaml
+    found_service:
+      kind: Service
+      metadata:
+        labels:
+          app: api
+        name: flask
+    ```
+  </TabItem>
+  <TabItem value="json" label="JSON Output">
+    ```json
+    {
+       "found_service": {
+          "kind": "Service",
+          "metadata": {
+             "labels": {
+                "app": "api"
+             },
+             "name": "flask"
+          }
+       }
+    }
+    ```  
+    </TabItem>
+</Tabs>

@@ -60,6 +60,15 @@ module.exports = {
           collapsed: true,
           items: [
             'api/context/api-context-new', 
+            'api/context/api-context-filter', 
+            'api/context/api-context-find', 
+            'api/context/api-context-extend', 
+            'api/context/api-context-get', 
+            'api/context/api-context-kget', 
+            'api/context/api-context-has', 
+            'api/context/api-context-khas', 
+            'api/context/api-context-profile', 
+
           ],
         },
         {

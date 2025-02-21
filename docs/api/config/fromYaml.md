@@ -64,6 +64,118 @@ Returns a config object created from the YAML input.
     </TabItem>
 </Tabs>
 
+
+<Tabs>
+    <TabItem value="jsonnet" label="Jsonnet" default>
+    ```js
+    local k = import 'konn/main.libsonnet';
+
+    local config = k.fromYaml(
+      'apiVersion: v1\nkind: Pod\nmetadata:\n  name: flask\nspec:\n  containers:\n    - name: flask-container\n      image: python:3.9'
+    );
+    config
+    ```
+  </TabItem>
+  <TabItem value="yaml" label="YAML Output">
+
+    ```yaml
+    body:
+      - apiVersion: v1
+        kind: Pod
+        metadata:
+          name: flask
+        spec:
+          containers:
+            - image: python:3.9
+              name: flask-container
+    ```
+  </TabItem>
+  <TabItem value="json" label="JSON Output">
+    ```json
+    {
+       "body": [
+          {
+             "apiVersion": "v1",
+             "kind": "Pod",
+             "metadata": {
+                "name": "flask"
+             },
+             "spec": {
+                "containers": [
+                   {
+                      "image": "python:3.9",
+                      "name": "flask-container"
+                   }
+                ]
+             }
+          }
+       ]
+    }
+    ```  
+    </TabItem>
+</Tabs>
+
+
+<Tabs>
+    <TabItem value="jsonnet" label="Jsonnet" default>
+    ```js
+    local k = import 'konn/main.libsonnet';
+
+    local config = k.fromYaml(
+      '{"apiVersion":"v1", "kind":"Pod", "metadata":{"name": "flask"}}'
+    );
+
+
+    config {
+      spec+: {
+        containers: [
+          {
+            name: 'flask-container',
+            image: 'python:3.9',
+          },
+        ],
+      },
+    }
+    ```
+  </TabItem>
+  <TabItem value="yaml" label="YAML Output">
+
+    ```yaml
+    body:
+      - apiVersion: v1
+        kind: Pod
+        metadata:
+          name: flask
+    spec:
+      containers:
+        - image: python:3.9
+          name: flask-container
+    ```
+  </TabItem>
+  <TabItem value="json" label="JSON Output">
+    ```json
+    {
+       "body": [
+          {
+             "apiVersion": "v1",
+             "kind": "Pod",
+             "metadata": {
+                "name": "flask"
+             }
+          }
+       ],
+       "spec": {
+          "containers": [
+             {
+                "image": "python:3.9",
+                "name": "flask-container"
+             }
+          ]
+       }
+    }
+    ```  
+    </TabItem>
+</Tabs>
 :::note
 This approach is helpful when working with Kubernetes manifests or other YAML-based configurations, allowing seamless integration into your Jsonnet workflow.
 :::

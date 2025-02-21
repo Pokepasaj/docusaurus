@@ -57,3 +57,62 @@ The `override` function does not return a direct value but modifies the `props` 
     ```
   </TabItem>
 </Tabs>
+
+<Tabs>
+  <TabItem value="jsonnet" label="Jsonnet" default>
+    ```js
+    local config = import '../../vendor/konn/config.libsonnet';
+
+    local testConfig = config.new(
+    function(ctx, props) {
+      kind: 'Deployment',
+      metadata: {
+        name: props.name,
+      },
+      spec: {
+        replicas: props.replicas,
+      },
+    },
+    {
+      name: 'my-deployment',
+      replicas: 13,
+    }
+    ).override(
+    function(props) {
+      name: 'override-' + props.name,
+      replicas: 3,
+    }
+    );
+
+    {
+    output: testConfig.render(),
+    }
+    ``` 
+  </TabItem>
+  <TabItem value="yaml" label="YAML Output">
+    ```yaml
+    output:
+      kind: Deployment
+      metadata:
+        name: override-my-deployment
+      spec:
+        replicas: 3
+    ```
+  </TabItem>
+  <TabItem value="json" label="JSON Output">
+    ```json
+    {
+       "output": {
+          "kind": "Deployment",
+          "metadata": {
+             "name": "override-my-deployment"
+          },
+          "spec": {
+             "replicas": 3
+          }
+       }
+    }
+    ```
+  </TabItem>
+</Tabs>
+

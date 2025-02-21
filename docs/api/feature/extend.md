@@ -93,3 +93,90 @@ A new feature object with the extended configurations, properties, and extension
     ```  
     </TabItem>
 </Tabs>
+
+### Extend with [map](api-feature-map)
+
+<Tabs>
+    <TabItem value="jsonnet" label="Jsonnet" default>
+    ```js
+    local config = import '../../vendor/konn/config.libsonnet';
+    local feature = import '../../vendor/konn/feature.libsonnet';
+
+    local testFeature = feature.new(
+      [{
+        kind: 'Deployment',
+        metadata: {
+          name: 'nginx',
+        },
+      }, {
+        kind: 'Deployment',
+        metadata: {
+          name: 'flask',
+        },
+      }],
+    ).extend(
+      [
+        config.new(function(ctx, props) {
+          kind: 'Deployment',
+          metadata: {
+            name: props.name,
+          },
+        }),
+      ],
+      {
+        name: 'kong',
+      },
+      map=function(ctx, config, props) config {
+        metadata+: {
+          name: config.metadata.name + '-deployment',
+        },
+      }
+    );
+
+    {
+      output: testFeature.render(),
+    }
+    ```
+  </TabItem>
+  <TabItem value="yaml" label="YAML Output">
+
+    ```yaml
+    output:
+      - kind: Deployment
+        metadata:
+          name: nginx-deployment
+      - kind: Deployment
+        metadata:
+          name: flask-deployment
+      - kind: Deployment
+        metadata:
+      name: kong-deployment
+    ```
+  </TabItem>
+  <TabItem value="json" label="JSON Output">
+    ```json
+    {
+       "output": [
+          {
+             "kind": "Deployment",
+             "metadata": {
+                "name": "nginx-deployment"
+             }
+          },
+          {
+             "kind": "Deployment",
+             "metadata": {
+                "name": "flask-deployment"
+             }
+          },
+          {
+             "kind": "Deployment",
+             "metadata": {
+                "name": "kong-deployment"
+             }
+          }
+       ]
+    }
+    ```  
+    </TabItem>
+</Tabs>

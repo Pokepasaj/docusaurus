@@ -64,3 +64,56 @@ The configuration matching the path or matcher.
     ```  
     </TabItem>
 </Tabs>
+
+
+<Tabs>
+    <TabItem value="jsonnet" label="Jsonnet" default>
+    ```js
+    local feature = import '../../vendor/konn/feature.libsonnet';
+
+    local testFeature = feature.new(
+      [{
+        kind: 'Deployment',
+        metadata: {
+          name: 'nginx',
+        },
+      }, {
+        kind: 'Deployment',
+        metadata: {
+          name: 'flask',
+        },
+      }, {
+        kind: 'Service',
+        metadata: {
+          name: 'nginx',
+        },
+      }]
+    );
+    // get only takes in account the first hit
+    {
+      output: testFeature.get('metadata.name', 'nginx').render(),
+    }
+    ```
+  </TabItem>
+  <TabItem value="yaml" label="YAML Output">
+
+    ```yaml
+    output:
+      kind: Deployment
+      metadata:
+        name: nginx
+    ```
+  </TabItem>
+  <TabItem value="json" label="JSON Output">
+    ```json
+    {
+       "output": {
+          "kind": "Deployment",
+          "metadata": {
+             "name": "nginx"
+          }
+       }
+    }
+    ```  
+    </TabItem>
+</Tabs>

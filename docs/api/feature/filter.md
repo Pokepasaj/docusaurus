@@ -68,3 +68,92 @@ The extended feature object with the filter applied to the configurations.
     ```  
     </TabItem>
 </Tabs>
+
+
+
+<Tabs>
+    <TabItem value="jsonnet" label="Jsonnet" default>
+    ```js
+    local feature = import '../../vendor/konn/feature.libsonnet';
+
+    local testFeature = feature.new(
+      [
+        {
+          kind: 'Deployment',
+          metadata: {
+            name: 'nginx',
+            labels: {
+              tier: 'frontend',
+            },
+          },
+        },
+        {
+          kind: 'Deployment',
+          metadata: {
+            name: 'flask',
+            labels: {
+              tier: 'backend',
+            },
+          },
+        },
+        {
+          kind: 'Deployment',
+          metadata: {
+            name: 'kong',
+            labels: {
+              tier: 'backend',
+            },
+          },
+        },
+      ],
+      filter=function(ctx, config, props) config.get('metadata.labels.tier') == 'backend'
+    );
+
+    {
+      filter_output: testFeature.render(),
+    }
+    ```
+  </TabItem>
+  <TabItem value="yaml" label="YAML Output">
+
+    ```yaml
+     filter_output:
+      - kind: Deployment
+        metadata:
+          labels:
+            tier: backend
+          name: flask
+      - kind: Deployment
+        metadata:
+          labels:
+            tier: backend
+          name: kong
+    ```
+  </TabItem>
+  <TabItem value="json" label="JSON Output">
+    ```json
+    {
+       "filter_output": [
+          {
+             "kind": "Deployment",
+             "metadata": {
+                "labels": {
+                   "tier": "backend"
+                },
+                "name": "flask"
+             }
+          },
+          {
+             "kind": "Deployment",
+             "metadata": {
+                "labels": {
+                   "tier": "backend"
+                },
+                "name": "kong"
+             }
+          }
+       ]
+    }
+    ```  
+    </TabItem>
+</Tabs>

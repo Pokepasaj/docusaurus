@@ -85,3 +85,79 @@ An array of applied extensions, filtered and transformed based on the provided p
     ```  
     </TabItem>
 </Tabs>
+
+
+<Tabs>
+    <TabItem value="jsonnet" label="Jsonnet" default>
+    ```js
+    local extension = import '../../vendor/konn/extension.libsonnet';
+    local feature = import '../../vendor/konn/feature.libsonnet';
+    local lib = import '../../vendor/konn/helpers.libsonnet';
+
+    local addReplicasExtension = extension.new(
+      function(ctx, config, props) config {
+        spec+: {
+          replicas: props.replicas,
+        },
+      },
+      {
+        replicas: 2,
+      },
+    );
+
+    local featureWithReplicas = feature.new(
+      [
+        {
+          kind: 'Deployment',
+          metadata: {
+            name: 'nginx-deployment',
+          },
+          spec: {
+            replicas: 1,  // Default replicas
+          },
+        },
+      ],
+      {
+        replicas: 3,  // Will take this value if not overridden
+      },
+      extensions=[
+        addReplicasExtension.override({
+          replicas: 5,  // Override replicas to 5
+        }),
+      ],
+    );
+
+    {
+      output: lib.render(featureWithReplicas),
+    }
+    ```
+  </TabItem>
+  <TabItem value="yaml" label="YAML Output">
+
+    ```yaml
+    output:
+      - kind: Deployment
+        metadata:
+          name: nginx-deployment
+        spec:
+          replicas: 5
+    ```
+  </TabItem>
+  <TabItem value="json" label="JSON Output">
+    ```json
+    {
+       "output": [
+          {
+             "kind": "Deployment",
+             "metadata": {
+                "name": "nginx-deployment"
+             },
+             "spec": {
+                "replicas": 5
+             }
+          }
+       ]
+    }
+    ```  
+    </TabItem>
+</Tabs>

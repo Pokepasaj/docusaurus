@@ -62,3 +62,63 @@ The function returns an object with:
     ```
     </TabItem>
 </Tabs>
+
+
+### Rendering multiple object by wrapping them in an array
+<Tabs>
+     <TabItem value="jsonnet" label="Jsonnet" default>
+    ``` js
+    local k = import 'konn/main.libsonnet';
+
+    k.lib.config.new(
+      function(ctx, props)
+        [
+          {
+            kind: 'Deployment',
+            metadata: {
+              name: 'nginx',
+            },
+          },
+          {
+            kind: 'Deployment',
+            metadata: {
+              name: 'flask',
+            },
+          },
+        ],
+    )
+    ``` 
+  </TabItem>
+  <TabItem value="yaml" label="YAML Output">
+
+    ```yaml
+    body:
+      - kind: Deployment
+        metadata:
+          name: nginx
+      - kind: Deployment
+        metadata:
+          name: flask
+    ```
+  </TabItem>
+  <TabItem value="json" label="JSON Output">
+    ```json
+    {
+       "body": [
+          {
+             "kind": "Deployment",
+             "metadata": {
+                "name": "nginx"
+             }
+          },
+          {
+             "kind": "Deployment",
+             "metadata": {
+                "name": "flask"
+             }
+          }
+       ]
+    }
+    ```
+    </TabItem>
+</Tabs>

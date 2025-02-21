@@ -84,3 +84,46 @@ We introduced `metadata.name` now. Let's see the updated results.
     ```
   </TabItem>
 </Tabs>
+
+
+<Tabs>
+  <TabItem value="jsonnet" label="Jsonnet" default>
+    ```js
+    local k = import 'konn/main.libsonnet';
+
+    local deployment = k.config(function(ctx, props) {
+      kind: 'Deployment',
+      metadata: {
+        name: props.name,
+        namespace: props.namespace,
+      },
+    }, {
+      name: 'my-deployment',
+      namespace: 'default-namespace',
+    });
+
+    {
+      name: deployment.get('metadata.name', 'example'),
+      namespace: deployment.get('metadata.namespace', 'example'),
+      missingField: deployment.get('spec.image', 'missing-image'),
+    }
+    ``` 
+  </TabItem>
+  <TabItem value="yaml" label="YAML Output">
+    ```yaml
+    missingField: missing-image
+    name: my-deployment
+    namespace: default-namespace
+
+    ```
+  </TabItem>
+  <TabItem value="json" label="JSON Output">
+    ```json
+    {
+       "missingField": "missing-image",
+       "name": "my-deployment",
+       "namespace": "default-namespace"
+    }
+    ```
+  </TabItem>
+</Tabs>
