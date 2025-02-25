@@ -20,6 +20,8 @@ The `extend` function in `app` allows you to create a new application definition
 - **`filter`** (`function`, `default` `true`) - A function that determines whether a configuration should be included in the final output.
 - **`map`** (`function`, `default`: `identity function`) - A function that modifies each configuration before rendering.
 
+### Return Value
+A new application manifest object that includes the extended properties, features, and configurations.
 
 ## Usage Examples
 
@@ -27,6 +29,7 @@ The `extend` function in `app` allows you to create a new application definition
     <TabItem value="jsonnet" label="Jsonnet" default>
     ```js
     local app = import '../../vendor/konn/app.libsonnet';
+    local config = import '../../vendor/konn/config.libsonnet';
 
     local myApp = app.new(
       features=[
@@ -43,8 +46,21 @@ The `extend` function in `app` allows you to create a new application definition
           },
         },
       ],
+    ).extend(
+      [
+        config.new(
+          function(ctx, props) {
+            kind: 'Deployment',
+            metadata: {
+              name: props.name,
+            },
+          },
+        ),
+      ],
+      {
+        name: 'kong',
+      }
     );
-
     {
       output: myApp.resolve(),
     }
@@ -62,6 +78,10 @@ The `extend` function in `app` allows you to create a new application definition
           kind: Deployment
           metadata:
             name: flask
+      - body:
+          kind: Deployment
+          metadata:
+            name: kong
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
@@ -81,6 +101,14 @@ The `extend` function in `app` allows you to create a new application definition
                 "kind": "Deployment",
                 "metadata": {
                    "name": "flask"
+                }
+             }
+          },
+          {
+             "body": {
+                "kind": "Deployment",
+                "metadata": {
+                   "name": "kong"
                 }
              }
           }

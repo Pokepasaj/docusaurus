@@ -42,7 +42,7 @@ const config = {
           type: 'docSidebar',
           sidebarId: 'konnSidebar',
           position: 'left',
-          label: 'Get Started',
+          label: 'Introduction',
         },
         {
           type: 'docSidebar',

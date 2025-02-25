@@ -5,7 +5,7 @@ module.exports = {
     {
       type: 'doc',
       id: 'konn-intro', // Existing document ID
-      label: 'Introduction',
+      label: 'Get Started',
     },
     {
       type: 'doc',
@@ -73,10 +73,17 @@ module.exports = {
         },
         {
           type: 'category',
-          label: 'Extensions',
+          label: 'Extension',
           collapsed: true,
           items: [
-            'api/extensions/api-extensions-new', 
+            'api/extensions/api-extensions-new',
+            'api/extensions/api-extensions-configure', 
+            'api/extensions/api-extensions-extend', 
+            'api/extensions/api-extensions-apply',  
+            'api/extensions/api-extensions-override', 
+            'api/extensions/api-extensions-overrides', 
+            'api/extensions/api-extensions-render', 
+            'api/extensions/api-extensions-selector', 
           ],
         },
         {

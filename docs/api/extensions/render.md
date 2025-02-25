@@ -1,6 +1,6 @@
 ---
-id: api-extensions-new
-title: new
+id: api-extensions-render
+title: render
 ---
 
 import Tabs from '@theme/Tabs';
@@ -51,23 +51,32 @@ The function returns an object with:
   <TabItem value="yaml" label="YAML Output">
 
     ```yaml
-    body:
-    apiVersion: v1
-    kind: Service
-    metadata:
-      name: default
+    testExt:
+      - kind: Deployment
+        metadata:
+          name: nginx
+      - kind: Deployment
+        metadata:
+          name: flask
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
     {
-    "body": {
-        "apiVersion": "v1",
-        "kind": "Service",
-        "metadata": {
-            "name": "default"
-        }
-      }
+       "testExt": [
+          {
+             "kind": "Deployment",
+             "metadata": {
+                "name": "nginx"
+             }
+          },
+          {
+             "kind": "Deployment",
+             "metadata": {
+                "name": "flask"
+             }
+          }
+       ]
     }
     ```
     </TabItem>

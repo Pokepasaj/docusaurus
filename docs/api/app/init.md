@@ -7,11 +7,12 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 ## Overview
-
-### Parameters
-- **`config`** -  
+The `init` function initializes an application manifest using a specified profile, applying its default properties and merging them with the provided ones.
+### Parameters 
+- **`ctx`** - (object) The application context.
+- **`props`** - (object) Additional properties to apply.
 ### Return Value
-
+A rendered manifest object with the profile’s properties applied.
 ## Usage Examples
 
 ### Helm like usage
@@ -354,7 +355,7 @@ import TabItem from '@theme/TabItem';
 </Tabs>
 
 
-### Advanced
+### Adding ENVs
 
 <Tabs>
     <TabItem value="jsonnet" label="Jsonnet" default>
@@ -362,8 +363,10 @@ import TabItem from '@theme/TabItem';
     local app = import '../../vendor/konn/app.libsonnet';
     local extension = import '../../vendor/konn/extension.libsonnet';
     local feature = import '../../vendor/konn/feature.libsonnet';
+    local k = import 'konn/main.libsonnet';
 
 
+    // Create an extension for the deployment
     local ext = extension.new(
       function(ctx, target, props) target {
         metadata+: {
@@ -371,12 +374,15 @@ import TabItem from '@theme/TabItem';
           profile: ctx.profile(),
         },
       },
+      // only take affect for Deployments, if you remove selector it will take affect on everything
       selector=function(ctx, target, props) target.is('Deployment'),
     );
 
+    // Define the configuration with additional properties
     local appTest = app.new(
       props={
-        name: 'default',
+        app: 'nginx',
+        svc: 'my-svc',
       },
       profiles={
         dev: {
@@ -387,93 +393,131 @@ import TabItem from '@theme/TabItem';
         },
       },
       features=[
-        {
-          kind: 'Deployment',
-          metadata: {
-            name: 'flask',
-          },
-        },
         feature.new([
-          [{
-            kind: 'Deployment',
-            metadata: {
-              name: 'nginx',
-            },
-          }, {
-            kind: 'Service',
-            metadata: {
-              name: 'nginx',
-            },
-          }],
-        ]),
-        feature.new([
-          [{
-            kind: 'Ingress',
-            metadata: {
-              name: 'nginx',
-            },
-          }],
-        ], extensions=[ext]),
+          k.fromYaml(
+            [
+              importstr './deployment.yaml',
+              importstr './svc.yaml',
+            ],
+          ),
+        ], extensions=[ext]), // using the profile trough ext we defined at the start
+        feature.new(
+          [
+            [{
+              kind: 'Deployment',
+              metadata: {
+                name: 'flask',
+              },
+            }],
+          ],
+        ),
       ],
     );
 
+    // Init the app with a profile of your choosing
     {
-      actual: appTest.init(profile='dev'),
+      output: appTest.init(profile='prd'),
     }
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
     ```yaml
-    actual:
+    output:
+      - apiVersion: apps/v1
+        kind: Deployment
+        metadata:
+          extended: true
+          name: nginx
+          profile: prd
+        spec:
+          selector:
+            matchLabels:
+              app: nginx
+          template:
+            metadata:
+              labels:
+                app: nginx
+            spec:
+              containers:
+                - image: nginx
+      - apiVersion: v1
+        kind: Service
+        metadata:
+          name: my-svc
+        spec:
+          ports:
+            - port: 80
+              protocol: TCP
+              targetPort: 9376
+          selector:
+            app.kubernetes.io/name: MyApp
       - kind: Deployment
         metadata:
           extended: true
           name: flask
-          profile: dev
-      - kind: Deployment
-        metadata:
-          extended: true
-          name: nginx
-          profile: dev
-      - kind: Service
-        metadata:
-          name: nginx
-      - kind: Ingress
-        metadata:
-          name: nginx
+          profile: prd
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
     {
-       "actual": [
+       "output": [
+          {
+             "apiVersion": "apps/v1",
+             "kind": "Deployment",
+             "metadata": {
+                "extended": true,
+                "name": "nginx",
+                "profile": "prd"
+             },
+             "spec": {
+                "selector": {
+                   "matchLabels": {
+                      "app": "nginx"
+                   }
+                },
+                "template": {
+                   "metadata": {
+                      "labels": {
+                         "app": "nginx"
+                      }
+                   },
+                   "spec": {
+                      "containers": [
+                         {
+                            "image": "nginx"
+                         }
+                      ]
+                   }
+                }
+             }
+          },
+          {
+             "apiVersion": "v1",
+             "kind": "Service",
+             "metadata": {
+                "name": "my-svc"
+             },
+             "spec": {
+                "ports": [
+                   {
+                      "port": 80,
+                      "protocol": "TCP",
+                      "targetPort": 9376
+                   }
+                ],
+                "selector": {
+                   "app.kubernetes.io/name": "MyApp"
+                }
+             }
+          },
           {
              "kind": "Deployment",
              "metadata": {
                 "extended": true,
                 "name": "flask",
-                "profile": "dev"
-             }
-          },
-          {
-             "kind": "Deployment",
-             "metadata": {
-                "extended": true,
-                "name": "nginx",
-                "profile": "dev"
-             }
-          },
-          {
-             "kind": "Service",
-             "metadata": {
-                "name": "nginx"
-             }
-          },
-          {
-             "kind": "Ingress",
-             "metadata": {
-                "name": "nginx"
+                "profile": "prd"
              }
           }
        ]

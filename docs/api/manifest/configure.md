@@ -45,7 +45,8 @@ Returns the properties after applying the overrides.
         },
       },
     }], {
-      name: 'placeholder',
+      name_nginx: 'placeholder',
+      name_flask: 'placeholder',
       label: 'placeholder',
     }).configure(function(props) {
       name_nginx: props.name_nginx + '-app',  // override passed props
@@ -55,7 +56,7 @@ Returns the properties after applying the overrides.
 
     {
       Output: lib.render(testManifest, {
-        name_nginx: 'nginx',  // this propr will be overidden
+        name_nginx: 'nginx',  // this prop will be overidden
         name_flask: 'flask',
         label: 'nginx',  // this one wont be overidden (we did not specify it under override func)
       }),

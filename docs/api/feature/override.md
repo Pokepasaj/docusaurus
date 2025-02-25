@@ -42,7 +42,7 @@ The feature object with overridden properties.
         name: 'placeholder',  // commenting out the output props these props will be used instead
         label: 'placeholder',
       }),
-    ]).configure(function(props) {
+    ]).override(function(props) {
       name: 'override-' + props.name,  // override passed props
     });
 

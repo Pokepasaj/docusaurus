@@ -7,11 +7,12 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 ## Overview
-
+The `extensions` function retrieves all extensions associated with the application, including those defined in features.
 ### Parameters
-- **`config`** -  
+- **`ctx`** - (object) The application context.
+- **`props`** - (object) Additional properties to apply.
 ### Return Value
-
+An array of extensions applied to the configurations. Extensions modify or extend the behavior of the manifest.
 ## Usage Examples
 
 <Tabs>
@@ -20,21 +21,35 @@ import TabItem from '@theme/TabItem';
     local app = import '../../vendor/konn/app.libsonnet';
     local extension = import '../../vendor/konn/extension.libsonnet';
 
-    local ext = extension.new(
+    local addLabelsAndReplicas = extension.new(
       function(ctx, target, props) target {
         metadata+: {
           labels: props.labels,
         },
+        spec+: {
+          replicas: props.replicas,
+        },
       },
-      { labels: 'default' }  // default prop
+      {
+        labels: 'default-label',  // default props
+        replicas: 1,
+      }
     );
 
     local myApp = app.new(
       features=[
-        { kind: 'Deployment', metadata: { name: 'nginx' } },
+        {
+          kind: 'Deployment',
+          metadata: {
+            name: 'nginx',
+          },
+        },
       ],
-      extensions=[ext],
-      props={ labels: 'global-label' }  // commenting this extension will use default prop
+      extensions=[addLabelsAndReplicas],
+      props={
+        labels: 'custom-label',  
+        replicas: 2,  
+      }
     );
 
     {
@@ -48,8 +63,10 @@ import TabItem from '@theme/TabItem';
     output:
       - kind: Deployment
         metadata:
-          labels: global-label
+          labels: custom-label
           name: nginx
+        spec:
+          replicas: 2
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
@@ -59,8 +76,11 @@ import TabItem from '@theme/TabItem';
           {
              "kind": "Deployment",
              "metadata": {
-                "labels": "global-label",
+                "labels": "custom-label",
                 "name": "nginx"
+             },
+             "spec": {
+                "replicas": 2
              }
           }
        ]

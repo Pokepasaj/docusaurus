@@ -1,6 +1,6 @@
 ---
-id: api-extensions-new
-title: new
+id: api-extensions-extend
+title: extend
 ---
 
 import Tabs from '@theme/Tabs';
@@ -25,7 +25,9 @@ The function returns an object with:
     local ext = import '../../vendor/konn/extension.libsonnet';
     local helper = import '../../vendor/konn/helpers.libsonnet';
 
-    local testExt = ext.new(
+    // Define the base extension
+    local baseExt = ext.new(
+      // Render function returning Kubernetes Deployments
       function(ctx, config, props)
         [
           {
@@ -41,33 +43,39 @@ The function returns an object with:
             },
           },
         ],
-    );
+    ).extend(
+      render=function(ctx, config, props)
 
+        {
+          kind: 'Deployment',
+          metadata: {
+            name: 'kong',
+          },
+        },
+    );
     {
-      testExt: testExt.render(),
+      output: baseExt.render(),
     }
     ``` 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
     ```yaml
-    body:
-    apiVersion: v1
-    kind: Service
-    metadata:
-      name: default
+    output:
+      kind: Deployment
+      metadata:
+        name: kong
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
     {
-    "body": {
-        "apiVersion": "v1",
-        "kind": "Service",
-        "metadata": {
-            "name": "default"
-        }
-      }
+       "output": {
+          "kind": "Deployment",
+          "metadata": {
+             "name": "kong"
+          }
+       }
     }
     ```
     </TabItem>

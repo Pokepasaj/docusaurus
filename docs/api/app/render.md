@@ -7,10 +7,13 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 ## Overview
-
+The `render` function processes the application's features and extensions, applying any necessary transformations before generating the final Kubernetes configurations.
 ### Parameters
-- **`config`** -  
+- **`ctx`** - (object) The application context with metadata and props.
+- **`props`** - (object) Additional properties to apply before rendering.
 ### Return Value
+A fully rendered JSON/YAML representation of the Kubernetes configurations, ready for deployment.
+
 
 ## Usage Examples
 
