@@ -6,18 +6,26 @@ title: configure
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+# `configure`
+
+## Table of Contents
+- [`configure`](#configure)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Parameters](#parameters)
+  - [Return Value](#return-value)
+  - [Usage Examples](#usage-examples)
+
 ## Overview
+The `configure` function is an alias to [override](api-extensions-override).
 
+## Parameters
+- **`props`** - (Required) A function or an object that takes the current properties of the configuration and returns the modified properties. This allows dynamic configuration updates.
 
-
-### Parameters
-
-### Return Value
-The function returns an object with:
-- **`body`** – 
+## Return Value
+Returns a new configuration with the updated properties, reflecting the changes made through the `configure` function.
 
 ## Usage Examples
-
 
 <Tabs>
      <TabItem value="jsonnet" label="Jsonnet" default>

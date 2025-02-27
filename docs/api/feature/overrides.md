@@ -7,22 +7,33 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 
-## Overview
+# `overrides`
 
+## Table of Contents
+- [`overrides`](#overrides)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Parameters](#parameters)
+  - [Return Value](#return-value)
+    - [Usage Example](#usage-example)
+
+## Overview
 The `overrides` function is used to define custom properties that can supersede the original properties or extend them. This allows for greater flexibility in configuring features, enabling users to inject or modify configurations dynamically.
+
 ## Parameters
 - **`props`** - The properties to override. This can either be an object containing key-value pairs of properties or a function that computes the overrides based on the current context (`props`).
 
 ## Return Value
+The feature object with overridden properties.
 
-`self`: The current feature instance with updated `overrides` applied.
+:::note
+Does not replace previously overridden values.
+It merges new props with the existing overrides.
+:::
+
 
 ### Usage Example
 
-:::note
-Does not replace previously overridden values 
-it merges new props with the existing overrides.
-:::
 
 <Tabs>
     <TabItem value="jsonnet" label="Jsonnet" default>

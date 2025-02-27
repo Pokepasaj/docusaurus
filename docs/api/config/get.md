@@ -5,15 +5,26 @@ title: get
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+# `get`
+
+## Table of Contents
+- [`get`](#get)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Parameters](#parameters)
+  - [Return Value](#return-value)
+  - [Usage Examples](#usage-examples)
+
 ## Overview
-`get` is a helper function used to retrieve specific values from a configuration object. This is especially useful when you are dealing with context (`ctx`) and need to extract specific attributes from the configuration, such as a `metadata` field. Since the objects are not rendered immediately, `get` provides a way to safely access these values.
+`get` is a helper function used to retrieve specific values from a configuration object. This is especially useful when you are dealing with context (`ctx`) and need to extract specific attributes from the configuration, such as a `metadata` field.
 
-### Parameters
-- **`path`** - (string) The path to the property you want to retrieve from the configuration (e.g., '`metadata.name`').
-- **`defaultValue`** - (any) The value to return if the property is not found (e.g., '`default`').
+## Parameters
+- **`path`** - (string) The path to the property you want to retrieve from the configuration (e.g., 'metadata.name').
+- **`defaultValue`** - (any) The value to return if the property is not found. Defaults to `null`.
 
-### Return Value
+## Return Value
 The `get` function returns the value of the specified property from the configuration. If the property doesn't exist, it returns the provided `defaultValue`.
+
 
 ## Usage Examples
 <Tabs>
@@ -58,16 +69,15 @@ We introduced `metadata.name` now. Let's see the updated results.
     ```js
     local k = import 'konn/main.libsonnet';
 
-
     local service = k.config(function(ctx, props) {
-    kind: 'Service',
-    metadata: {
-        name: "my-svc",
-    },
+      kind: 'Service',
+      metadata: {
+        name: 'my-svc',
+      },
     });
 
     {
-    output: service.get('metadata.name', 'default'), 
+      output: service.get('metadata.name', 'default'),
     }
     ``` 
   </TabItem>

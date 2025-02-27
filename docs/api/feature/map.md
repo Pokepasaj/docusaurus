@@ -7,15 +7,25 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 
+# `map`
+
+## Table of Contents
+- [`map`](#map)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Parameters](#parameters)
+  - [Return Value](#return-value)
+  - [Usage Examples](#usage-examples)
 
 ## Overview
 The `map` function allows for transforming the configurations of the feature by applying a custom map function.
-### Parameters
+
+## Parameters
 - **`fn`** - (function) The map function that modifies the configurations.
 
-
-### Return Value
+## Return Value
 The extended feature object with the map function applied to the configurations.
+
 ## Usage Examples
 
 <Tabs>

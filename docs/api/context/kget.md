@@ -8,12 +8,25 @@ import TabItem from '@theme/TabItem';
 
 
 
+# `kget`
+
+## Table of Contents
+- [`kget`](#kget)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Parameters](#parameters)
+  - [Return Value](#return-value)
+    - [Usage Example](#usage-example)
+
 ## Overview
+Gets a specific Kubernetes resource from the context's manifest by kind and name.
 
 ## Parameters
+- **`kind`** - (string) The kind of the Kubernetes resource.
+- **`name`** - (string) The name of the Kubernetes resource.
 
 ## Return Value
-
+Returns the Kubernetes resource that matches the specified kind and name, or `null` if no match is found.
 
 ### Usage Example
 
@@ -21,18 +34,52 @@ import TabItem from '@theme/TabItem';
 <Tabs>
     <TabItem value="jsonnet" label="Jsonnet" default>
     ```js
- 
+    local ctx = import '../../vendor/konn/context.libsonnet';
+
+    local initialCtx = ctx.new(
+      manifest=[
+        {
+          kind: 'Deployment',
+          metadata: {
+            name: 'nginx',
+          },
+        },
+        {
+          kind: 'Service',
+          metadata: {
+            name: 'nginx-service',
+          },
+        },
+      ],
+    );
+
+    // Get a specific Kubernetes resource by kind and name
+    local foundResource = initialCtx.kget('Service', 'nginx-service');
+
+    {
+      foundResource: foundResource,
+    }
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
     ```yaml
-
+    foundResource:
+      kind: Service
+      metadata:
+        name: nginx-service
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
-
+    {
+      "foundResource": {
+          "kind": "Service",
+          "metadata": {
+            "name": "nginx-service"
+          }
+      }
+    }
     ```  
     </TabItem>
 </Tabs>

@@ -6,24 +6,26 @@ title: fromYaml
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+# `fromYaml`
+
+## Table of Contents
+- [`fromYaml`](#fromyaml)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Parameters](#parameters)
+  - [Return Value](#return-value)
+  - [Usage Examples](#usage-examples)
+    - [Basic Usage](#basic-usage)
+    - [Using Props](#using-props)
+
 ## Overview
-Using fromYaml for YAML-Based Object Creation
+The `fromYaml` function converts a YAML string into an equivalent Jsonnet object. It is similar to [fromJson](api-config-fromJson) but specifically handles YAML-formatted text.
 
-Similar to [fromJson](api-config-fromJson),
-fromYaml function converts a YAML string into an equivalent Jsonnet object. 
+## Parameters
+- **`yaml`** (string) - A YAML-formatted string representing a configuration.
+- **`props`** (object, optional) - Additional properties merged with the configuration. Defaults to `{}`.
 
-It ensures that the YAML input is a single document and provides a structured way to create configurations dynamically.
-
-
-### Parameters
-- **`yaml`** (string): A YAML-formatted string representing a configuration.
-- **`props`** (object, optional): Additional properties merged with the configuration.  
-:::note
- props defaults to `{}`
-:::
-
-
-### Return Value
+## Return Value
 Returns a config object created from the YAML input.
 
 
@@ -41,53 +43,10 @@ Returns a config object created from the YAML input.
 
     ```yaml
     body:
-    - apiVersion: v1
-      kind: Pod
-      metadata:
-        name: flask
-    ```
-  </TabItem>
-  <TabItem value="json" label="JSON Output">
-    ```json
-    {
-    "body": [
-        {
-            "apiVersion": "v1",
-            "kind": "Pod",
-            "metadata": {
-                "name": "flask"
-            }
-        }
-      ]
-    }
-    ```  
-    </TabItem>
-</Tabs>
-
-
-<Tabs>
-    <TabItem value="jsonnet" label="Jsonnet" default>
-    ```js
-    local k = import 'konn/main.libsonnet';
-
-    local config = k.fromYaml(
-      'apiVersion: v1\nkind: Pod\nmetadata:\n  name: flask\nspec:\n  containers:\n    - name: flask-container\n      image: python:3.9'
-    );
-    config
-    ```
-  </TabItem>
-  <TabItem value="yaml" label="YAML Output">
-
-    ```yaml
-    body:
       - apiVersion: v1
         kind: Pod
         metadata:
           name: flask
-        spec:
-          containers:
-            - image: python:3.9
-              name: flask-container
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
@@ -99,14 +58,6 @@ Returns a config object created from the YAML input.
              "kind": "Pod",
              "metadata": {
                 "name": "flask"
-             },
-             "spec": {
-                "containers": [
-                   {
-                      "image": "python:3.9",
-                      "name": "flask-container"
-                   }
-                ]
              }
           }
        ]
@@ -114,6 +65,8 @@ Returns a config object created from the YAML input.
     ```  
     </TabItem>
 </Tabs>
+
+
 
 
 <Tabs>
@@ -124,8 +77,6 @@ Returns a config object created from the YAML input.
     local config = k.fromYaml(
       '{"apiVersion":"v1", "kind":"Pod", "metadata":{"name": "flask"}}'
     );
-
-
     config {
       spec+: {
         containers: [

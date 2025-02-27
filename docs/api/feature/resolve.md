@@ -6,14 +6,25 @@ title: resolve
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+# `resolve`
+
+## Table of Contents
+- [`resolve`](#resolve)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+    - [Parameters](#parameters)
+    - [Return Value](#return-value)
+  - [Usage Examples](#usage-examples)
+
 ## Overview
 The `resolve` function resolves individual configurations, processes extensions, and applies any necessary filtering and mapping to produce the final configurations.
+
 ### Parameters
 - **`ctx`** - (object) The context in which the configuration is resolved.
 - **`props`** - (object) The properties that influence the resolution of the configuration.
+
 ### Return Value
 The resolved configurations, including any extensions or transformations applied, in a flat array.
-
 ## Usage Examples
 
 <Tabs>

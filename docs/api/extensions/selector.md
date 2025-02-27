@@ -6,15 +6,26 @@ title: selector
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+# `selector`
+
+## Table of Contents
+- [`selector`](#selector)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Parameters](#parameters)
+  - [Return Value](#return-value)
+  - [Usage Examples](#usage-examples)
+
 ## Overview
+The `selector` function filters and modifies existing Kubernetes manifests based on specific conditions. It enables selective modification of resources while maintaining the structure of the original manifest.
 
+## Parameters
+- **`render`** - A function that modifies selected configurations. It takes `ctx`, `config`, and `props` as arguments and extends the metadata.
+- **`selector`** - A function that determines which objects should be modified. It checks if a resource meets specific criteria, such as matching `kind` or `name`.
+- **`extends`** - The base manifest containing the resources to be filtered and modified.
 
-
-### Parameters
-
-### Return Value
-The function returns an object with:
-- **`body`** – 
+## Return Value
+Returns an array of modified Kubernetes manifests.
 
 ## Usage Examples
 

@@ -6,17 +6,29 @@ title: extend
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+# `extend`
+
+## Table of Contents
+- [`extend`](#extend)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Parameters](#parameters)
+  - [Return Value](#return-value)
+  - [Usage Examples](#usage-examples)
+    - [Extend with map](#extend-with-map)
+
 ## Overview
 The `extend` function allows for the extension of an existing feature by adding new configurations, properties, or extensions, as well as modifying the filtering and mapping behavior.
-### Parameters
+
+## Parameters
 - **`configs`** - (array) Additional configurations to extend the feature.
 - **`props`** - (object) Additional properties to extend the feature.
-- **`extensions`** - (array)  Additional extensions to apply to the feature.
+- **`extensions`** - (array) Additional extensions to apply to the feature.
 - **`filter`** - (function) A filter function to refine which configurations are included.
 - **`map`** - (function) A map function to modify the configurations.
-### Return Value
-A new feature object with the extended configurations, properties, and extensions.
 
+## Return Value
+A new feature object with the extended configurations, properties, and extensions.
 ## Usage Examples
 <Tabs>
     <TabItem value="jsonnet" label="Jsonnet" default>

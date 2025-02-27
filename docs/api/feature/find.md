@@ -6,13 +6,23 @@ title: find
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+# `find`
+
+## Table of Contents
+- [`find`](#find)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Parameters](#parameters)
+  - [Return Value](#return-value)
+  - [Usage Examples](#usage-examples)
+
 ## Overview
 The `find` function searches through the configurations and returns the first match based on a custom condition.
-### Parameters
+
+## Parameters
 - **`fn`** - (function) The function that defines the condition to match configurations.
 
-
-### Return Value
+## Return Value
 The first matching configuration found.
 
 ## Usage Examples

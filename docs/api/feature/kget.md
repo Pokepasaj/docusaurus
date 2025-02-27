@@ -6,19 +6,30 @@ title: kget
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+# `kget`
+
+## Table of Contents
+- [`kget`](#kget)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Parameters](#parameters)
+  - [Return Value](#return-value)
+  - [Usage Examples](#usage-examples)
+
 ## Overview
 The `kget` function retrieves a configuration by its kind and metadata name.
 
 :::note get for kubernetes
-Does the same as [get](api-feature-get) however instead of the path it`s looking for kind
+Does the same as [get](api-feature-get) however instead of the path it's looking for kind.
 :::
-### Parameters
+
+## Parameters
 - **`kind`** - (string) The kind of the configuration to search for.
 - **`name`** - (string) The name of the configuration to match.
 
-
-### Return Value
+## Return Value
 The configuration that matches the kind and name.
+
 ## Usage Examples
 
 <Tabs>

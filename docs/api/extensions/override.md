@@ -6,16 +6,24 @@ title: override
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+# `override`
+
+## Table of Contents
+- [`override`](#override)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Parameters](#parameters)
+  - [Return Value](#return-value)
+  - [Usage Examples](#usage-examples)
+
 ## Overview
+The `override` function is used to modify the properties of a configuration or manifest. It allows you to provide a set of properties (e.g., `name_nginx`, `name_flask`) and modify them through the function, providing an updated version of the configuration with the modified properties. This is useful when you need to replace placeholders or adjust configuration properties dynamically.
 
+## Parameters
+- **`props`** - (Required) A function or an object that provides the new values to override the existing properties in the configuration.
 
-
-### Parameters
-
-### Return Value
-The function returns an object with:
-- **`body`** – 
-
+## Return Value
+Returns a new configuration that includes the overridden properties.
 ## Usage Examples
 
 

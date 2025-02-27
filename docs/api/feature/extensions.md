@@ -6,15 +6,25 @@ title: extensions
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+# `extensions`
+
+## Table of Contents
+- [`extensions`](#extensions)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Parameters](#parameters)
+  - [Return Value](#return-value)
+  - [Usage Examples](#usage-examples)
+
 ## Overview
 The `extensions` function processes and applies extensions to the feature configurations, allowing for conditional extensions based on the properties.
-### Parameters
+
+## Parameters
 - **`ctx`** - (object) The context in which the extensions are applied.
 - **`props`** - (object) The properties used to resolve the extensions.
 
-### Return Value
+## Return Value
 An array of applied extensions, filtered and transformed based on the provided properties.
-
 ## Usage Examples
 
 <Tabs>

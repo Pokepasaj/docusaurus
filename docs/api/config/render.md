@@ -5,15 +5,24 @@ title: render
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+# `render`
+
+## Table of Contents
+- [`render`](#render)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Parameters](#parameters)
+  - [Return Value](#return-value)
+  - [Usage Examples](#usage-examples)
+
 ## Overview
 The `render` function is used to generate the final configuration output by processing the provided props. It takes the configuration defined with config and outputs the rendered result in the form of a structured object (JSON or YAML).
 
-### Parameters
+## Parameters
+- **`props`** - (object) A set of key-value pairs that are passed to the configuration function. These are used within the configuration function to generate the output.
 
-- **`props`** – (object) A set of key-value pairs that are passed to the configuration function. These are used within the configuration function to generate the output.
-### Return Value
+## Return Value
 The `render` function returns the rendered configuration, which includes the evaluated props along with any other defined parameters in the configuration.
-
 ## Usage Examples
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
@@ -56,7 +65,7 @@ The `render` function returns the rendered configuration, which includes the eva
 
 
 :::note
-if you dont supply a ctx it will supply a ctx and if you dont supply props it will supply props that will be empty  `props: {}`
+If you don't supply a `ctx`, it will supply a `ctx` and if you don't supply `props`, it will supply `props` that will be empty `props: {}`.
 :::
 
 

@@ -5,13 +5,24 @@ title: override
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+# `override`
+
+## Table of Contents
+- [`override`](#override)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Parameters](#parameters)
+  - [Return Value](#return-value)
+  - [Usage Examples](#usage-examples)
+
 ## Overview
 The `override` function allows you to lock props at a certain point in the configuration flow. Once overridden, the prop values will not change, ensuring that the configuration does not unintentionally modify key properties passed to it.
-### Parameters
-- **`props`** – (object) The props object to be overridden. The function will replace or modify the values of the specified props with the overridden values.
-### Return Value
-The `override` function does not return a direct value but modifies the `props` object in place. It ensures that no higher-level configurations can alter the overridden properties.
 
+## Parameters
+- **`props`** - (object) The props object to be overridden. The function will replace or modify the values of the specified props with the overridden values.
+
+## Return Value
+The `override` function does not return a direct value but modifies the `props` object in place. It ensures that no higher-level configurations can alter the overridden properties.
 ## Usage Examples
 
 <Tabs>
@@ -19,20 +30,20 @@ The `override` function does not return a direct value but modifies the `props` 
     ```js
     local config = import '../../vendor/konn/config.libsonnet';
     local testConfig = config.new(function(ctx, props) {
-    kind: 'Deployment',
-    metadata: {
+      kind: 'Deployment',
+      metadata: {
         name: props.name,
-    },
+      },
     }, {
-    name: 'my-deployment',
+      name: 'my-deployment',
     }).override(
-    function(props)
+      function(props)
         {
-        name: 'override-' + props.name,
+          name: 'override-' + props.name,
         }
     );
     {
-    output: testConfig.render(),
+      output: testConfig.render(),
     }
     ``` 
   </TabItem>
@@ -47,12 +58,12 @@ The `override` function does not return a direct value but modifies the `props` 
   <TabItem value="json" label="JSON Output">
     ```json
     {
-    "output": {
-        "kind": "Deployment",
-        "metadata": {
-            "name": "override-my-deployment"
-        }
-      }
+       "output": {
+          "kind": "Deployment",
+          "metadata": {
+             "name": "override-my-deployment"
+          }
+       }
     }
     ```
   </TabItem>
@@ -64,28 +75,28 @@ The `override` function does not return a direct value but modifies the `props` 
     local config = import '../../vendor/konn/config.libsonnet';
 
     local testConfig = config.new(
-    function(ctx, props) {
-      kind: 'Deployment',
-      metadata: {
-        name: props.name,
+      function(ctx, props) {
+        kind: 'Deployment',
+        metadata: {
+          name: props.name,
+        },
+        spec: {
+          replicas: props.replicas,
+        },
       },
-      spec: {
-        replicas: props.replicas,
-      },
-    },
-    {
-      name: 'my-deployment',
-      replicas: 13,
-    }
+      {
+        name: 'my-deployment',
+        replicas: 13,
+      }
     ).override(
-    function(props) {
-      name: 'override-' + props.name,
-      replicas: 3,
-    }
+      function(props) {
+        name: 'override-' + props.name,
+        replicas: 3,
+      }
     );
 
     {
-    output: testConfig.render(),
+      output: testConfig.render(),
     }
     ``` 
   </TabItem>

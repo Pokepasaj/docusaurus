@@ -7,14 +7,23 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 
-## Overview
+# `override`
 
-The overrides function allows for overriding the properties or configurations of the feature with new values, applying these overrides when rendering or resolving the feature.
+## Table of Contents
+- [`override`](#override)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Parameters](#parameters)
+  - [Return Value](#return-value)
+    - [Usage Example](#usage-example)
+
+## Overview
+The `override` function allows for overriding the properties of a feature with new values, applying these overrides when rendering or resolving the feature.
+
 ## Parameters
-- **`props`** - (object or function) The properties or a function to override the existing properties.
+- **`propsOrFunction`** - (object or function) The properties or a function to override the existing properties.
 
 ## Return Value
-
 The feature object with overridden properties.
 
 ### Usage Example

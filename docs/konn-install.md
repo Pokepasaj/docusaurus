@@ -21,13 +21,15 @@ jsonnet -v
 :::
 
 
-## Vscode and evaluation
 
-Jsonnet Language Server Plugin for Vscode
+## Prerequisites for VScode
 
+
+### Jsonnet Language Server 
+ Plugin for Vscode
 - https://marketplace.visualstudio.com/items?itemName=Grafana.vscode-jsonnet
 
-### Prerequisites for VScode
+
 
 `1.` Create .vscode folder in your base directory and create the following files → settings.json → exetensions.json
 

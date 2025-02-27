@@ -6,13 +6,24 @@ title: render
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+# `render`
+
+## Table of Contents
+- [`render`](#render)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Parameters](#parameters)
+  - [Return Value](#return-value)
+  - [Usage Examples](#usage-examples)
+
 ## Overview
 The `render` function renders the configurations with resolved properties and applies extensions to the configurations.
-### Parameters
+
+## Parameters
 - **`ctx`** - (object) The context in which the configuration is being rendered.
 - **`props`** - (object) The properties to resolve and apply to the configurations.
 
-### Return Value
+## Return Value
 The rendered configurations with applied extensions, resolved properties, and final output ready for deployment.
 
 ## Usage Examples

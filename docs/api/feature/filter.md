@@ -7,13 +7,23 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 
+# `filter`
+
+## Table of Contents
+- [`filter`](#filter)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Parameters](#parameters)
+  - [Return Value](#return-value)
+  - [Usage Examples](#usage-examples)
+
 ## Overview
 The `filter` function allows for applying a filter to the configurations of the feature, excluding configurations based on a custom condition.
-### Parameters
+
+## Parameters
 - **`fn`** - (function) The filter function that defines which configurations to keep.
 
-
-### Return Value
+## Return Value
 The extended feature object with the filter applied to the configurations.
 
 ## Usage Examples

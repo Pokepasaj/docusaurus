@@ -6,15 +6,27 @@ title: new
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+# `new`
+
+## Table of Contents
+- [`new`](#new)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Parameters](#parameters)
+  - [Return Value](#return-value)
+  - [Usage Examples](#usage-examples)
+
 ## Overview
 The `new` function initializes a new feature with a set of configurations, properties, and extensions. It also provides functionality to apply filters and maps to customize the configuration.
-### Parameters
+
+## Parameters
 - **`configs`** - (array) The configurations to be applied to the feature.
 - **`props`** - (object) The properties that define the behavior of the feature.
 - **`extensions`** - (array) Optional extensions to be applied to the feature.
 - **`filter`** - (function) A filter function used to determine whether a configuration should be included.
 - **`map`** - (function) A map function used to modify configurations.
-### Return Value
+
+## Return Value
 An object representing the new feature, including its body (rendered configuration), resolved configurations (`configs`), properties, and function arguments.
 
 ## Usage Examples

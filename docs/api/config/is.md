@@ -6,14 +6,26 @@ title: is
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+# `is`
+
+## Table of Contents
+- [`is`](#is)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Parameters](#parameters)
+  - [Return Value](#return-value)
+  - [Usage Examples](#usage-examples)
+
 ## Overview
 `is` is a Kubernetes-specific function that works similarly to [get](api-config-get), but checks if the configuration matches a certain kind of configuration. It’s useful to verify whether a config matches certain criteria (like being of type `Namespace` or `Service`).
-### Parameters
-- **`kinds`** -  (array of strings) An array of valid configuration kinds (e.g., `['Namespace', 'Service']`).
-- **`names`** - (array of strings, optional) An array of valid names to match (e.g., `['default', 'random']`). If not specified, it checks only the kind.
 
-### Return Value
+## Parameters
+- **`kind`** - (array of strings) An array of valid configuration kinds (e.g., `['Namespace', 'Service']`).
+- **`name`** - (array of strings, optional) An array of valid names to match (e.g., `['default', 'random']`). If not specified, it checks only the kind.
+
+## Return Value
 The `is` function returns a Boolean (`true` or `false`), indicating whether the configuration matches the specified kinds and names.
+
 
 ## Usage Examples
 
@@ -87,3 +99,7 @@ The `is` function returns a Boolean (`true` or `false`), indicating whether the 
     ```
   </TabItem>
 </Tabs>
+
+:::note
+Use the `is` function to ensure your configuration matches specific Kubernetes resource types and names.
+:::

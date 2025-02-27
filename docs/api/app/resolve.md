@@ -6,13 +6,26 @@ title: resolve
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+# `resolve`
+
+## Table of Contents
+- [`resolve`](#resolve)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Parameters](#parameters)
+  - [Return Value](#return-value)
+  - [Usage Examples](#usage-examples)
+
 ## Overview
-The `resolve` function processes all features and extensions, filtering out invalid configurations and applying transformations before merging them into the final manifest.
-### Parameters
+Processes all features and extensions, filtering out invalid configurations and applying transformations before merging them into the final manifest.
+
+## Parameters
 - **`ctx`** - (object) The application context.
 - **`props`** - (object) Additional properties to merge with existing ones.
-### Return Value
-An array of resolved Kubernetes configurations, after applying the necessary filters and transformations.
+
+## Return Value
+- Returns an array of resolved Kubernetes configurations, after applying the necessary filters and transformations.
+
 ## Usage Examples
 
 <Tabs>
@@ -20,64 +33,57 @@ An array of resolved Kubernetes configurations, after applying the necessary fil
     ```js
     local app = import '../../vendor/konn/app.libsonnet';
 
-    local myApp = app.new(
-      features=[
-        function(ctx, props) {
-          kind: 'Deployment',
-          metadata: {
-            name: 'nginx',
-          },
+    local myApp = app.new([
+      function(ctx, props) {
+        kind: 'Deployment',
+        metadata: {
+          name: 'nginx',
         },
-        {
-          kind: 'Deployment',
-          metadata: {
-            name: 'flask',
-          },
+      },
+      {
+        kind: 'Deployment',
+        metadata: {
+          name: 'flask',
         },
-      ],
-    );
+      },
+    ]);
 
-    {
-      output: myApp.resolve(),
-    }
+    myApp.resolve()
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
     ```yaml
-    output:
-      - body:
-          kind: Deployment
-          metadata:
-            name: nginx
-      - body:
-          kind: Deployment
-          metadata:
-            name: flask
+    - body:
+        kind: Deployment
+        metadata:
+          name: nginx
+    - body:
+        kind: Deployment
+        metadata:
+          name: flask
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
-    {
-       "output": [
-          {
-             "body": {
-                "kind": "Deployment",
-                "metadata": {
-                   "name": "nginx"
-                }
-             }
-          },
-          {
-             "body": {
-                "kind": "Deployment",
-                "metadata": {
-                   "name": "flask"
-                }
+    [
+       {
+          "body": {
+             "kind": "Deployment",
+             "metadata": {
+                "name": "nginx"
              }
           }
-       ]
-    }
+       },
+       {
+          "body": {
+             "kind": "Deployment",
+             "metadata": {
+                "name": "flask"
+             }
+          }
+       }
+    ]
     ```  
     </TabItem>
 </Tabs>
@@ -88,8 +94,8 @@ An array of resolved Kubernetes configurations, after applying the necessary fil
     local app = import '../../vendor/konn/app.libsonnet';
 
     local myApp = app.new(
-      features=[
-        function(ctx, props) {
+      [
+        {
           kind: 'Deployment',
           metadata: {
             name: 'nginx',
@@ -113,74 +119,68 @@ An array of resolved Kubernetes configurations, after applying the necessary fil
             name: 'flask-svc',
           },
         },
-      ],
-    );
+      ]);
 
-    {
-      output: myApp.resolve(),
-    }
+    myApp.resolve()
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
     ```yaml
-    output:
-      - body:
-          kind: Deployment
-          metadata:
-            name: nginx
-      - body:
-          kind: Deployment
-          metadata:
-            name: flask
-      - body:
-          kind: Service
-          metadata:
-            name: nginx-svc
-      - body:
-          kind: Service
-          metadata:
-            name: flask-svc
+    - body:
+        kind: Deployment
+        metadata:
+          name: nginx
+    - body:
+        kind: Deployment
+        metadata:
+          name: flask
+    - body:
+        kind: Service
+        metadata:
+          name: nginx-svc
+    - body:
+        kind: Service
+        metadata:
+          name: flask-svc
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
-    {
-       "output": [
-          {
-             "body": {
-                "kind": "Deployment",
-                "metadata": {
-                   "name": "nginx"
-                }
-             }
-          },
-          {
-             "body": {
-                "kind": "Deployment",
-                "metadata": {
-                   "name": "flask"
-                }
-             }
-          },
-          {
-             "body": {
-                "kind": "Service",
-                "metadata": {
-                   "name": "nginx-svc"
-                }
-             }
-          },
-          {
-             "body": {
-                "kind": "Service",
-                "metadata": {
-                   "name": "flask-svc"
-                }
+    [
+       {
+          "body": {
+             "kind": "Deployment",
+             "metadata": {
+                "name": "nginx"
              }
           }
-       ]
-    }
+       },
+       {
+          "body": {
+             "kind": "Deployment",
+             "metadata": {
+                "name": "flask"
+             }
+          }
+       },
+       {
+          "body": {
+             "kind": "Service",
+             "metadata": {
+                "name": "nginx-svc"
+             }
+          }
+       },
+       {
+          "body": {
+             "kind": "Service",
+             "metadata": {
+                "name": "flask-svc"
+             }
+          }
+       }
+    ]
     ```  
     </TabItem>
 </Tabs>

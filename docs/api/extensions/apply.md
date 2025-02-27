@@ -6,15 +6,26 @@ title: apply
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+# `apply`
+
+## Table of Contents
+- [`apply`](#apply)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Parameters](#parameters)
+  - [Return Value](#return-value)
+  - [Usage Examples](#usage-examples)
+
 ## Overview
+The `apply` function is used to apply an extension to an existing configuration. It allows you to modify or extend a configuration object by passing a base configuration and an extension function that will operate on it. The extension can modify properties of the configuration or add new properties. This function facilitates the composition of configurations by layering multiple modifications.
 
+## Parameters
+- **`ctx`** - (Required) The context to be passed to the function. This is usually created using `context.new()`.
+- **`config`** - (Required) The configuration to be modified or extended.
+- **`props`** - (Optional) Additional properties to be passed to the function.
 
-
-### Parameters
-
-### Return Value
-The function returns an object with:
-- **`body`** – 
+## Return Value
+Returns a new configuration object that has been modified by the extension. This is a result of applying the extension function to the base configuration and resolving the properties.
 
 ## Usage Examples
 

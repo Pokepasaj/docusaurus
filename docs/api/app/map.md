@@ -6,14 +6,31 @@ title: map
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+# `map`
+
+## Table of Contents
+- [`map`](#map)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Parameters](#parameters)
+  - [Return Value](#return-value)
+  - [Usage Examples](#usage-examples)
+    - [Example 1](#example-1)
+    - [Example 2](#example-2)
+
 ## Overview
-The `map` function applies a transformation function to each configuration in the manifest, allowing modifications to be made dynamically.
-### Parameters
+Applies a transformation function to each configuration in the manifest, allowing modifications to be made dynamically.
+
+## Parameters
 - **`fn`** - (function) A function that modifies each configuration.
-### Return Value
-A new application manifest object with transformed configurations.
+
+## Return Value
+- Returns a new application manifest object with transformed configurations.
+
 ## Usage Examples
 
+
+### Example 1
 <Tabs>
     <TabItem value="jsonnet" label="Jsonnet" default>
     ```js
@@ -36,35 +53,77 @@ A new application manifest object with transformed configurations.
         metadata+: {
           name: props.name + '-app',
         },
-      },
-    );
+      });
 
-    {
-      filtered_output: myApp.render(),
-    }
+    myApp.render()
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
-
     ```yaml
-    filtered_output:
-      - kind: Deployment
-        metadata:
-          name: default-app
+    - kind: Deployment
+      metadata:
+        name: default-app
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
-    {
-       "filtered_output": [
-          {
-             "kind": "Deployment",
-             "metadata": {
-                "name": "default-app"
-             }
+    [
+       {
+          "kind": "Deployment",
+          "metadata": {
+             "name": "default-app"
           }
-       ]
-    }
+       }
+    ]
     ```  
-    </TabItem>
+  </TabItem>
+</Tabs>
+
+### Example 2
+<Tabs>
+    <TabItem value="jsonnet" label="Jsonnet" default>
+    ```js
+    local app = import '../../vendor/konn/app.libsonnet';
+
+    local myApp = app.new(
+      props={
+        name: 'service',
+      },
+      features=[
+        function(ctx, props) {
+          kind: 'Service',
+          metadata: {
+            name: props.name,
+          },
+        },
+      ],
+
+      map=function(ctx, config, props) config {
+        metadata+: {
+          name: props.name + '-svc',
+        },
+      });
+
+    myApp.render()
+    ```
+  </TabItem>
+  <TabItem value="yaml" label="YAML Output">
+    ```yaml
+    - kind: Service
+      metadata:
+        name: service-svc
+    ```
+  </TabItem>
+  <TabItem value="json" label="JSON Output">
+    ```json
+    [
+       {
+          "kind": "Service",
+          "metadata": {
+             "name": "service-svc"
+          }
+       }
+    ]
+    ```  
+  </TabItem>
 </Tabs>

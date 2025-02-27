@@ -6,13 +6,25 @@ title: render
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+# `render`
+
+## Table of Contents
+- [`render`](#render)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Parameters](#parameters)
+  - [Return Value](#return-value)
+  - [Usage Examples](#usage-examples)
+
 ## Overview
-The `render` function processes the application's features and extensions, applying any necessary transformations before generating the final Kubernetes configurations.
-### Parameters
+Processes the application's features and extensions, applying any necessary transformations before generating the final Kubernetes configurations.
+
+## Parameters
 - **`ctx`** - (object) The application context with metadata and props.
 - **`props`** - (object) Additional properties to apply before rendering.
-### Return Value
-A fully rendered JSON/YAML representation of the Kubernetes configurations, ready for deployment.
+
+## Return Value
+- Returns a fully rendered JSON/YAML representation of the Kubernetes configurations, ready for deployment.
 
 
 ## Usage Examples
@@ -22,9 +34,8 @@ A fully rendered JSON/YAML representation of the Kubernetes configurations, read
     ```js
     local app = import '../../vendor/konn/app.libsonnet';
 
-    local myApp = app.new(
-      features=[
-        function(ctx, props) {
+    local myApp = app.new([
+        {
           kind: 'Deployment',
           metadata: {
             name: 'nginx',
@@ -33,32 +44,27 @@ A fully rendered JSON/YAML representation of the Kubernetes configurations, read
       ],
     );
 
-    {
-      output: myApp.render(),  // we use render just like anywhere else
-    }
+    myApp.render()  // we use render just like anywhere else
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
     ```yaml
-    output:
-      - kind: Deployment
-        metadata:
-          name: nginx
+    - kind: Deployment
+      metadata:
+        name: nginx
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
-    {
-       "output": [
-          {
-             "kind": "Deployment",
-             "metadata": {
-                "name": "nginx"
-             }
+    [
+       {
+          "kind": "Deployment",
+          "metadata": {
+             "name": "nginx"
           }
-       ]
-    }
+       }
+    ]
     ```  
     </TabItem>
 </Tabs>

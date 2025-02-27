@@ -6,15 +6,30 @@ title: extensions
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+# `extensions`
+
+## Table of Contents
+- [`extensions`](#extensions)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Parameters](#parameters)
+  - [Return Value](#return-value)
+  - [Usage Examples](#usage-examples)
+    - [Example 1](#example-1)
+    - [Example 2](#example-2)
+
 ## Overview
-The `extensions` function retrieves all extensions associated with the application, including those defined in features.
-### Parameters
+Retrieves all extensions associated with the application, including those defined in features.
+
+## Parameters
 - **`ctx`** - (object) The application context.
 - **`props`** - (object) Additional properties to apply.
-### Return Value
-An array of extensions applied to the configurations. Extensions modify or extend the behavior of the manifest.
+
+## Return Value
+- Returns an array of extensions applied to the configurations. Extensions modify or extend the behavior of the manifest.
 ## Usage Examples
 
+### Example 1
 <Tabs>
     <TabItem value="jsonnet" label="Jsonnet" default>
     ```js
@@ -37,7 +52,7 @@ An array of extensions applied to the configurations. Extensions modify or exten
     );
 
     local myApp = app.new(
-      features=[
+      [
         {
           kind: 'Deployment',
           metadata: {
@@ -45,46 +60,108 @@ An array of extensions applied to the configurations. Extensions modify or exten
           },
         },
       ],
-      extensions=[addLabelsAndReplicas],
-      props={
-        labels: 'custom-label',  
-        replicas: 2,  
-      }
+      {
+        labels: 'custom-label',
+        replicas: 2,
+      },
+      extensions=[addLabelsAndReplicas]
     );
 
-    {
-      output: myApp.render(),
-    }
+    myApp.render()
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
-
     ```yaml
-    output:
-      - kind: Deployment
-        metadata:
-          labels: custom-label
-          name: nginx
-        spec:
-          replicas: 2
+    - kind: Deployment
+      metadata:
+        labels: custom-label
+        name: nginx
+      spec:
+        replicas: 2
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
-    {
-       "output": [
-          {
-             "kind": "Deployment",
-             "metadata": {
-                "labels": "custom-label",
-                "name": "nginx"
-             },
-             "spec": {
-                "replicas": 2
-             }
+    [
+       {
+          "kind": "Deployment",
+          "metadata": {
+             "labels": "custom-label",
+             "name": "nginx"
+          },
+          "spec": {
+             "replicas": 2
           }
-       ]
-    }
+       }
+    ]
     ```  
-    </TabItem>
+  </TabItem>
+</Tabs>
+
+### Example 2
+<Tabs>
+    <TabItem value="jsonnet" label="Jsonnet" default>
+    ```js
+    local app = import '../../vendor/konn/app.libsonnet';
+    local extension = import '../../vendor/konn/extension.libsonnet';
+
+    local addAnnotationsAndReplicas = extension.new(
+      function(ctx, target, props) target {
+        metadata+: {
+          annotations: props.annotations,
+        },
+        spec+: {
+          replicas: props.replicas,
+        },
+      },
+      {
+        annotations: 'default-annotation',  // default props
+        replicas: 1,
+      }
+    );
+
+    local myApp = app.new([
+        {
+          kind: 'Service',
+          metadata: {
+            name: 'nginx-svc',
+          },
+        },
+      ],
+      extensions=[addAnnotationsAndReplicas],
+      props={
+        annotations: 'custom-annotation',
+        replicas: 3,
+      }
+    );
+
+    myApp.render()
+    ```
+  </TabItem>
+  <TabItem value="yaml" label="YAML Output">
+    ```yaml
+    - kind: Service
+      metadata:
+        annotations: custom-annotation
+        name: nginx-svc
+      spec:
+        replicas: 3
+    ```
+  </TabItem>
+  <TabItem value="json" label="JSON Output">
+    ```json
+    [
+       {
+          "kind": "Service",
+          "metadata": {
+             "annotations": "custom-annotation",
+             "name": "nginx-svc"
+          },
+          "spec": {
+             "replicas": 3
+          }
+       }
+    ]
+    ```  
+  </TabItem>
 </Tabs>

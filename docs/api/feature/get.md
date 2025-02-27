@@ -6,15 +6,25 @@ title: get
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+# `get`
+
+## Table of Contents
+- [`get`](#get)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Parameters](#parameters)
+  - [Return Value](#return-value)
+  - [Usage Examples](#usage-examples)
+
 ## Overview
 The `get` function retrieves a configuration by a specific path or matcher condition.
-### Parameters
+
+## Parameters
 - **`path`** - (string) The path to search for in the configuration.
 - **`matcher`** - (string) The value to match (default is an empty string).
 
-
-### Return Value
-The configuration matching the path or matcher.
+## Return Value
+The configuration matching the path or matcher.e path or matcher.
 
 ## Usage Examples
 

@@ -7,15 +7,26 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 
+# `extend`
+
+## Table of Contents
+- [`extend`](#extend)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Parameters](#parameters)
+  - [Return Value](#return-value)
+    - [Merging](#merging)
+
 ## Overview
 The `extend` function allows you to take an existing configuration and extend it by adding or modifying properties. It’s useful for creating new configurations based on an existing template, applying additional settings to it.
-### Parameters
-- **`config`** -  (function)  A function that takes `ctx`, `config`, and `props`, and returns a modified configuration.
+
+## Parameters
+- **`fn`** - (function) A function that takes `ctx`, `config`, and `props`, and returns a modified configuration.
 - **`props`** - (object) The properties to be passed to the extended configuration.
 
-### Return Value
+## Return Value
 The `extend` function returns a new configuration object, combining the original configuration with the modifications provided in the extension.
-## Usage Examples
+
 
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
