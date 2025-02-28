@@ -6,15 +6,7 @@ title: render
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# `render`
 
-## Table of Contents
-- [`render`](#render)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Parameters](#parameters)
-  - [Return Value](#return-value)
-  - [Usage Examples](#usage-examples)
 
 ## Overview
 Processes the application's features and extensions, applying any necessary transformations before generating the final Kubernetes configurations.

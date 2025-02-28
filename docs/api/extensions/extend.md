@@ -6,15 +6,7 @@ title: extend
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# `extend`
 
-## Table of Contents
-- [`extend`](#extend)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Parameters](#parameters)
-  - [Return Value](#return-value)
-  - [Usage Examples](#usage-examples)
 
 ## Overview
 The `extend` function is used to modify or extend an existing configuration. It allows you to add new configurations, or change existing configurations, by applying new logic on top of a base configuration. This function is useful for composing multiple configurations or applying reusable extensions.
@@ -32,26 +24,21 @@ Returns a new configuration object that includes the extended configuration, mod
      <TabItem value="jsonnet" label="Jsonnet" default>
     ``` js
     local ext = import '../../vendor/konn/extension.libsonnet';
-    local helper = import '../../vendor/konn/helpers.libsonnet';
 
-    // Define the base extension
-    local baseExt = ext.new(
-      // Render function returning Kubernetes Deployments
-      function(ctx, config, props)
-        [
-          {
-            kind: 'Deployment',
-            metadata: {
-              name: 'nginx',
-            },
+    local baseExt = ext.new([
+        {
+          kind: 'Deployment',
+          metadata: {
+            name: 'nginx',
           },
-          {
-            kind: 'Deployment',
-            metadata: {
-              name: 'flask',
-            },
+        },
+        {
+          kind: 'Deployment',
+          metadata: {
+            name: 'flask',
           },
-        ],
+        },
+      ],
     ).extend(
       render=function(ctx, config, props)
 
@@ -60,11 +47,9 @@ Returns a new configuration object that includes the extended configuration, mod
           metadata: {
             name: 'kong',
           },
-        },
-    );
-    {
-      output: baseExt.render(),
-    }
+        });
+
+    baseExt.render()
     ``` 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">

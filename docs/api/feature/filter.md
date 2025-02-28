@@ -7,15 +7,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 
-# `filter`
-
-## Table of Contents
-- [`filter`](#filter)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Parameters](#parameters)
-  - [Return Value](#return-value)
-  - [Usage Examples](#usage-examples)
 
 ## Overview
 The `filter` function allows for applying a filter to the configurations of the feature, excluding configurations based on a custom condition.
@@ -34,47 +25,44 @@ The extended feature object with the filter applied to the configurations.
     ```js
     local feature = import '../../vendor/konn/feature.libsonnet';
 
-    local testFeature = feature.new(
-      [{
-        kind: 'Deployment',
-        metadata: {
-          name: 'nginx',
+    local testFeature = feature.new([
+        {
+          kind: 'Deployment',
+          metadata: {
+            name: 'nginx',
+          },
         },
-      }, {
-        kind: 'Deployment',
-        metadata: {
-          name: 'flask',
+        {
+          kind: 'Deployment',
+          metadata: {
+            name: 'flask',
+          },
         },
-      }],
+      ],
       filter=function(ctx, config, props) config.get('metadata').name == 'flask'
     );
 
-    {
-      filter_output: testFeature.render(),
-    }
+    testFeature.render()
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
     ```yaml
-    filter_output:
-      - kind: Deployment
-        metadata:
-          name: flask
+    - kind: Deployment
+      metadata:
+        name: flask
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
-    {
-       "filter_output": [
-          {
-             "kind": "Deployment",
-             "metadata": {
-                "name": "flask"
-             }
+    [
+       {
+          "kind": "Deployment",
+          "metadata": {
+             "name": "flask"
           }
-       ]
-    }
+       }
+    ]
     ```  
     </TabItem>
 </Tabs>
@@ -86,8 +74,7 @@ The extended feature object with the filter applied to the configurations.
     ```js
     local feature = import '../../vendor/konn/feature.libsonnet';
 
-    local testFeature = feature.new(
-      [
+    local testFeature = feature.new([
         {
           kind: 'Deployment',
           metadata: {
@@ -119,51 +106,46 @@ The extended feature object with the filter applied to the configurations.
       filter=function(ctx, config, props) config.get('metadata.labels.tier') == 'backend'
     );
 
-    {
-      filter_output: testFeature.render(),
-    }
+    testFeature.render()
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
     ```yaml
-     filter_output:
-      - kind: Deployment
-        metadata:
-          labels:
-            tier: backend
-          name: flask
-      - kind: Deployment
-        metadata:
-          labels:
-            tier: backend
-          name: kong
+    - kind: Deployment
+      metadata:
+        labels:
+          tier: backend
+        name: flask
+    - kind: Deployment
+      metadata:
+        labels:
+          tier: backend
+        name: kong
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
-    {
-       "filter_output": [
-          {
-             "kind": "Deployment",
-             "metadata": {
-                "labels": {
-                   "tier": "backend"
-                },
-                "name": "flask"
-             }
-          },
-          {
-             "kind": "Deployment",
-             "metadata": {
-                "labels": {
-                   "tier": "backend"
-                },
-                "name": "kong"
-             }
+    [
+       {
+          "kind": "Deployment",
+          "metadata": {
+             "labels": {
+                "tier": "backend"
+             },
+             "name": "flask"
           }
-       ]
-    }
+       },
+       {
+          "kind": "Deployment",
+          "metadata": {
+             "labels": {
+                "tier": "backend"
+             },
+             "name": "kong"
+          }
+       }
+    ]
     ```  
     </TabItem>
 </Tabs>

@@ -6,15 +6,7 @@ title: override
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# `override`
 
-## Table of Contents
-- [`override`](#override)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Parameters](#parameters)
-  - [Return Value](#return-value)
-  - [Usage Examples](#usage-examples)
 
 ## Overview
 The `override` function is used to modify the properties of a configuration or manifest. It allows you to provide a set of properties (e.g., `name_nginx`, `name_flask`) and modify them through the function, providing an updated version of the configuration with the modified properties. This is useful when you need to replace placeholders or adjust configuration properties dynamically.
@@ -54,44 +46,39 @@ Returns a new configuration that includes the overridden properties.
       }
     ).override(function(props) {
       name_nginx: 'nginx-app',  // Overriding placeholders
-      name_flask: 'flask-app',
+      // name_flask: 'flask-app',
     });
 
-    {
-      output: testManifest.render(),
-    }
+    testManifest.render()
     ``` 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
     ```yaml
-    output:
-      - kind: Deployment
-        metadata:
-          name: nginx-app
-      - kind: Deployment
-        metadata:
-          name: flask-app
+    - kind: Deployment
+      metadata:
+        name: nginx-app
+    - kind: Deployment
+      metadata:
+        name: placeholder
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
-    {
-       "output": [
-          {
-             "kind": "Deployment",
-             "metadata": {
-                "name": "nginx-app"
-             }
-          },
-          {
-             "kind": "Deployment",
-             "metadata": {
-                "name": "flask-app"
-             }
+    [
+       {
+          "kind": "Deployment",
+          "metadata": {
+             "name": "nginx-app"
           }
-       ]
-    }
+       },
+       {
+          "kind": "Deployment",
+          "metadata": {
+             "name": "placeholder"
+          }
+       }
+    ]
     ```
     </TabItem>
 </Tabs>

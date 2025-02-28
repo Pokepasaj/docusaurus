@@ -6,17 +6,6 @@ title: extensions
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# `extensions`
-
-## Table of Contents
-- [`extensions`](#extensions)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Parameters](#parameters)
-  - [Return Value](#return-value)
-  - [Usage Examples](#usage-examples)
-    - [Example 1](#example-1)
-    - [Example 2](#example-2)
 
 ## Overview
 Retrieves all extensions associated with the application, including those defined in features.

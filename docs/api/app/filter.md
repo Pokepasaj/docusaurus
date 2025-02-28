@@ -6,17 +6,6 @@ title: filter
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# `filter`
-
-## Table of Contents
-- [`filter`](#filter)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Parameters](#parameters)
-  - [Return Value](#return-value)
-  - [Usage Examples](#usage-examples)
-    - [Example 1](#example-1)
-    - [Example 2](#example-2)
 
 ## Overview
 Returns a new manifest containing only the configurations that match the specified filter condition.

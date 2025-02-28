@@ -7,15 +7,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 
-# `filter`
-
-## Table of Contents
-- [`filter`](#filter)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Parameters](#parameters)
-  - [Return Value](#return-value)
-    - [Usage Example](#usage-example)
 
 ## Overview
 Filters the manifests in the context using a specified function.
@@ -56,32 +47,27 @@ Returns an array of configurations that match the filter function
       function(config) config.kind == 'Deployment'
     );
 
-    {
-      filteredManifest: filteredManifest,
-    }
+    filteredManifest
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
     ```yaml
-    filteredManifest:
-      - kind: Deployment
-        metadata:
-          name: nginx
+    - kind: Deployment
+      metadata:
+        name: nginx
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
-    {
-      "filteredManifest": [
-          {
-            "kind": "Deployment",
-            "metadata": {
-                "name": "nginx"
-            }
+    [
+       {
+          "kind": "Deployment",
+          "metadata": {
+             "name": "nginx"
           }
-      ]
-    }
+       }
+    ]
     ```  
     </TabItem>
 </Tabs>

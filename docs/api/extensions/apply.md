@@ -6,15 +6,7 @@ title: apply
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# `apply`
 
-## Table of Contents
-- [`apply`](#apply)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Parameters](#parameters)
-  - [Return Value](#return-value)
-  - [Usage Examples](#usage-examples)
 
 ## Overview
 The `apply` function is used to apply an extension to an existing configuration. It allows you to modify or extend a configuration object by passing a base configuration and an extension function that will operate on it. The extension can modify properties of the configuration or add new properties. This function facilitates the composition of configurations by layering multiple modifications.
@@ -116,3 +108,6 @@ Returns a new configuration object that has been modified by the extension. This
     ```
     </TabItem>
 </Tabs>
+
+### Cross-linking to Other API Docs
+For more details on config, extensions and feature, please refer to the [config documentation](/api/config/api-config-new), [helpers documentation](/api/helpers/api-helpers-render-configs) and [context documentation](/api/context/api-context-new).

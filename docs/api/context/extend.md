@@ -7,16 +7,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 
-# `extend`
-
-## Table of Contents
-- [`extend`](#extend)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Parameters](#parameters)
-  - [Return Value](#return-value)
-    - [Usage Example](#usage-example)
-
 ## Overview
 Extends the current context with new properties and manifest, while keeping the existing metadata.
 
@@ -28,90 +18,318 @@ Extends the current context with new properties and manifest, while keeping the 
 ## Return Value
 Returns a new context object with the extended properties, manifest, and merged metadata.
 
-### Usage Example
-
+## Usage Example
 
 <Tabs>
-    <TabItem value="jsonnet" label="Jsonnet" default>
-    ```js
-    local ctx = import '../../vendor/konn/context.libsonnet';
+  <TabItem value="jsonnet" label="Jsonnet" default>
     
-    local initialCtx = ctx.new(
-      manifest=[
-        {
-          kind: 'Deployment',
-          metadata: {
-            name: 'nginx',
-          },
-        },
-      ],
-      metadata={
-        profile: 'dev',
-      }
-    );
+```js
+local ctx = import '../../vendor/konn/context.libsonnet';
 
-    // Extend the context with additional props and manifest
-    local extendedCtx = initialCtx.extend(
-      manifest=[
-        {
-          kind: 'Service',
-          metadata: {
-            name: 'nginx-service',
-          },
-        },
-      ],
-      metadata={
-        environment: 'staging',
-      }
-    );
-
+local initialCtx = ctx.new(
+  props={
+    env: 'production',
+  },
+  manifest=[
     {
-      initialManifest: initialCtx.args.manifest,
-      extendedManifest: extendedCtx.args.manifest,
-      extendedMetadata: extendedCtx.args.metadata,
-    }
-    ```
+      kind: 'Deployment',
+      metadata: {
+        name: 'nginx',
+      },
+    },
+  ]);
+
+// Extend the context with additional props
+local extendedCtx = initialCtx.extend(
+  props={
+    version: '1.0',
+  });
+
+{
+  initialProps: initialCtx.args.props,
+  extendedProps: extendedCtx.args.props,
+}
+```
+
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
-    ```yaml
-    extendedManifest:
-      - kind: Service
-        metadata:
-          name: nginx-service
-    extendedMetadata:
-      environment: staging
-      profile: dev
-    initialManifest:
-      - kind: Deployment
-        metadata:
-          name: nginx
-    ```
+```yaml
+initialProps:
+  env: production
+extendedProps:
+  env: production
+  version: 1.0
+```
+
   </TabItem>
   <TabItem value="json" label="JSON Output">
-    ```json
+    
+```json
+{
+  "initialProps": {
+    "env": "production"
+  },
+  "extendedProps": {
+    "env": "production",
+    "version": "1.0"
+  }
+}
+```
+
+  </TabItem>
+</Tabs>
+
+### Example with [manifest](#example-with-manifest)
+<Tabs>
+  <TabItem value="jsonnet" label="Jsonnet" default>
+    
+```js
+local ctx = import '../../vendor/konn/context.libsonnet';
+
+local initialCtx = ctx.new(
+  props={},
+  manifest=[
     {
-      "extendedManifest": [
-          {
-            "kind": "Service",
-            "metadata": {
-                "name": "nginx-service"
-            }
-          }
-      ],
-      "extendedMetadata": {
-          "environment": "staging",
-          "profile": "dev"
+      kind: 'Deployment',
+      metadata: {
+        name: 'nginx',
       },
-      "initialManifest": [
-          {
-            "kind": "Deployment",
-            "metadata": {
-                "name": "nginx"
-            }
-          }
-      ]
+    },
+  ],
+  metadata={}
+);
+
+// Extend the context with additional manifest
+local extendedCtx = initialCtx.extend(
+  manifest=[
+    {
+      kind: 'Service',
+      metadata: {
+        name: 'nginx-service',
+      },
+    },
+  ]
+);
+
+{
+  initialManifest: initialCtx.args.manifest,
+  extendedManifest: extendedCtx.args.manifest,
+}
+```
+
+  </TabItem>
+  <TabItem value="yaml" label="YAML Output">
+
+```yaml
+initialManifest:
+  - kind: Deployment
+    metadata:
+      name: nginx
+extendedManifest:
+  - kind: Deployment
+    metadata:
+      name: nginx
+  - kind: Service
+    metadata:
+      name: nginx-service
+```
+
+  </TabItem>
+  <TabItem value="json" label="JSON Output">
+    
+```json
+{
+  "initialManifest": [
+    {
+      "kind": "Deployment",
+      "metadata": {
+        "name": "nginx"
+      }
     }
-    ```  
-    </TabItem>
+  ],
+  "extendedManifest": [
+    {
+      "kind": "Deployment",
+      "metadata": {
+        "name": "nginx"
+      }
+    },
+    {
+      "kind": "Service",
+      "metadata": {
+        "name": "nginx-service"
+      }
+    }
+  ]
+}
+```
+
+  </TabItem>
+</Tabs>
+
+### Example with [metadata](#example-with-metadata)
+<Tabs>
+  <TabItem value="jsonnet" label="Jsonnet" default>
+    
+```js
+local ctx = import '../../vendor/konn/context.libsonnet';
+
+local initialCtx = ctx.new(
+  props={},
+  manifest=[
+    {
+      kind: 'Deployment',
+      metadata: {
+        name: 'nginx',
+      },
+    },
+  ],
+  metadata={
+    profile: 'dev',
+  }
+);
+
+// Extend the context with additional metadata
+local extendedCtx = initialCtx.extend(
+  metadata={
+    environment: 'staging',
+  }
+);
+
+{
+  initialMetadata: initialCtx.args.metadata,
+  extendedMetadata: extendedCtx.args.metadata,
+}
+```
+
+  </TabItem>
+  <TabItem value="yaml" label="YAML Output">
+
+```yaml
+initialMetadata:
+  profile: dev
+extendedMetadata:
+  profile: dev
+  environment: staging
+```
+
+  </TabItem>
+  <TabItem value="json" label="JSON Output">
+    
+```json
+{
+  "initialMetadata": {
+    "profile": "dev"
+  },
+  "extendedMetadata": {
+    "profile": "dev",
+    "environment": "staging"
+  }
+}
+```
+
+  </TabItem>
+</Tabs>
+
+### Example with [props](#example-with-props), [manifest](#example-with-manifest), and [metadata](#example-with-metadata)
+<Tabs>
+  <TabItem value="jsonnet" label="Jsonnet" default>
+    
+```js
+local ctx = import '../../vendor/konn/context.libsonnet';
+
+local initialCtx = ctx.new(
+  props={},
+  manifest=[
+    {
+      kind: 'Deployment',
+      metadata: {
+        name: 'nginx',
+      },
+    },
+  ],
+  metadata={
+    profile: 'dev',
+  }
+);
+
+// Extend the context with additional props, manifest, and metadata
+local extendedCtx = initialCtx.extend(
+  props={},
+  manifest=[
+    {
+      kind: 'Service',
+      metadata: {
+        name: 'nginx-service',
+      },
+    },
+  ],
+  metadata={
+    environment: 'staging',
+  }
+);
+
+{
+  initialManifest: initialCtx.args.manifest,
+  extendedManifest: extendedCtx.args.manifest,
+  extendedMetadata: extendedCtx.args.metadata,
+}
+```
+
+  </TabItem>
+  <TabItem value="yaml" label="YAML Output">
+
+```yaml
+initialManifest:
+  - kind: Deployment
+    metadata:
+      name: nginx
+extendedManifest:
+  - kind: Deployment
+    metadata:
+      name: nginx
+  - kind: Service
+    metadata:
+      name: nginx-service
+extendedMetadata:
+  environment: staging
+  profile: dev
+```
+
+  </TabItem>
+  <TabItem value="json" label="JSON Output">
+    
+```json
+{
+  "initialManifest": [
+    {
+      "kind": "Deployment",
+      "metadata": {
+        "name": "nginx"
+      }
+    }
+  ],
+  "extendedManifest": [
+    {
+      "kind": "Deployment",
+      "metadata": {
+        "name": "nginx"
+      }
+    },
+    {
+      "kind": "Service",
+      "metadata": {
+        "name": "nginx-service"
+      }
+    }
+  ],
+  "extendedMetadata": {
+    "environment": "staging",
+    "profile": "dev"
+  }
+}
+```
+
+  </TabItem>
 </Tabs>

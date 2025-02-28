@@ -6,15 +6,7 @@ title: extensions
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# `extensions`
 
-## Table of Contents
-- [`extensions`](#extensions)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Parameters](#parameters)
-  - [Return Value](#return-value)
-  - [Usage Examples](#usage-examples)
 
 ## Overview
 The `extensions` function processes and applies extensions to the feature configurations, allowing for conditional extensions based on the properties.
@@ -41,7 +33,7 @@ An array of applied extensions, filtered and transformed based on the provided p
         },
       },
       {
-        labels: 'default',
+        labels: 'default',  // default label
       },
     );
     local testFeature = feature.new(
@@ -54,44 +46,39 @@ An array of applied extensions, filtered and transformed based on the provided p
         },
       ],
       {
-        labels: 'label-from-feature',  // if labels does not exist here it will take the prop from override
-        // if override and feature labels do not exist it will take the default prop
+        labels: 'label-from-feature',  // if labels does not exist here it will take the prop from override below
+        // if neither of these exist it will take the default label
       },
       extensions=[
         testExtension.override({
-          labels: 'label-from-override',  // if labels does not exist here it will take the previous prop of labels from feature
+          labels: 'label-from-override',  // if labels does not exist here it will take the previous one
         }),
       ],
     );
 
-    {
-      output: lib.render(testFeature),
-    }
+    lib.render(testFeature)
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
     ```yaml
-    output:
-      - kind: Deployment
-        metadata:
-          labels: label-from-override
-          name: nginx-deploy
+    - kind: Deployment
+      metadata:
+        labels: label-from-override
+        name: nginx-deploy
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
-    {
-       "output": [
-          {
-             "kind": "Deployment",
-             "metadata": {
-                "labels": "label-from-override",
-                "name": "nginx-deploy"
-             }
+    [
+       {
+          "kind": "Deployment",
+          "metadata": {
+             "labels": "label-from-override",
+             "name": "nginx-deploy"
           }
-       ]
-    }
+       }
+    ]
     ```  
     </TabItem>
 </Tabs>
@@ -137,37 +124,37 @@ An array of applied extensions, filtered and transformed based on the provided p
       ],
     );
 
-    {
-      output: lib.render(featureWithReplicas),
-    }
+    lib.render(featureWithReplicas)
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
     ```yaml
-    output:
-      - kind: Deployment
-        metadata:
-          name: nginx-deployment
-        spec:
-          replicas: 5
+    - kind: Deployment
+      metadata:
+        name: nginx-deployment
+      spec:
+        replicas: 5
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
-    {
-       "output": [
-          {
-             "kind": "Deployment",
-             "metadata": {
-                "name": "nginx-deployment"
-             },
-             "spec": {
-                "replicas": 5
-             }
+    [
+       {
+          "kind": "Deployment",
+          "metadata": {
+             "name": "nginx-deployment"
+          },
+          "spec": {
+             "replicas": 5
           }
-       ]
-    }
+       }
+    ]
     ```  
     </TabItem>
 </Tabs>
+
+
+
+### Cross-linking to Other API Docs
+For more details on extensions and helpers, please refer to the [extensions documentation](https://pokepasaj.github.io/docusaurus/api/extensions/api-extensions-new), [helpers documentation](/api/helpers/api-helpers-render).

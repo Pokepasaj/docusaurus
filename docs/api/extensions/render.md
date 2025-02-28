@@ -6,15 +6,7 @@ title: render
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# `render`
 
-## Table of Contents
-- [`render`](#render)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Parameters](#parameters)
-  - [Return Value](#return-value)
-  - [Usage Examples](#usage-examples)
 
 ## Overview
 The `render` function processes and outputs a structured Kubernetes manifest based on the provided extension logic. It allows users to define resources dynamically and convert them into JSON, YAML, or another desired format.

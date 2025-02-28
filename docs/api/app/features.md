@@ -6,17 +6,7 @@ title: features
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# `features`
 
-## Table of Contents
-- [`features`](#features)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Parameters](#parameters)
-  - [Return Value](#return-value)
-  - [Usage Examples](#usage-examples)
-    - [Example 1](#example-1)
-    - [Example 2](#example-2)
 
 ## Overview
 Retrieves and filters the list of features defined in the application manifest.
@@ -34,115 +24,120 @@ Retrieves and filters the list of features defined in the application manifest.
     <TabItem value="jsonnet" label="Jsonnet" default>
     ```js
     local app = import '../../vendor/konn/app.libsonnet';
+    local feature = import '../../vendor/konn/feature.libsonnet';
 
     local myApp = app.new(
-      [
-        function(ctx, props) {
-          kind: 'Deployment',
-          metadata: {
-            name: props.name_nginx,
+      features=[
+        feature.new([
+          function(ctx, props) {
+            kind: 'Deployment',
+            metadata: {
+              name: props.name,
+            },
+            spec: {
+              replicas: props.replicas,
+              template: {
+                spec: {
+                  containers: [{
+                    name: props.name,
+                    image: 'nginx:1.14.2',
+                  }],
+                },
+              },
+            },
           },
-        },
-        {
-          kind: 'Deployment',
-          metadata: {
-            name: 'flask',
+          function(ctx, props) {
+            kind: 'Service',
+            metadata: {
+              name: props.name,
+            },
+            spec: {
+              selector: {
+                app: props.name,
+              },
+              ports: [
+                {
+                  port: 80,
+                  targetPort: 80,
+                },
+              ],
+            },
           },
-        },
+        ]),
       ],
-      {
-        name_nginx: 'nginx',
-      });
-      
-    myApp
+      props={
+        name: 'example-app',
+        replicas: 3,
+      }
+    );
+
+    myApp.render()
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
     ```yaml
-    body:
-      - kind: Deployment
-        metadata:
-          name: nginx
-      - kind: Deployment
-        metadata:
-          name: flask
+    - kind: Deployment
+      metadata:
+        name: example-app
+      spec:
+        replicas: 3
+        template:
+          spec:
+            containers:
+              - image: nginx:1.14.2
+                name: example-app
+    - kind: Service
+      metadata:
+        name: example-app
+      spec:
+        ports:
+          - port: 80
+            targetPort: 80
+        selector:
+          app: example-app
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
-    {
-       "body": [
-          {
-             "kind": "Deployment",
-             "metadata": {
-                "name": "nginx"
-             }
+    [
+       {
+          "kind": "Deployment",
+          "metadata": {
+             "name": "example-app"
           },
-          {
-             "kind": "Deployment",
-             "metadata": {
-                "name": "flask"
+          "spec": {
+             "replicas": 3,
+             "template": {
+                "spec": {
+                   "containers": [
+                      {
+                         "image": "nginx:1.14.2",
+                         "name": "example-app"
+                      }
+                   ]
+                }
              }
           }
-       ]
-    }
+       },
+       {
+          "kind": "Service",
+          "metadata": {
+             "name": "example-app"
+          },
+          "spec": {
+             "ports": [
+                {
+                   "port": 80,
+                   "targetPort": 80
+                }
+             ],
+             "selector": {
+                "app": "example-app"
+             }
+          }
+       }
+    ]
     ```  
   </TabItem>
 </Tabs>
 
-### Example 2
-<Tabs>
-    <TabItem value="jsonnet" label="Jsonnet" default>
-    ```js
-    local app = import '../../vendor/konn/app.libsonnet';
-
-    local myApp = app.new([
-      {
-        kind: 'Service',
-        metadata: {
-          name: 'nginx-svc',
-        },
-      },
-      {
-        kind: 'Service',
-        metadata: {
-          name: 'flask-svc',
-        },
-      },
-    ]);
-
-    myApp
-    ```
-  </TabItem>
-  <TabItem value="yaml" label="YAML Output">
-    ```yaml
-    body:
-      - kind: Service
-        metadata:
-          name: nginx-svc
-      - kind: Service
-        metadata:
-          name: flask-svc
-    ```
-  </TabItem>
-  <TabItem value="json" label="JSON Output">
-    ```json
-    {
-       "body": [
-          {
-             "kind": "Service",
-             "metadata": {
-                "name": "nginx-svc"
-             }
-          },
-          {
-             "kind": "Service",
-             "metadata": {
-                "name": "flask-svc"
-             }
-          }
-       ]
-    }
-    ```  
-  </TabItem>
-</Tabs>

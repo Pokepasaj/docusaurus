@@ -6,17 +6,6 @@ title: kget
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# `kget`
-
-## Table of Contents
-- [`kget`](#kget)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Parameters](#parameters)
-  - [Return Value](#return-value)
-  - [Usage Examples](#usage-examples)
-    - [Example 1](#example-1)
-    - [Example 2](#example-2)
 
 ## Overview
 Searches for a Kubernetes resource in the manifest based on its kind and metadata name.

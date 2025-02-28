@@ -6,15 +6,7 @@ title: resolve
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# `resolve`
 
-## Table of Contents
-- [`resolve`](#resolve)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Parameters](#parameters)
-  - [Return Value](#return-value)
-  - [Usage Examples](#usage-examples)
 
 ## Overview
 Processes all features and extensions, filtering out invalid configurations and applying transformations before merging them into the final manifest.

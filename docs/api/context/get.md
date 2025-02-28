@@ -7,15 +7,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 
-# `get`
 
-## Table of Contents
-- [`get`](#get)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Parameters](#parameters)
-  - [Return Value](#return-value)
-    - [Usage Example](#usage-example)
 
 ## Overview
 Gets a configuration from the context's manifest by a specified path and matching value.
@@ -35,7 +27,6 @@ Returns the first configuration that matches the specified path and value, or `n
     local ctx = import '../../vendor/konn/context.libsonnet';
 
     local initialCtx = ctx.new(
-
       manifest=[
         {
           kind: 'Deployment',
@@ -55,29 +46,24 @@ Returns the first configuration that matches the specified path and value, or `n
     // Get the configuration by path and value
     local foundConfig = initialCtx.get('metadata.name', 'nginx-service');
 
-    {
-      foundConfig: foundConfig,
-    }
+    foundConfig
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
     ```yaml
-    foundConfig:
-      kind: Service
-      metadata:
-        name: nginx-service
-    ```
+    kind: Service
+    metadata:
+      name: nginx-service
+        ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
     {
-      "foundConfig": {
-          "kind": "Service",
-          "metadata": {
-            "name": "nginx-service"
-          }
-      }
+       "kind": "Service",
+       "metadata": {
+          "name": "nginx-service"
+       }
     }
     ```  
     </TabItem>

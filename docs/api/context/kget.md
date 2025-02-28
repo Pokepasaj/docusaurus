@@ -8,16 +8,6 @@ import TabItem from '@theme/TabItem';
 
 
 
-# `kget`
-
-## Table of Contents
-- [`kget`](#kget)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Parameters](#parameters)
-  - [Return Value](#return-value)
-    - [Usage Example](#usage-example)
-
 ## Overview
 Gets a specific Kubernetes resource from the context's manifest by kind and name.
 
@@ -56,29 +46,25 @@ Returns the Kubernetes resource that matches the specified kind and name, or `nu
     // Get a specific Kubernetes resource by kind and name
     local foundResource = initialCtx.kget('Service', 'nginx-service');
 
-    {
-      foundResource: foundResource,
-    }
+
+    foundResource
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
     ```yaml
-    foundResource:
-      kind: Service
-      metadata:
-        name: nginx-service
+    kind: Service
+    metadata:
+      name: nginx-service
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
     {
-      "foundResource": {
-          "kind": "Service",
-          "metadata": {
-            "name": "nginx-service"
-          }
-      }
+       "kind": "Service",
+       "metadata": {
+          "name": "nginx-service"
+       }
     }
     ```  
     </TabItem>

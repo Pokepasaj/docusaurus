@@ -6,15 +6,7 @@ title: find
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# `find`
 
-## Table of Contents
-- [`find`](#find)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Parameters](#parameters)
-  - [Return Value](#return-value)
-  - [Usage Examples](#usage-examples)
 
 ## Overview
 The `find` function searches through the configurations and returns the first match based on a custom condition.
@@ -32,8 +24,8 @@ The first matching configuration found.
     ```js
     local feature = import '../../vendor/konn/feature.libsonnet';
 
-    local testFeature = feature.new(
-      [{
+    local testFeature = feature.new([
+      {
         kind: 'Service',
         metadata: {
           name: 'nginx',
@@ -43,34 +35,28 @@ The first matching configuration found.
         metadata: {
           name: 'flask',
         },
-      }]
-    );
+      }]);
 
     // Using `find` to get the first Deployment
-    {
-      found_config: testFeature.find(
-        function(ctx, config, props) config.get('kind') == 'Deployment'
-      ).render(),
-    }
+
+    testFeature.find(
+      function(ctx, config, props) config.get('kind') == 'Deployment').render()
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
     ```yaml
-    found_config:
-      kind: Deployment
-      metadata:
-        name: flask
+     kind: Deployment
+    metadata:
+      name: flask
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
     {
-       "found_config": {
-          "kind": "Deployment",
-          "metadata": {
-             "name": "flask"
-          }
+       "kind": "Deployment",
+       "metadata": {
+          "name": "flask"
        }
     }
     ```  
@@ -82,8 +68,7 @@ The first matching configuration found.
     ```js
     local feature = import '../../vendor/konn/feature.libsonnet';
 
-    local testFeature = feature.new(
-      [
+    local testFeature = feature.new([
         {
           kind: 'Service',
           metadata: {
@@ -111,38 +96,32 @@ The first matching configuration found.
             },
           },
         },
-      ]
-    );
-
+      ]);
     // find will only take in account the first hit only
-    {
-      found_service: testFeature.find(function(ctx, config, props)
-        config.get('metadata.labels.app') == 'api').render(),
-    }
+
+    testFeature.find(function(ctx, config, props)
+      config.get('metadata.labels.app') == 'api').render()
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
     ```yaml
-    found_service:
-      kind: Service
-      metadata:
-        labels:
-          app: api
-        name: flask
+    kind: Service
+    metadata:
+      labels:
+        app: api
+      name: flask
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
     {
-       "found_service": {
-          "kind": "Service",
-          "metadata": {
-             "labels": {
-                "app": "api"
-             },
-             "name": "flask"
-          }
+       "kind": "Service",
+       "metadata": {
+          "labels": {
+             "app": "api"
+          },
+          "name": "flask"
        }
     }
     ```  

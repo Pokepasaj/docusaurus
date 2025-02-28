@@ -7,15 +7,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 
-# `overrides`
-
-## Table of Contents
-- [`overrides`](#overrides)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Parameters](#parameters)
-  - [Return Value](#return-value)
-    - [Usage Example](#usage-example)
 
 ## Overview
 The `overrides` function is used to define custom properties that can supersede the original properties or extend them. This allows for greater flexibility in configuring features, enabling users to inject or modify configurations dynamically.
@@ -65,7 +56,6 @@ It merges new props with the existing overrides.
     {
       Unchanged: testFeature,
       custom_props: testFeature.overrides({ label: 'custom-label', name: 'this wont change override' }),
-
     }
     ```
   </TabItem>

@@ -6,18 +6,6 @@ title: init
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# `init`
-
-## Table of Contents
-- [`init`](#init)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Parameters](#parameters)
-  - [Return Value](#return-value)
-  - [Usage Examples](#usage-examples)
-    - [Helm like usage](#helm-like-usage)
-    - [Optional props](#optional-props)
-    - [Adding ENVs](#adding-envs)
 
 ## Overview
 Initializes an application manifest using a specified profile, applying its default properties and merging them with the provided ones.
@@ -307,7 +295,7 @@ Initializes an application manifest using a specified profile, applying its defa
 </Tabs>
 
 
-### Adding ENVs
+### Adding Profiles
 
 <Tabs>
     <TabItem value="jsonnet" label="Jsonnet" default>

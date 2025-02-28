@@ -7,15 +7,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 
-# `override`
-
-## Table of Contents
-- [`override`](#override)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Parameters](#parameters)
-  - [Return Value](#return-value)
-    - [Usage Example](#usage-example)
 
 ## Overview
 The `override` function allows for overriding the properties of a feature with new values, applying these overrides when rendering or resolving the feature.
@@ -48,19 +39,18 @@ The feature object with overridden properties.
           },
         },
       ], {
-        name: 'placeholder',  // commenting out the output props these props will be used instead
-        label: 'placeholder',
+        name: 'default',  // commenting out the output props these props will be used instead
+        label: 'default',
       }),
     ]).override(function(props) {
-      name: 'override-' + props.name,  // override passed props
+      name: 'override-' + props.name,  // override passed props only uses the props below
     });
 
     {
       output: lib.render(testFeature, {
-        name: 'nginx-deployment',  // overidden
-        label: 'nginx',  // not overidden
+        name: 'nginx-deployment',
+        label: 'nginx',
       }),
-
     }
     ```
   </TabItem>

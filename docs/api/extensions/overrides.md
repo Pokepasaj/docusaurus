@@ -6,15 +6,6 @@ title: overrides
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# `overrides`
-
-## Table of Contents
-- [`overrides`](#overrides)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Parameters](#parameters)
-  - [Return Value](#return-value)
-  - [Usage Examples](#usage-examples)
 
 ## Overview
 The `overrides` function is used to return the modified values of the properties after an override has been applied. It is particularly useful when you need to see the difference between the original and the overridden values. This function will allow you to get the explicit values that were set during the override process.

@@ -6,17 +6,7 @@ title: get
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# `get`
 
-## Table of Contents
-- [`get`](#get)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Parameters](#parameters)
-  - [Return Value](#return-value)
-  - [Usage Examples](#usage-examples)
-    - [Example 1](#example-1)
-    - [Example 2](#example-2)
 
 ## Overview
 Retrieves a specific configuration by matching a given JSON path and value within the manifest.

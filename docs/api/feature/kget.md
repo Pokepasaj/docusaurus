@@ -6,15 +6,6 @@ title: kget
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# `kget`
-
-## Table of Contents
-- [`kget`](#kget)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Parameters](#parameters)
-  - [Return Value](#return-value)
-  - [Usage Examples](#usage-examples)
 
 ## Overview
 The `kget` function retrieves a configuration by its kind and metadata name.
@@ -37,8 +28,8 @@ The configuration that matches the kind and name.
     ```js
     local feature = import '../../vendor/konn/feature.libsonnet';
 
-    local testFeature = feature.new(
-      [{
+    local testFeature = feature.new([
+      {
         kind: 'Deployment',
         metadata: {
           name: 'nginx',
@@ -48,31 +39,25 @@ The configuration that matches the kind and name.
         metadata: {
           name: 'flask',
         },
-      }]
-    );
-
-    {
-      output: testFeature.kget('Deployment', 'nginx').render(),
-    }
+      }]);
+      
+      testFeature.kget('Deployment', 'nginx').render()
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
     ```yaml
-    output:
-      kind: Deployment
-      metadata:
-        name: nginx
+    kind: Deployment
+    metadata:
+      name: nginx
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
     {
-       "output": {
-          "kind": "Deployment",
-          "metadata": {
-             "name": "nginx"
-          }
+       "kind": "Deployment",
+       "metadata": {
+          "name": "nginx"
        }
     }
     ```  
@@ -85,8 +70,7 @@ The configuration that matches the kind and name.
     ```js
     local feature = import '../../vendor/konn/feature.libsonnet';
 
-    local testFeature = feature.new(
-      [
+    local testFeature = feature.new([
         {
           kind: 'Deployment',
           metadata: {
@@ -105,12 +89,10 @@ The configuration that matches the kind and name.
             name: 'flask',
           },
         },
-      ]
-    );
-
+      ]);
+      
     {
       output_without_kget: testFeature,
-
       output: testFeature.kget('Deployment', 'flask').render(),
     }
     ```

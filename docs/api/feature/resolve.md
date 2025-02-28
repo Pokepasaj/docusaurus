@@ -6,15 +6,7 @@ title: resolve
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# `resolve`
 
-## Table of Contents
-- [`resolve`](#resolve)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-    - [Parameters](#parameters)
-    - [Return Value](#return-value)
-  - [Usage Examples](#usage-examples)
 
 ## Overview
 The `resolve` function resolves individual configurations, processes extensions, and applies any necessary filtering and mapping to produce the final configurations.
@@ -32,70 +24,57 @@ The resolved configurations, including any extensions or transformations applied
     ```js
     local feature = import '../../vendor/konn/feature.libsonnet';
 
-    local testFeature = feature.new(
-      [
-        {
-          type: 'config1',
-          kind: 'Namespace',
-          metadata: {
-            name: 'foo',
-          },
+    local testFeature = feature.new([
+      {
+        kind: 'Deployment',
+        metadata: {
+          name: 'nginx',
         },
-        {
-          type: 'config2',
-          kind: 'Namespace2',
-          metadata: {
-            name: 'bar',
-          },
+      },
+      {
+        kind: 'Deployment',
+        metadata: {
+          name: 'flask',
         },
-      ],
-    );
-    {
-      resolve: testFeature.resolve(),
-    }
+      },
+    ]);
+
+    testFeature.resolve()
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
     ```yaml
-    resolve:
-      - body:
-          kind: Namespace
-          metadata:
-            name: foo
-          type: config1
-      - body:
-          kind: Namespace2
-          metadata:
-            name: bar
-          type: config2
-
+    - body:
+        kind: Deployment
+        metadata:
+          name: nginx
+    - body:
+        kind: Deployment
+        metadata:
+          name: flask
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
-    {
-       "resolve": [
-          {
-             "body": {
-                "kind": "Namespace",
-                "metadata": {
-                   "name": "foo"
-                },
-                "type": "config1"
-             }
-          },
-          {
-             "body": {
-                "kind": "Namespace2",
-                "metadata": {
-                   "name": "bar"
-                },
-                "type": "config2"
+    [
+       {
+          "body": {
+             "kind": "Deployment",
+             "metadata": {
+                "name": "nginx"
              }
           }
-       ]
-    }
+       },
+       {
+          "body": {
+             "kind": "Deployment",
+             "metadata": {
+                "name": "flask"
+             }
+          }
+       }
+    ]
     ```  
     </TabItem>
 </Tabs>

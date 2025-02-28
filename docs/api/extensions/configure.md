@@ -6,15 +6,7 @@ title: configure
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# `configure`
 
-## Table of Contents
-- [`configure`](#configure)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Parameters](#parameters)
-  - [Return Value](#return-value)
-  - [Usage Examples](#usage-examples)
 
 ## Overview
 The `configure` function is an alias to [override](api-extensions-override).
@@ -49,7 +41,7 @@ Returns a new configuration with the updated properties, reflecting the changes 
         },
       ],
       {
-        name_nginx: 'placeholder',  
+        name_nginx: 'placeholder',
         name_flask: 'placeholder',
       }
     ).configure(function(props) {
@@ -57,41 +49,36 @@ Returns a new configuration with the updated properties, reflecting the changes 
       name_flask: 'flask-app',
     });
 
-    {
-      output: testManifest.render(),
-    }
+    testManifest.render()
     ``` 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
     ```yaml
-    output:
-      - kind: Deployment
-        metadata:
-          name: nginx-app
-      - kind: Deployment
-        metadata:
-          name: flask-app
+    - kind: Deployment
+      metadata:
+        name: nginx-app
+    - kind: Deployment
+      metadata:
+        name: flask-app
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
-    {
-       "output": [
-          {
-             "kind": "Deployment",
-             "metadata": {
-                "name": "nginx-app"
-             }
-          },
-          {
-             "kind": "Deployment",
-             "metadata": {
-                "name": "flask-app"
-             }
+    [
+       {
+          "kind": "Deployment",
+          "metadata": {
+             "name": "nginx-app"
           }
-       ]
-    }
+       },
+       {
+          "kind": "Deployment",
+          "metadata": {
+             "name": "flask-app"
+          }
+       }
+    ]
     ```
     </TabItem>
 </Tabs>

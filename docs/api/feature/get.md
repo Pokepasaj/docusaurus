@@ -6,15 +6,6 @@ title: get
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# `get`
-
-## Table of Contents
-- [`get`](#get)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Parameters](#parameters)
-  - [Return Value](#return-value)
-  - [Usage Examples](#usage-examples)
 
 ## Overview
 The `get` function retrieves a configuration by a specific path or matcher condition.
@@ -33,8 +24,8 @@ The configuration matching the path or matcher.e path or matcher.
     ```js
     local feature = import '../../vendor/konn/feature.libsonnet';
 
-    local testFeature = feature.new(
-      [{
+    local testFeature = feature.new([
+       {
         kind: 'Deployment',
         metadata: {
           name: 'nginx',
@@ -44,31 +35,25 @@ The configuration matching the path or matcher.e path or matcher.
         metadata: {
           name: 'flask',
         },
-      }]
-    );
+      }]);
 
-    {
-      output: testFeature.get('metadata.name', 'flask').render(),
-    }
+      testFeature.get('metadata.name', 'flask').render()
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
     ```yaml
-    output:
-      kind: Deployment
-      metadata:
-        name: flask
+    kind: Deployment
+    metadata:
+      name: flask
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
     {
-       "output": {
-          "kind": "Deployment",
-          "metadata": {
-             "name": "flask"
-          }
+       "kind": "Deployment",
+       "metadata": {
+          "name": "flask"
        }
     }
     ```  
@@ -81,8 +66,8 @@ The configuration matching the path or matcher.e path or matcher.
     ```js
     local feature = import '../../vendor/konn/feature.libsonnet';
 
-    local testFeature = feature.new(
-      [{
+    local testFeature = feature.new([
+      {
         kind: 'Deployment',
         metadata: {
           name: 'nginx',
@@ -97,31 +82,26 @@ The configuration matching the path or matcher.e path or matcher.
         metadata: {
           name: 'nginx',
         },
-      }]
-    );
+      }]);
     // get only takes in account the first hit
-    {
-      output: testFeature.get('metadata.name', 'nginx').render(),
-    }
+
+      testFeature.get('metadata.name', 'nginx').render()
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
     ```yaml
-    output:
-      kind: Deployment
-      metadata:
-        name: nginx
+    kind: Deployment
+    metadata:
+      name: nginx
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
     {
-       "output": {
-          "kind": "Deployment",
-          "metadata": {
-             "name": "nginx"
-          }
+       "kind": "Deployment",
+       "metadata": {
+          "name": "nginx"
        }
     }
     ```  

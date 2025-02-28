@@ -6,13 +6,6 @@ title: khas
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# `khas`
-
-## Table of Contents
-- [Overview](#overview)
-- [Parameters](#parameters)
-- [Return Value](#return-value)
-- [Usage Examples](#usage-examples)
 
 ## Overview
 Checks if a Kubernetes resource exists in the context's manifest by kind and optionally by name.
@@ -52,9 +45,9 @@ Returns `true` if a Kubernetes resource matches the specified kind and name (if 
     // Check if a Kubernetes resource exists by kind and name
     local hasResource = initialCtx.khas('Service', 'nginx-service');
 
-    {
-      hasResource: hasResource,
-    }
+    
+    hasResource
+    
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
