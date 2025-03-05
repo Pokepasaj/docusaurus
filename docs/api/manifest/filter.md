@@ -6,13 +6,7 @@ title: filter
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# `filter`
 
-## Table of Contents
-- [Overview](#overview)
-- [Parameters](#parameters)
-- [Return Value](#return-value)
-- [Usage Examples](#usage-examples)
 
 ## Overview
 The `filter` function applies a custom filtering function to the manifest’s configurations. It returns a new manifest with the filter applied.
@@ -25,7 +19,7 @@ Returns a new manifest with the filter applied to its configurations.
 
 ## Usage Examples
 
-### Example 1
+
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
     ```js
@@ -45,14 +39,13 @@ Returns a new manifest with the filter applied to its configurations.
       }],
       filter=function(ctx, cfg, props) cfg.is('Deployment')
     );
-    {
-      output: testManifest.render(),
-    }
+
+    testManifest
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
     ```yaml
-    output:
+    body:
       - kind: Deployment
         metadata:
           name: flask
@@ -61,7 +54,7 @@ Returns a new manifest with the filter applied to its configurations.
   <TabItem value="json" label="JSON Output">
     ```json
     {
-       "output": [
+       "body": [
           {
              "kind": "Deployment",
              "metadata": {
@@ -74,7 +67,6 @@ Returns a new manifest with the filter applied to its configurations.
   </TabItem>
 </Tabs>
 
-### Example 2
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
     ```js
@@ -109,14 +101,12 @@ Returns a new manifest with the filter applied to its configurations.
       filter=function(ctx, config, props) config.get('metadata.labels.tier') == 'backend'
     );
 
-    {
-      filter_output: testManifest.render(),
-    }
+    testManifest
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
     ```yaml
-    filter_output:
+    body:
       - kind: Deployment
         metadata:
           labels:
@@ -132,7 +122,7 @@ Returns a new manifest with the filter applied to its configurations.
   <TabItem value="json" label="JSON Output">
     ```json
     {
-       "filter_output": [
+       "body": [
           {
              "kind": "Deployment",
              "metadata": {

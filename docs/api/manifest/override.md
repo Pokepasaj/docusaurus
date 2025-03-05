@@ -6,17 +6,6 @@ title: override
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# `override`
-
-## Table of Contents
-- [`override`](#override)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-    - [Parameters](#parameters)
-    - [Return Value](#return-value)
-  - [Usage Examples](#usage-examples)
-    - [Example 1](#example-1)
-    - [Example 2](#example-2)
 
 ## Overview
 The `override` function applies custom overrides to the manifest’s properties. It supersedes the original properties with the new ones provided in the argument, either as a function or object.
@@ -29,7 +18,7 @@ Returns the updated manifest with the applied overrides.
 
 ## Usage Examples
 
-### Example 1
+
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
     ```js
@@ -116,7 +105,7 @@ Returns the updated manifest with the applied overrides.
   </TabItem>
 </Tabs>
 
-### Example 2
+
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
     ```js
@@ -202,3 +191,6 @@ Returns the updated manifest with the applied overrides.
     ```
   </TabItem>
 </Tabs>
+
+### Cross-linking to Other API Docs
+#### [helpers documentation](/api/helpers/api-helpers-render)

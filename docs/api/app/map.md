@@ -20,7 +20,7 @@ Applies a transformation function to each configuration in the manifest, allowin
 ## Usage Examples
 
 
-### Example 1
+
 <Tabs>
     <TabItem value="jsonnet" label="Jsonnet" default>
     ```js
@@ -69,7 +69,7 @@ Applies a transformation function to each configuration in the manifest, allowin
   </TabItem>
 </Tabs>
 
-### Example 2
+
 <Tabs>
     <TabItem value="jsonnet" label="Jsonnet" default>
     ```js

@@ -24,8 +24,7 @@ Creates a new application definition by extending an existing one. It enables th
 
 ## Usage Examples
 
-### Example with [features](/api/app/api-app-features)
-#### [feature documentation](/api/feature/api-feature-new).
+### Example with features
 
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
@@ -101,7 +100,7 @@ extendedApp.resolve()
 </Tabs>
 
 ### Example with props
-[feature documentation](/api/feature/api-feature-new)
+
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
 
@@ -165,8 +164,7 @@ extendedApp.resolve()
 </Tabs>
 
 ### Example with profiles
-#### [extensions documentation](/api/extensions/api-extensions-new)
-#### [feature documentation](/api/feature/api-feature-new).
+
 
 Also an example using profiles can be found [here](/api/app/api-app-init#adding-envs)
 <Tabs>
@@ -235,8 +233,7 @@ baseApp.init(profile='dev')
 </Tabs>
 
 ### Example with extensions
-#### [extensions documentation](/api/extensions/api-extensions-new)
-#### [feature documentation](/api/feature/api-feature-new).
+
 
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>

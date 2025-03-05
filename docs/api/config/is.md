@@ -6,15 +6,7 @@ title: is
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# `is`
 
-## Table of Contents
-- [`is`](#is)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Parameters](#parameters)
-  - [Return Value](#return-value)
-  - [Usage Examples](#usage-examples)
 
 ## Overview
 `is` is a Kubernetes-specific function that works similarly to [get](api-config-get), but checks if the configuration matches a certain kind of configuration. It’s useful to verify whether a config matches certain criteria (like being of type `Namespace` or `Service`).
@@ -34,7 +26,7 @@ The `is` function returns a Boolean (`true` or `false`), indicating whether the 
     ```js
     local k = import 'konn/main.libsonnet';
 
-    local service = k.config(function(ctx, props) {
+    local service = k.config({
       kind: 'Namespace',  // if we replace Namespace with Service e will still return true
       type: 'config',
       metadata: {
@@ -42,21 +34,17 @@ The `is` function returns a Boolean (`true` or `false`), indicating whether the 
       },
     });
 
-    {
-      output: service.is(['Namespace', 'Service']),
-    }
+    service.is(['Namespace', 'Service'])
     ``` 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
     ```yaml
-    output: true
+    true
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
-    {
-      "output": true
-    }
+    true
     ```
   </TabItem>
 </Tabs>
@@ -71,7 +59,7 @@ The `is` function returns a Boolean (`true` or `false`), indicating whether the 
     ```js
     local k = import 'konn/main.libsonnet';
 
-    local service = k.config(function(ctx, props) {
+    local service = k.config({
       kind: 'Namespace',  // if we replace Namespace with Service e will still return true
       type: 'config',
       metadata: {
@@ -79,23 +67,21 @@ The `is` function returns a Boolean (`true` or `false`), indicating whether the 
       },
     });
 
-    {
-      output: service.is(['Namespace', 'Service'], ['default', 'random']),
-    }
+
+    service.is(['Namespace', 'Service'], ['default', 'random'])
+
     // names will also takes arrays
     // if metadata/name is not default or random it will return false
     ``` 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
     ```yaml
-    output: false
+    false
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
-    {
-      "output": false
-    }
+    false
     ```
   </TabItem>
 </Tabs>

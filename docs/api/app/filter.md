@@ -18,7 +18,7 @@ Returns a new manifest containing only the configurations that match the specifi
 
 ## Usage Examples
 
-### Example 1
+
 <Tabs>
     <TabItem value="jsonnet" label="Jsonnet" default>
     ```js
@@ -66,7 +66,7 @@ Returns a new manifest containing only the configurations that match the specifi
   </TabItem>
 </Tabs>
 
-### Example 2
+
 <Tabs>
     <TabItem value="jsonnet" label="Jsonnet" default>
     ```js

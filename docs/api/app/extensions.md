@@ -18,7 +18,7 @@ Retrieves all extensions associated with the application, including those define
 - Returns an array of extensions applied to the configurations. Extensions modify or extend the behavior of the manifest.
 ## Usage Examples
 
-### Example 1
+
 <Tabs>
     <TabItem value="jsonnet" label="Jsonnet" default>
     ```js
@@ -87,7 +87,7 @@ Retrieves all extensions associated with the application, including those define
   </TabItem>
 </Tabs>
 
-### Example 2
+
 <Tabs>
     <TabItem value="jsonnet" label="Jsonnet" default>
     ```js
@@ -154,3 +154,7 @@ Retrieves all extensions associated with the application, including those define
     ```  
   </TabItem>
 </Tabs>
+
+
+### Cross-linking to Other API Docs
+#### [extensions documentation](/api/extensions/api-extensions-new)

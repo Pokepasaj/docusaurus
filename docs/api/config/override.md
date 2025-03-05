@@ -5,15 +5,7 @@ title: override
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# `override`
 
-## Table of Contents
-- [`override`](#override)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Parameters](#parameters)
-  - [Return Value](#return-value)
-  - [Usage Examples](#usage-examples)
 
 ## Overview
 The `override` function allows you to lock props at a certain point in the configuration flow. Once overridden, the prop values will not change, ensuring that the configuration does not unintentionally modify key properties passed to it.
@@ -42,85 +34,23 @@ The `override` function does not return a direct value but modifies the `props` 
           name: 'override-' + props.name,
         }
     );
-    {
-      output: testConfig.render(),
-    }
+
+    testConfig.render()
     ``` 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
     ```yaml
-    output:
-      kind: Deployment
-      metadata:
-        name: override-my-deployment
+    kind: Deployment
+    metadata:
+      name: override-my-deployment
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
     {
-       "output": {
-          "kind": "Deployment",
-          "metadata": {
-             "name": "override-my-deployment"
-          }
-       }
-    }
-    ```
-  </TabItem>
-</Tabs>
-
-<Tabs>
-  <TabItem value="jsonnet" label="Jsonnet" default>
-    ```js
-    local config = import '../../vendor/konn/config.libsonnet';
-
-    local testConfig = config.new(
-      function(ctx, props) {
-        kind: 'Deployment',
-        metadata: {
-          name: props.name,
-        },
-        spec: {
-          replicas: props.replicas,
-        },
-      },
-      {
-        name: 'my-deployment',
-        replicas: 13,
-      }
-    ).override(
-      function(props) {
-        name: 'override-' + props.name,
-        replicas: 3,
-      }
-    );
-
-    {
-      output: testConfig.render(),
-    }
-    ``` 
-  </TabItem>
-  <TabItem value="yaml" label="YAML Output">
-    ```yaml
-    output:
-      kind: Deployment
-      metadata:
-        name: override-my-deployment
-      spec:
-        replicas: 3
-    ```
-  </TabItem>
-  <TabItem value="json" label="JSON Output">
-    ```json
-    {
-       "output": {
-          "kind": "Deployment",
-          "metadata": {
-             "name": "override-my-deployment"
-          },
-          "spec": {
-             "replicas": 3
-          }
+       "kind": "Deployment",
+       "metadata": {
+          "name": "override-my-deployment"
        }
     }
     ```

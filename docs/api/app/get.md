@@ -20,12 +20,11 @@ Retrieves a specific configuration by matching a given JSON path and value withi
 
 ## Usage Examples
 
-### Example 1
+
 <Tabs>
     <TabItem value="jsonnet" label="Jsonnet" default>
     ```js
     local app = import '../../vendor/konn/app.libsonnet';
-    local feature = import '../../vendor/konn/feature.libsonnet';
 
     local myApp = app.new([
       {
@@ -67,13 +66,12 @@ Retrieves a specific configuration by matching a given JSON path and value withi
   </TabItem>
 </Tabs>
 
-### Example 2
+
 <Tabs>
     <TabItem value="jsonnet" label="Jsonnet" default>
     ```js
     local app = import '../../vendor/konn/app.libsonnet';
-    local feature = import '../../vendor/konn/feature.libsonnet';
-
+    
     local myApp = app.new([
       {
         kind: 'Service',

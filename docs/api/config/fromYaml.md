@@ -6,17 +6,7 @@ title: fromYaml
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# `fromYaml`
 
-## Table of Contents
-- [`fromYaml`](#fromyaml)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Parameters](#parameters)
-  - [Return Value](#return-value)
-  - [Usage Examples](#usage-examples)
-    - [Basic Usage](#basic-usage)
-    - [Using Props](#using-props)
 
 ## Overview
 The `fromYaml` function converts a YAML string into an equivalent Jsonnet object. It is similar to [fromJson](api-config-fromJson) but specifically handles YAML-formatted text.

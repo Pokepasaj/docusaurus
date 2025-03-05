@@ -22,6 +22,7 @@ A new feature object with the extended configurations, properties, and extension
 ## Usage Examples
 
 ### Example with configs
+
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
     
@@ -142,102 +143,105 @@ additionalProp2: value2
   </TabItem>
 </Tabs>
 
-### Example with [extensions](/api/feature/api-feature-extensions)
+### Example with extensions
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
     
 ```js
-local extension = import '../../vendor/konn/extension.libsonnet';
-local feature = import '../../vendor/konn/feature.libsonnet';
-local helper = import '../../vendor/konn/helpers.libsonnet';
+local extensionLib = import '../../vendor/konn/extension.libsonnet';
+local featureLib = import '../../vendor/konn/feature.libsonnet';
 
-local testExt = extension.new(
+local customExtension = extensionLib.new(
   function(ctx, config, props) config {
     metadata+: {
       labels: {
         app: 'extended-config',
       },
     },
-  });
+  }
+);
 
-local testFeature = feature.new(
+local customFeature = featureLib.new(
   [
     {
-      kind: 'config',
+      kind: 'Deployment',
       metadata: {
-        name: 'one',
+        name: 'nginx',
       },
     },
   ]
 ).extend(
   [
     {
-      kind: 'config',
+      kind: 'Service',
       metadata: {
-        name: 'two',
+        name: 'nginx-svc',
       },
     },
   ],
   {},
-  [testExt]
+  [customExtension]
 );
 
-helper.render(testFeature)
+customFeature
 ```
 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
 ```yaml
-- kind: config
-  metadata:
-    labels:
-      app: extended-config
-    name: one
-- kind: config
-  metadata:
-    labels:
-      app: extended-config
-    name: two
+body:
+  - kind: Deployment
+    metadata:
+      labels:
+        app: extended-config
+      name: nginx
+  - kind: Service
+    metadata:
+      labels:
+        app: extended-config
+      name: nginx-svc
 ```
 
   </TabItem>
   <TabItem value="json" label="JSON Output">
     
 ```json
-[
-   {
-      "kind": "config",
-      "metadata": {
-         "labels": {
-            "app": "extended-config"
-         },
-         "name": "one"
+{
+   "body": [
+      {
+         "kind": "Deployment",
+         "metadata": {
+            "labels": {
+               "app": "extended-config"
+            },
+            "name": "nginx"
+         }
+      },
+      {
+         "kind": "Service",
+         "metadata": {
+            "labels": {
+               "app": "extended-config"
+            },
+            "name": "nginx-svc"
+         }
       }
-   },
-   {
-      "kind": "config",
-      "metadata": {
-         "labels": {
-            "app": "extended-config"
-         },
-         "name": "two"
-      }
-   }
-]
+   ]
+}
 ```  
   </TabItem>
 </Tabs>
 
-### Example with [filter](/api/feature/api-feature-filter)
+### Example with filter
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
     
 ```js
 local feature = import '../../vendor/konn/feature.libsonnet';
-local helper = import '../../vendor/konn/helpers.libsonnet';
 
-local testFeature = feature.new([
+local testFeature = feature.new(
+  [
     {
       kind: 'Deployment',
       metadata: {
@@ -266,58 +270,59 @@ local testFeature = feature.new([
       },
     },
   ],
-  {},
-  [],
   filter=function(ctx, config, props) config.get('metadata').name != 'flask'
 );
 
-helper.render(testFeature)
+testFeature
 ```
 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
 ```yaml
-- kind: Deployment
-  metadata:
-    name: nginx
-- kind: Service
-  metadata:
-    name: nginx
+body:
+  - kind: Deployment
+    metadata:
+      name: nginx
+  - kind: Service
+    metadata:
+      name: nginx
 ```
 
   </TabItem>
   <TabItem value="json" label="JSON Output">
     
 ```json
-[
-   {
-      "kind": "Deployment",
-      "metadata": {
-         "name": "nginx"
+{
+   "body": [
+      {
+         "kind": "Deployment",
+         "metadata": {
+            "name": "nginx"
+         }
+      },
+      {
+         "kind": "Service",
+         "metadata": {
+            "name": "nginx"
+         }
       }
-   },
-   {
-      "kind": "Service",
-      "metadata": {
-         "name": "nginx"
-      }
-   }
-]
+   ]
+}
 ```  
   </TabItem>
 </Tabs>
 
-### Example with [map](/api/feature/api-feature-map)
+### Example with map
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
     
 ```js
 local config = import '../../vendor/konn/config.libsonnet';
 local feature = import '../../vendor/konn/feature.libsonnet';
-local helper = import '../../vendor/konn/helpers.libsonnet';
 
-local testFeature = feature.new([
+local testFeature = feature.new(
+  [
     {
       kind: 'Deployment',
       metadata: {
@@ -347,50 +352,60 @@ local testFeature = feature.new([
     metadata+: {
       name: config.metadata.name + '-deployment',
     },
-  });
+  }
+);
 
-helper.render(testFeature)
+testFeature
 ```
 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
 ```yaml
-- kind: Deployment
-  metadata:
-    name: nginx-deployment
-- kind: Deployment
-  metadata:
-    name: flask-deployment
-- kind: Deployment
-  metadata:
-    name: kong-deployment
+body:
+  - kind: Deployment
+    metadata:
+      name: nginx-deployment
+  - kind: Deployment
+    metadata:
+      name: flask-deployment
+  - kind: Deployment
+    metadata:
+      name: kong-deployment
 ```
 
   </TabItem>
   <TabItem value="json" label="JSON Output">
     
 ```json
-[
-   {
-      "kind": "Deployment",
-      "metadata": {
-         "name": "nginx-deployment"
+{
+   "body": [
+      {
+         "kind": "Deployment",
+         "metadata": {
+            "name": "nginx-deployment"
+         }
+      },
+      {
+         "kind": "Deployment",
+         "metadata": {
+            "name": "flask-deployment"
+         }
+      },
+      {
+         "kind": "Deployment",
+         "metadata": {
+            "name": "kong-deployment"
+         }
       }
-   },
-   {
-      "kind": "Deployment",
-      "metadata": {
-         "name": "flask-deployment"
-      }
-   },
-   {
-      "kind": "Deployment",
-      "metadata": {
-         "name": "kong-deployment"
-      }
-   }
-]
+   ]
+}
 ```  
   </TabItem>
 </Tabs>
+
+
+### Cross-linking to Other API Docs
+#### [extensions documentation](/api/extensions/api-extensions-new)
+#### [config documentation](/api/config/api-config-new)
+

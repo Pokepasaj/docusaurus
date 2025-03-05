@@ -6,17 +6,6 @@ title: template
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# `template`
-
-## Table of Contents
-- [`template`](#template)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-    - [Parameters](#parameters)
-    - [Return Value](#return-value)
-  - [Usage Examples](#usage-examples)
-    - [Example 1](#example-1)
-    - [Example 2](#example-2)
 
 ## Overview
 Processes a string template with the provided properties, removing lines where properties are null to maintain formatting.
@@ -30,7 +19,7 @@ Returns the processed string with lines containing null properties removed.
 
 ## Usage Examples
 
-### Example 1
+
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
     ```js
@@ -64,7 +53,7 @@ Returns the processed string with lines containing null properties removed.
   </TabItem>
 </Tabs>
 
-### Example 2
+
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
     ```js

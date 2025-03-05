@@ -95,3 +95,7 @@ Returns a new object containing the overridden values for the properties, allowi
     ```
     </TabItem>
 </Tabs>
+
+
+### Cross-linking to Other API Docs
+[manifest documentation](/api/manifest/api-manifest-new)

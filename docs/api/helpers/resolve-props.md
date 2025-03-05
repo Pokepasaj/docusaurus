@@ -7,15 +7,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 
-# `resolveProps`
-
-## Table of Contents
-- [`resolveProps`](#resolveprops)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Parameters](#parameters)
-  - [Return Value](#return-value)
-  - [Usage Examples](#usage-examples)
 
 ## Overview
 Merges properties with target defaults and applies overrides.
@@ -32,9 +23,10 @@ Returns the merged properties with overrides applied.
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
     ```js
-    local helpers = import '../../vendor/konn/helpers.libsonnet';
     local config = import '../../vendor/konn/config.libsonnet';
+    local helpers = import '../../vendor/konn/helpers.libsonnet';
 
+    // Initial configuration with default props
     local myConfig = config.new(function(ctx, props) {
       kind: 'Deployment',
       metadata: {
@@ -44,25 +36,32 @@ Returns the merged properties with overrides applied.
       name: 'default-name',
     });
 
-    local mergedProps = helpers.resolveProps(myConfig, { name: 'custom-name' });
-    {
-      output: mergedProps,
-    }
+    // Props to override the default ones
+    local overrideProps =
+      {
+        name: 'custom-name',
+      };
+
+    // Resolve the props with overrides
+    local mergedProps = helpers.resolveProps(myConfig, overrideProps);
+
+    // Output the resolved props
+    mergedProps
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
     ```yaml
-    output:
-      name: custom-name
+    name: custom-name
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
     {
-      "output": {
-        "name": "custom-name"
-      }
+       "name": "custom-name"
     }
     ```
   </TabItem>
 </Tabs>
+
+### Cross-linking to Other API Docs
+#### [config documentation](/api/config/api-config-new)

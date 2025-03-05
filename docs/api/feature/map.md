@@ -55,46 +55,49 @@ The extended feature object with the map function applied to the configurations.
         },
       });
 
-    testFeature.render()
+    testFeature
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
     ```yaml
-    - kind: Deployment
-      metadata:
-        labels:
-          app: nginx
-        name: test-app
-    - kind: Deployment
-      metadata:
-        labels:
-          app: flask
-        name: test-app
+    body:
+      - kind: Deployment
+        metadata:
+          labels:
+            app: nginx
+          name: test-app
+      - kind: Deployment
+        metadata:
+          labels:
+            app: flask
+          name: test-app
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
-    [
-       {
-          "kind": "Deployment",
-          "metadata": {
-             "labels": {
-                "app": "nginx"
-             },
-             "name": "test-app"
+    {
+       "body": [
+          {
+             "kind": "Deployment",
+             "metadata": {
+                "labels": {
+                   "app": "nginx"
+                },
+                "name": "test-app"
+             }
+          },
+          {
+             "kind": "Deployment",
+             "metadata": {
+                "labels": {
+                   "app": "flask"
+                },
+                "name": "test-app"
+             }
           }
-       },
-       {
-          "kind": "Deployment",
-          "metadata": {
-             "labels": {
-                "app": "flask"
-             },
-             "name": "test-app"
-          }
-       }
-    ]
+       ]
+    }
     ```  
     </TabItem>
 </Tabs>
@@ -138,50 +141,59 @@ The extended feature object with the map function applied to the configurations.
         },
       });
 
-    testFeature.render()
+    testFeature
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
     ```yaml
-    - kind: Deployment
-      metadata:
-        labels:
-          app: nginx
-          version: v1.0
-        name: test
-    - kind: Deployment
-      metadata:
-        labels:
-          app: flask
-          version: v1.0
-        name: test
+    body:
+      - kind: Deployment
+        metadata:
+          labels:
+            app: nginx
+            version: v1.0
+          name: test
+      - kind: Deployment
+        metadata:
+          labels:
+            app: flask
+            version: v1.0
+          name: test
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
-    [
-       {
-          "kind": "Deployment",
-          "metadata": {
-             "labels": {
-                "app": "nginx",
-                "version": "v1.0"
-             },
-             "name": "test"
+    {
+       "body": [
+          {
+             "kind": "Deployment",
+             "metadata": {
+                "labels": {
+                   "app": "nginx",
+                   "version": "v1.0"
+                },
+                "name": "test"
+             }
+          },
+          {
+             "kind": "Deployment",
+             "metadata": {
+                "labels": {
+                   "app": "flask",
+                   "version": "v1.0"
+                },
+                "name": "test"
+             }
           }
-       },
-       {
-          "kind": "Deployment",
-          "metadata": {
-             "labels": {
-                "app": "flask",
-                "version": "v1.0"
-             },
-             "name": "test"
-          }
-       }
-    ]
+       ]
+    }
     ```  
     </TabItem>
 </Tabs>
+
+
+### Cross-linking to Other API Docs
+#### [manifest documentation](/api/manifest/api-manifest-new)
+
+

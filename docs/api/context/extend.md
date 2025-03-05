@@ -11,9 +11,9 @@ import TabItem from '@theme/TabItem';
 Extends the current context with new properties and manifest, while keeping the existing metadata.
 
 ## Parameters
-- **`props`** - (object) The properties to include in the extended context.
-- **`manifest`** - (array) The manifest to include in the extended context.
-- **`metadata`** - (object) The metadata to merge with the existing metadata in the context.
+- **`props`** - (object) The properties to include in the extended context. See [props](#example-with-props).
+- **`manifest`** - (array) The manifest to include in the extended context. See [manifest](#example-with-manifest).
+- **`metadata`** - (object) The metadata to merge with the existing metadata in the context. See [metadata](#example-with-metadata).
 
 ## Return Value
 Returns a new context object with the extended properties, manifest, and merged metadata.
@@ -80,7 +80,7 @@ extendedProps:
   </TabItem>
 </Tabs>
 
-### Example with [manifest](#example-with-manifest)
+### Example with manifest
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
     
@@ -168,7 +168,7 @@ extendedManifest:
   </TabItem>
 </Tabs>
 
-### Example with [metadata](#example-with-metadata)
+### Example with metadata
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
     
@@ -232,7 +232,7 @@ extendedMetadata:
   </TabItem>
 </Tabs>
 
-### Example with [props](#example-with-props), [manifest](#example-with-manifest), and [metadata](#example-with-metadata)
+### Example with props
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
     

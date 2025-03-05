@@ -6,15 +6,7 @@ title: map-configs
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# `mapConfigs`
 
-## Table of Contents
-- [`mapConfigs`](#mapconfigs)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Parameters](#parameters)
-  - [Return Value](#return-value)
-  - [Usage Examples](#usage-examples)
 
 ## Overview
 Maps over configurations and extends them with the supplied context and properties.
@@ -31,8 +23,8 @@ Returns an array of extended configurations.
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
     ```js
-    local helpers = import '../../vendor/konn/helpers.libsonnet';
     local config = import '../../vendor/konn/config.libsonnet';
+    local helpers = import '../../vendor/konn/helpers.libsonnet';
 
     local configs = [
       config.new(function(ctx, props) {
@@ -60,20 +52,19 @@ Returns an array of extended configurations.
       configs
     );
 
-    {
-      output: mappedConfigs,
-    }
+    mappedConfigs
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
     ```yaml
-    output:
-      - kind: Deployment
+    - body:
+        kind: Deployment
         metadata:
           labels:
             app: example
           name: nginx
-      - kind: Service
+    - body:
+        kind: Service
         metadata:
           labels:
             app: example
@@ -82,9 +73,9 @@ Returns an array of extended configurations.
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
-    {
-       "output": [
-          {
+    [
+       {
+          "body": {
              "kind": "Deployment",
              "metadata": {
                 "labels": {
@@ -92,8 +83,10 @@ Returns an array of extended configurations.
                 },
                 "name": "nginx"
              }
-          },
-          {
+          }
+       },
+       {
+          "body": {
              "kind": "Service",
              "metadata": {
                 "labels": {
@@ -102,8 +95,13 @@ Returns an array of extended configurations.
                 "name": "nginx-service"
              }
           }
-       ]
-    }
+       }
+    ]
     ```
   </TabItem>
 </Tabs>
+
+
+### Cross-linking to Other API Docs
+#### [config documentation](/api/config/api-config-new)
+

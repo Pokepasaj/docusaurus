@@ -6,15 +6,6 @@ title: is-renderable
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# `isRenderable`
-
-## Table of Contents
-- [`isRenderable`](#isrenderable)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Parameters](#parameters)
-  - [Return Value](#return-value)
-  - [Usage Examples](#usage-examples)
 
 ## Overview
 Tests if a given target is a renderable object.

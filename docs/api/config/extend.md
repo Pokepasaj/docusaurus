@@ -7,15 +7,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 
-# `extend`
 
-## Table of Contents
-- [`extend`](#extend)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Parameters](#parameters)
-  - [Return Value](#return-value)
-    - [Merging](#merging)
 
 ## Overview
 The `extend` function allows you to take an existing configuration and extend it by adding or modifying properties. It’s useful for creating new configurations based on an existing template, applying additional settings to it.
@@ -50,30 +42,26 @@ The `extend` function returns a new configuration object, combining the original
       }
     );
 
-    {
-      output: testConfig.render(),
-    }
+
+    testConfig.render()
     ``` 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
     ```yaml
-    output:
-      extended: true
-      kind: Deployment
-      metadata:
-        name: nginx
+    extended: true
+    kind: Deployment
+    metadata:
+      name: nginx
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
     {
-      "output": {
-          "extended": true,
-          "kind": "Deployment",
-          "metadata": {
-            "name": "nginx"
-          }
-      }
+       "extended": true,
+       "kind": "Deployment",
+       "metadata": {
+          "name": "nginx"
+       }
     }
     ```
    </TabItem>
@@ -121,39 +109,34 @@ The `extend` function returns a new configuration object, combining the original
       }
     );
 
-    {
-      output: baseConfig.render(),
-    }
+    baseConfig.render()
     ``` 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
     ```yaml
-    output:
-      kind: Deployment
-      metadata:
-        annotations:
-          devops.com: team-devops
-        labels:
-          app: some-label
-          env: staging
-        name: extended-app
+    kind: Deployment
+    metadata:
+      annotations:
+        devops.com: team-devops
+      labels:
+        app: some-label
+        env: staging
+      name: extended-app
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
     {
-       "output": {
-          "kind": "Deployment",
-          "metadata": {
-             "annotations": {
-                "devops.com": "team-devops"
-             },
-             "labels": {
-                "app": "some-label",
-                "env": "staging"
-             },
-             "name": "extended-app"
-          }
+       "kind": "Deployment",
+       "metadata": {
+          "annotations": {
+             "devops.com": "team-devops"
+          },
+          "labels": {
+             "app": "some-label",
+             "env": "staging"
+          },
+          "name": "extended-app"
        }
     }
     ```

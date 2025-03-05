@@ -21,12 +21,12 @@ Returns a new context object.
 ## Usage Examples
 
 ### Example with props
+
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
     
 ```js
 local ctx = import '../../vendor/konn/context.libsonnet';
-local helper = import '../../vendor/konn/helpers.libsonnet';
 
 local testCtx = ctx.new(
   props={
@@ -53,7 +53,7 @@ local renderedManifest = std.map(
   testCtx.args.manifest
 );
 
-helper.render(renderedManifest)
+renderedManifest
 ```
 
   </TabItem>
@@ -93,7 +93,6 @@ helper.render(renderedManifest)
     
 ```js
 local ctx = import '../../vendor/konn/context.libsonnet';
-local helper = import '../../vendor/konn/helpers.libsonnet';
 
 local testCtx = ctx.new(
   manifest=[
@@ -111,7 +110,7 @@ local testCtx = ctx.new(
     },
   ]);
 
-helper.render(testCtx.args.manifest)
+testCtx.args.manifest
 ```
 
   </TabItem>

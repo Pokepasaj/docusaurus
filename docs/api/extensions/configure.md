@@ -49,36 +49,43 @@ Returns a new configuration with the updated properties, reflecting the changes 
       name_flask: 'flask-app',
     });
 
-    testManifest.render()
+    testManifest
     ``` 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
     ```yaml
-    - kind: Deployment
-      metadata:
-        name: nginx-app
-    - kind: Deployment
-      metadata:
-        name: flask-app
+    body:
+      - kind: Deployment
+        metadata:
+          name: nginx-app
+      - kind: Deployment
+        metadata:
+          name: flask-app
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
-    [
-       {
-          "kind": "Deployment",
-          "metadata": {
-             "name": "nginx-app"
+    {
+       "body": [
+          {
+             "kind": "Deployment",
+             "metadata": {
+                "name": "nginx-app"
+             }
+          },
+          {
+             "kind": "Deployment",
+             "metadata": {
+                "name": "flask-app"
+             }
           }
-       },
-       {
-          "kind": "Deployment",
-          "metadata": {
-             "name": "flask-app"
-          }
-       }
-    ]
+       ]
+    }
     ```
     </TabItem>
 </Tabs>
+
+
+### Cross-linking to Other API Docs
+[manifest documentation](/api/manifest/api-manifest-new)

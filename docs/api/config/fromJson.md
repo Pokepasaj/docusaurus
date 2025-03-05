@@ -6,17 +6,7 @@ title: fromJson
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# `fromJson`
 
-## Table of Contents
-- [`fromJson`](#fromjson)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Parameters](#parameters)
-  - [Return Value](#return-value)
-  - [Usage Examples](#usage-examples)
-    - [Basic Usage](#basic-usage)
-    - [Using props](#using-props)
 
 ## Overview
 The `fromJson` function converts a JSON string into an equivalent Jsonnet object. It is similar to [fromYaml](api-config-fromYaml) but specifically handles JSON-formatted text.

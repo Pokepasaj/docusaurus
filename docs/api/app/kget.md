@@ -16,14 +16,12 @@ Searches for a Kubernetes resource in the manifest based on its kind and metadat
 
 ## Return Value
 - Returns the first configuration object that matches the specified kind and name, or `null` if not found.
-- 
 ## Usage Examples
-### Example 1
+
 <Tabs>
     <TabItem value="jsonnet" label="Jsonnet" default>
     ```js
     local app = import '../../vendor/konn/app.libsonnet';
-    local feature = import '../../vendor/konn/feature.libsonnet';
 
     local myApp = app.new([
         {
@@ -65,12 +63,11 @@ Searches for a Kubernetes resource in the manifest based on its kind and metadat
   </TabItem>
 </Tabs>
 
-### Example 2
+
 <Tabs>
     <TabItem value="jsonnet" label="Jsonnet" default>
     ```js
     local app = import '../../vendor/konn/app.libsonnet';
-    local feature = import '../../vendor/konn/feature.libsonnet';
 
     local myApp = app.new([
       {

@@ -17,7 +17,7 @@ Searches the manifest for the first configuration that matches a given condition
 
 ## Usage Examples
 
-### Example 1
+
 <Tabs>
     <TabItem value="jsonnet" label="Jsonnet" default>
     ```js
@@ -61,7 +61,7 @@ Searches the manifest for the first configuration that matches a given condition
   </TabItem>
 </Tabs>
 
-### Example 2
+
 <Tabs>
     <TabItem value="jsonnet" label="Jsonnet" default>
     ```js

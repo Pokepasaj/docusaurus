@@ -45,47 +45,50 @@ local testExt = ext.new(
       },
     ]);
 
-testExt.render()
+testExt
 ```
 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
 ```yaml
-- kind: Deployment
-  metadata:
-    name: nginx
-- kind: Deployment
-  metadata:
-    name: flask
+body:
+  - kind: Deployment
+    metadata:
+      name: nginx
+  - kind: Deployment
+    metadata:
+      name: flask
 ```
 
   </TabItem>
   <TabItem value="json" label="JSON Output">
     
 ```json
-[
-   {
-      "kind": "Deployment",
-      "metadata": {
-         "name": "nginx"
+{
+   "body": [
+      {
+         "kind": "Deployment",
+         "metadata": {
+            "name": "nginx"
+         }
+      },
+      {
+         "kind": "Deployment",
+         "metadata": {
+            "name": "flask"
+         }
       }
-   },
-   {
-      "kind": "Deployment",
-      "metadata": {
-         "name": "flask"
-      }
-   }
-]
+   ]
+}
 ```
 
   </TabItem>
 </Tabs>
 
-### Example with [selector](/api/extensions/api-extensions-selector)
+### Example with selector
 
-#### [manifest documentation](/api/manifest/api-manifest-new)
+
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
     
@@ -120,50 +123,53 @@ local serviceAnnotationExt = ext.new(
   extends=testManifest
 );
 
-serviceAnnotationExt.render()
+serviceAnnotationExt
 ```
 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
 ```yaml
-- kind: Deployment
-  metadata:
-    name: nginx
-- kind: Service
-  metadata:
-    annotations:
-      custom-annotation: added-via-extension
-    name: nginx-service
+body:
+  - kind: Deployment
+    metadata:
+      name: nginx
+  - kind: Service
+    metadata:
+      annotations:
+        custom-annotation: added-via-extension
+      name: nginx-service
 ```
 
   </TabItem>
   <TabItem value="json" label="JSON Output">
     
 ```json
-[
-   {
-      "kind": "Deployment",
-      "metadata": {
-         "name": "nginx"
+{
+   "body": [
+      {
+         "kind": "Deployment",
+         "metadata": {
+            "name": "nginx"
+         }
+      },
+      {
+         "kind": "Service",
+         "metadata": {
+            "annotations": {
+               "custom-annotation": "added-via-extension"
+            },
+            "name": "nginx-service"
+         }
       }
-   },
-   {
-      "kind": "Service",
-      "metadata": {
-         "annotations": {
-            "custom-annotation": "added-via-extension"
-         },
-         "name": "nginx-service"
-      }
-   }
-]
+   ]
+}
 ```
 
   </TabItem>
 </Tabs>
 
-### Example with [extends](/api/extensions/api-extensions-extend)
+### Example with extends
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
     
@@ -194,7 +200,7 @@ local testExt = ext.new(
   extends=baseExt,
 );
 
-testExt.render()
+testExt
 ```
 
   </TabItem>
@@ -202,12 +208,13 @@ testExt.render()
 
 ```yaml
 body:
-  - kind: Deployment
-    metadata:
-      name: nginx
-metadata:
-  labels:
-    extended: "true"
+  body:
+    - kind: Deployment
+      metadata:
+        name: nginx
+  metadata:
+    labels:
+      extended: "true"
 ```
 
   </TabItem>
@@ -215,17 +222,19 @@ metadata:
     
 ```json
 {
-   "body": [
-      {
-         "kind": "Deployment",
-         "metadata": {
-            "name": "nginx"
+   "body": {
+      "body": [
+         {
+            "kind": "Deployment",
+            "metadata": {
+               "name": "nginx"
+            }
          }
-      }
-   ],
-   "metadata": {
-      "labels": {
-         "extended": "true"
+      ],
+      "metadata": {
+         "labels": {
+            "extended": "true"
+         }
       }
    }
 }
@@ -233,3 +242,6 @@ metadata:
 
   </TabItem>
 </Tabs>
+
+### Cross-linking to Other API Docs
+#### [manifest documentation](/api/manifest/api-manifest-new)

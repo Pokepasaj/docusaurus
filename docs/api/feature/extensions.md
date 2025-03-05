@@ -24,7 +24,6 @@ An array of applied extensions, filtered and transformed based on the provided p
     ```js
     local extension = import '../../vendor/konn/extension.libsonnet';
     local feature = import '../../vendor/konn/feature.libsonnet';
-    local lib = import '../../vendor/konn/helpers.libsonnet';
 
     local testExtension = extension.new(
       function(ctx, config, props) config {
@@ -53,32 +52,34 @@ An array of applied extensions, filtered and transformed based on the provided p
         testExtension.override({
           labels: 'label-from-override',  // if labels does not exist here it will take the previous one
         }),
-      ],
-    );
+      ]);
 
-    lib.render(testFeature)
+    testFeature
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
     ```yaml
-    - kind: Deployment
-      metadata:
-        labels: label-from-override
-        name: nginx-deploy
+    body:
+      - kind: Deployment
+        metadata:
+          labels: label-from-override
+          name: nginx-deploy
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
-    [
-       {
-          "kind": "Deployment",
-          "metadata": {
-             "labels": "label-from-override",
-             "name": "nginx-deploy"
+    {
+       "body": [
+          {
+             "kind": "Deployment",
+             "metadata": {
+                "labels": "label-from-override",
+                "name": "nginx-deploy"
+             }
           }
-       }
-    ]
+       ]
+    }
     ```  
     </TabItem>
 </Tabs>
@@ -89,7 +90,7 @@ An array of applied extensions, filtered and transformed based on the provided p
     ```js
     local extension = import '../../vendor/konn/extension.libsonnet';
     local feature = import '../../vendor/konn/feature.libsonnet';
-    local lib = import '../../vendor/konn/helpers.libsonnet';
+
 
     local addReplicasExtension = extension.new(
       function(ctx, config, props) config {
@@ -121,35 +122,37 @@ An array of applied extensions, filtered and transformed based on the provided p
         addReplicasExtension.override({
           replicas: 5,  // Override replicas to 5
         }),
-      ],
-    );
+      ]);
 
-    lib.render(featureWithReplicas)
+    featureWithReplicas
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
     ```yaml
-    - kind: Deployment
-      metadata:
-        name: nginx-deployment
-      spec:
-        replicas: 5
+    body:
+      - kind: Deployment
+        metadata:
+          name: nginx-deployment
+        spec:
+          replicas: 5
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
-    [
-       {
-          "kind": "Deployment",
-          "metadata": {
-             "name": "nginx-deployment"
-          },
-          "spec": {
-             "replicas": 5
+    {
+       "body": [
+          {
+             "kind": "Deployment",
+             "metadata": {
+                "name": "nginx-deployment"
+             },
+             "spec": {
+                "replicas": 5
+             }
           }
-       }
-    ]
+       ]
+    }
     ```  
     </TabItem>
 </Tabs>
@@ -157,4 +160,4 @@ An array of applied extensions, filtered and transformed based on the provided p
 
 
 ### Cross-linking to Other API Docs
-For more details on extensions and helpers, please refer to the [extensions documentation](https://pokepasaj.github.io/docusaurus/api/extensions/api-extensions-new), [helpers documentation](/api/helpers/api-helpers-render).
+#### [extensions documentation](/api/extensions/api-extensions-new)

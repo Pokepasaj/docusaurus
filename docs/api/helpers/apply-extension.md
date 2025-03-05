@@ -20,7 +20,7 @@ Returns an array of configurations with the extensions applied.
 
 ## Usage Examples
 
-### Example with [extensions](/api/extensions/api-extensions-new)
+### Example with extensions
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
   ```js
@@ -87,7 +87,7 @@ Returns an array of configurations with the extensions applied.
   </TabItem>
 </Tabs>
 
-### Example with [context](/api/context/api-context-new)
+### Example with context
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
   ```js
@@ -155,7 +155,7 @@ Returns an array of configurations with the extensions applied.
   </TabItem>
 </Tabs>
 
-### Example with [configs](/api/config/api-config-new)
+### Example with configs
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
   ```js
@@ -312,3 +312,9 @@ Returns an array of configurations with the extensions applied.
   ```
   </TabItem>
 </Tabs>
+
+### Cross-linking to Other API Docs
+#### [extensions documentation](/api/extensions/api-extensions-new)
+#### [config documentation](/api/config/api-config-new)
+#### [context documentation](/api/context/api-context-new)
+

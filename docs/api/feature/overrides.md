@@ -30,7 +30,6 @@ It merges new props with the existing overrides.
     <TabItem value="jsonnet" label="Jsonnet" default>
     ```js
     local feature = import '../../vendor/konn/feature.libsonnet';
-    local lib = import '../../vendor/konn/helpers.libsonnet';
     local manifest = import '../../vendor/konn/manifest.libsonnet';
 
     local testFeature = feature.new([
@@ -98,3 +97,6 @@ It merges new props with the existing overrides.
     ```  
     </TabItem>
 </Tabs>
+
+### Cross-linking to Other API Docs
+#### [manifest documentation](/api/manifest/api-manifest-new)

@@ -6,17 +6,7 @@ title: configure
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# `configure`
 
-## Table of Contents
-- [`configure`](#configure)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-    - [Parameters](#parameters)
-    - [Return Value](#return-value)
-  - [Usage Examples](#usage-examples)
-    - [Example 1](#example-1)
-    - [Example 2](#example-2)
 
 ## Overview
 The `configure` function is an alias for the override function. It provides an alternative method to apply property overrides to the manifest.
@@ -29,7 +19,6 @@ Returns the properties after applying the overrides.
 
 ## Usage Examples
 
-### Example 1
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
     ```js
@@ -119,7 +108,7 @@ Returns the properties after applying the overrides.
   </TabItem>
 </Tabs>
 
-### Example 2
+
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
     ```js
@@ -208,3 +197,6 @@ Returns the properties after applying the overrides.
     ```  
   </TabItem>
 </Tabs>
+
+### Cross-linking to Other API Docs
+#### [helpers documentation](/api/helpers/api-helpers-render)

@@ -49,13 +49,13 @@ Returns a new configuration object that includes the extended configuration, mod
           },
         });
 
-    baseExt.render()
+    baseExt
     ``` 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
     ```yaml
-    output:
+    body:
       kind: Deployment
       metadata:
         name: kong
@@ -64,7 +64,7 @@ Returns a new configuration object that includes the extended configuration, mod
   <TabItem value="json" label="JSON Output">
     ```json
     {
-       "output": {
+       "body": {
           "kind": "Deployment",
           "metadata": {
              "name": "kong"

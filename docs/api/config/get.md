@@ -5,15 +5,7 @@ title: get
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# `get`
 
-## Table of Contents
-- [`get`](#get)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Parameters](#parameters)
-  - [Return Value](#return-value)
-  - [Usage Examples](#usage-examples)
 
 ## Overview
 `get` is a helper function used to retrieve specific values from a configuration object. This is especially useful when you are dealing with context (`ctx`) and need to extract specific attributes from the configuration, such as a `metadata` field.
@@ -31,31 +23,22 @@ The `get` function returns the value of the specified property from the configur
   <TabItem value="jsonnet" label="Jsonnet" default>
     ```js
     local k = import 'konn/main.libsonnet';
-    // import konn and assign it as k
 
-
-    local service = k.config(function(ctx, props) {
+    local service = k.config({
       kind: 'Service',
-
-      //assign service the k.config function which takes ctx and props.
-
     });
 
-    {
-      output: service.get('metadata.name', 'default'),  // we use 'default' in case it doesn`t return anything
-    }
+    service.get('metadata.name', 'default')  // we use 'default' in case it doesn`t return anything
     ``` 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
     ```yaml
-    output: default
+    default
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
-    {
-      "output": "default"
-    }
+    "default"
     ```
   </TabItem>
 </Tabs>
@@ -69,28 +52,24 @@ We introduced `metadata.name` now. Let's see the updated results.
     ```js
     local k = import 'konn/main.libsonnet';
 
-    local service = k.config(function(ctx, props) {
+    local service = k.config({
       kind: 'Service',
       metadata: {
         name: 'my-svc',
       },
     });
 
-    {
-      output: service.get('metadata.name', 'default'),
-    }
+    service.get('metadata.name', 'default')
     ``` 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
     ```yaml
-    output: my-svc
+    my-svc
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
-    {
-      "output": "my-svc"
-    }
+    "my-svc"
     ```
   </TabItem>
 </Tabs>

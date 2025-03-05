@@ -25,7 +25,8 @@ The extended feature object with the filter applied to the configurations.
     ```js
     local feature = import '../../vendor/konn/feature.libsonnet';
 
-    local testFeature = feature.new([
+    local testFeature = feature.new(
+      [
         {
           kind: 'Deployment',
           metadata: {
@@ -42,27 +43,30 @@ The extended feature object with the filter applied to the configurations.
       filter=function(ctx, config, props) config.get('metadata').name == 'flask'
     );
 
-    testFeature.render()
+    testFeature
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
     ```yaml
-    - kind: Deployment
-      metadata:
-        name: flask
+    body:
+      - kind: Deployment
+        metadata:
+          name: flask
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
-    [
-       {
-          "kind": "Deployment",
-          "metadata": {
-             "name": "flask"
+    {
+       "body": [
+          {
+             "kind": "Deployment",
+             "metadata": {
+                "name": "flask"
+             }
           }
-       }
-    ]
+       ]
+    }
     ```  
     </TabItem>
 </Tabs>
@@ -74,7 +78,8 @@ The extended feature object with the filter applied to the configurations.
     ```js
     local feature = import '../../vendor/konn/feature.libsonnet';
 
-    local testFeature = feature.new([
+    local testFeature = feature.new(
+      [
         {
           kind: 'Deployment',
           metadata: {
@@ -106,46 +111,49 @@ The extended feature object with the filter applied to the configurations.
       filter=function(ctx, config, props) config.get('metadata.labels.tier') == 'backend'
     );
 
-    testFeature.render()
+    testFeature
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
     ```yaml
-    - kind: Deployment
-      metadata:
-        labels:
-          tier: backend
-        name: flask
-    - kind: Deployment
-      metadata:
-        labels:
-          tier: backend
-        name: kong
+    body:
+      - kind: Deployment
+        metadata:
+          labels:
+            tier: backend
+          name: flask
+      - kind: Deployment
+        metadata:
+          labels:
+            tier: backend
+          name: kong
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
-    [
-       {
-          "kind": "Deployment",
-          "metadata": {
-             "labels": {
-                "tier": "backend"
-             },
-             "name": "flask"
+    {
+       "body": [
+          {
+             "kind": "Deployment",
+             "metadata": {
+                "labels": {
+                   "tier": "backend"
+                },
+                "name": "flask"
+             }
+          },
+          {
+             "kind": "Deployment",
+             "metadata": {
+                "labels": {
+                   "tier": "backend"
+                },
+                "name": "kong"
+             }
           }
-       },
-       {
-          "kind": "Deployment",
-          "metadata": {
-             "labels": {
-                "tier": "backend"
-             },
-             "name": "kong"
-          }
-       }
-    ]
+       ]
+    }
     ```  
     </TabItem>
 </Tabs>

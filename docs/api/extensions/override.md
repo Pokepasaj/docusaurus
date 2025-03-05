@@ -18,7 +18,6 @@ The `override` function is used to modify the properties of a configuration or m
 Returns a new configuration that includes the overridden properties.
 ## Usage Examples
 
-
 <Tabs>
      <TabItem value="jsonnet" label="Jsonnet" default>
     ``` js
@@ -49,36 +48,42 @@ Returns a new configuration that includes the overridden properties.
       // name_flask: 'flask-app',
     });
 
-    testManifest.render()
+    testManifest
     ``` 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
     ```yaml
-    - kind: Deployment
-      metadata:
-        name: nginx-app
-    - kind: Deployment
-      metadata:
-        name: placeholder
+    body:
+      - kind: Deployment
+        metadata:
+          name: nginx-app
+      - kind: Deployment
+        metadata:
+          name: placeholder
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
-    [
-       {
-          "kind": "Deployment",
-          "metadata": {
-             "name": "nginx-app"
+    {
+       "body": [
+          {
+             "kind": "Deployment",
+             "metadata": {
+                "name": "nginx-app"
+             }
+          },
+          {
+             "kind": "Deployment",
+             "metadata": {
+                "name": "placeholder"
+             }
           }
-       },
-       {
-          "kind": "Deployment",
-          "metadata": {
-             "name": "placeholder"
-          }
-       }
-    ]
+       ]
+    }
     ```
     </TabItem>
 </Tabs>
+
+### Cross-linking to Other API Docs
+[manifest documentation](/api/manifest/api-manifest-new)

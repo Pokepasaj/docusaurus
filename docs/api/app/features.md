@@ -19,73 +19,43 @@ Retrieves and filters the list of features defined in the application manifest.
 - Returns an array of features applied to the configurations.
 ## Usage Examples
 
-### Example 1
 <Tabs>
     <TabItem value="jsonnet" label="Jsonnet" default>
     ```js
     local app = import '../../vendor/konn/app.libsonnet';
     local feature = import '../../vendor/konn/feature.libsonnet';
 
+    local features = [
+      function(ctx, props) {
+        kind: 'Service',
+        metadata: {
+          name: props.name,
+        },
+        spec: {
+          selector: {
+            app: props.name,
+          },
+          ports: [
+            {
+              port: 80,
+              targetPort: 80,
+            },
+          ],
+        },
+      },];
+
     local myApp = app.new(
-      features=[
-        feature.new([
-          function(ctx, props) {
-            kind: 'Deployment',
-            metadata: {
-              name: props.name,
-            },
-            spec: {
-              replicas: props.replicas,
-              template: {
-                spec: {
-                  containers: [{
-                    name: props.name,
-                    image: 'nginx:1.14.2',
-                  }],
-                },
-              },
-            },
-          },
-          function(ctx, props) {
-            kind: 'Service',
-            metadata: {
-              name: props.name,
-            },
-            spec: {
-              selector: {
-                app: props.name,
-              },
-              ports: [
-                {
-                  port: 80,
-                  targetPort: 80,
-                },
-              ],
-            },
-          },
-        ]),
-      ],
+      features=[feature.new(features)],
       props={
         name: 'example-app',
         replicas: 3,
-      }
-    );
+      });
 
     myApp.render()
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
     ```yaml
-    - kind: Deployment
-      metadata:
-        name: example-app
-      spec:
-        replicas: 3
-        template:
-          spec:
-            containers:
-              - image: nginx:1.14.2
-                name: example-app
     - kind: Service
       metadata:
         name: example-app
@@ -100,25 +70,6 @@ Retrieves and filters the list of features defined in the application manifest.
   <TabItem value="json" label="JSON Output">
     ```json
     [
-       {
-          "kind": "Deployment",
-          "metadata": {
-             "name": "example-app"
-          },
-          "spec": {
-             "replicas": 3,
-             "template": {
-                "spec": {
-                   "containers": [
-                      {
-                         "image": "nginx:1.14.2",
-                         "name": "example-app"
-                      }
-                   ]
-                }
-             }
-          }
-       },
        {
           "kind": "Service",
           "metadata": {
@@ -141,3 +92,6 @@ Retrieves and filters the list of features defined in the application manifest.
   </TabItem>
 </Tabs>
 
+
+### Cross-linking to Other API Docs
+[feature documentation](/api/feature/api-feature-new)

@@ -36,75 +36,54 @@ Returns a new configuration object that has been modified by the extension. This
         metadata: {
           name: 'base-app',
         },
-      },
+      }
     );
 
-    // Define the extension
-    local myExtension = extension.new(
-      render=function(ctx, config, props)
-        config {
-          metadata+: {
-            labels: {
-              app: props.label,
-            },
+    local extendedConfig = extension.new(
+      render=function(ctx, config, props) config {
+        metadata+: {
+          labels: {
+            app: props.label,
           },
         },
-      props={
-        label: 'extended-app',
       },
-    );
-
-    // Apply the extension to the base config
-    local extendedConfig = myExtension.apply(
+      props={
+        label: 'default',
+      }).apply(
       ctx=context.new(),
       config=baseConfig,
-      props={ label: 'extended-app' },
+      props={
+        label: 'extended-app',
+      }
     );
 
-    {
-      output: baseConfig.render(),
-      extendedConfigRendered: lib.renderConfigs(
-        context.new(), [extendedConfig]
-      ),
-    }
+    lib.renderConfigs(
+      context.new(), [extendedConfig])
     ``` 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
     ```yaml
-    extendedConfigRendered:
-      - kind: Deployment
-        metadata:
-          labels:
-            app: extended-app
-          name: base-app
-    output:
-      kind: Deployment
+    - kind: Deployment
       metadata:
+        labels:
+          app: extended-app
         name: base-app
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
-    {
-       "extendedConfigRendered": [
-          {
-             "kind": "Deployment",
-             "metadata": {
-                "labels": {
-                   "app": "extended-app"
-                },
-                "name": "base-app"
-             }
-          }
-       ],
-       "output": {
+    [
+       {
           "kind": "Deployment",
           "metadata": {
+             "labels": {
+                "app": "extended-app"
+             },
              "name": "base-app"
           }
        }
-    }
+    ]
     ```
     </TabItem>
 </Tabs>

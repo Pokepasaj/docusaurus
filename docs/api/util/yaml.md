@@ -7,17 +7,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 
-# `yaml`
-
-## Table of Contents
-- [`yaml`](#yaml)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-    - [Parameters](#parameters)
-    - [Return Value](#return-value)
-  - [Usage Examples](#usage-examples)
-    - [Example 1](#example-1)
-    - [Example 2](#example-2)
 
 ## Overview
 Parses a YAML string with optional templating. Supports returning a single document or an array of documents.
@@ -33,7 +22,7 @@ Returns the parsed YAML document(s). If `single` is true and there is only one d
 
 ## Usage Examples
 
-### Example 1
+
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
     ```js
@@ -65,7 +54,7 @@ Returns the parsed YAML document(s). If `single` is true and there is only one d
   </TabItem>
 </Tabs>
 
-### Example 2
+
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
     ```js

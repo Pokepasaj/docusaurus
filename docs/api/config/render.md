@@ -5,15 +5,6 @@ title: render
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# `render`
-
-## Table of Contents
-- [`render`](#render)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Parameters](#parameters)
-  - [Return Value](#return-value)
-  - [Usage Examples](#usage-examples)
 
 ## Overview
 The `render` function is used to generate the final configuration output by processing the provided props. It takes the configuration defined with config and outputs the rendered result in the form of a structured object (JSON or YAML).

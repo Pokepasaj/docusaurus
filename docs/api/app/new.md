@@ -24,8 +24,7 @@ Initializes a new application manifest with a set of configurations, properties,
 - Returns an object representing the new application manifest, including its body (rendered configuration), resolved configurations (`configs`), profiles, features, extensions, and function arguments.
 
 ## Usage Examples
-### Example with [features](/api/app/api-app-features)
-#### [feature documentation](/api/feature/api-feature-new).
+### Example with features
 
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
@@ -94,7 +93,7 @@ myApp.render()
 </Tabs>
 
 ### Example with props
-[feature documentation](/api/feature/api-feature-new)
+
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
     
@@ -156,8 +155,7 @@ myApp.render()
 </Tabs>
 
 ### Example with profiles
-#### [extensions documentation](/api/extensions/api-extensions-new)
-#### [feature documentation](/api/feature/api-feature-new).
+
 Also an example using profiles can be found [here](api-app-init#adding-envs)
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
@@ -216,8 +214,7 @@ baseApp.init(profile='dev')
   </TabItem>
 </Tabs>
 
-### Example with [extensions](api-app-extensions)
-#### [extensions documentation](/api/extensions/api-extensions-new)
+### Example with extensions
 
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
@@ -293,7 +290,7 @@ myApp.render()
   </TabItem>
 </Tabs>
 
-### Example with [filter](api-app-filter)
+### Example with filter
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
     
@@ -346,7 +343,7 @@ myApp.render()
   </TabItem>
 </Tabs>
 
-### Example with [map](api-app-map)
+### Example with map
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
     

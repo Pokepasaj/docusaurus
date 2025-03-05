@@ -6,16 +6,7 @@ title: new
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# `new`
 
-## Table of Contents
-- [`new`](#new)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Parameters](#parameters)
-  - [Return Value](#return-value)
-  - [Usage Examples](#usage-examples)
-    - [Rendering multiple object by wrapping them in an array](#rendering-multiple-object-by-wrapping-them-in-an-array)
 
 ## Overview
 The `new` function in Konn is used to create a new configuration instance by applying a rendering function and initial properties (`props`).

@@ -84,3 +84,7 @@ The feature object with overridden properties.
     ```  
     </TabItem>
 </Tabs>
+
+### Cross-linking to Other API Docs
+#### [extensions documentation](/api/extensions/api-extensions-new)
+#### [helpers documentation](/api/helpers/api-helpers-render)

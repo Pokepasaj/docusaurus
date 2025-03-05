@@ -24,7 +24,6 @@ Returns an array of Kubernetes manifests as JSON or YAML.
      <TabItem value="jsonnet" label="Jsonnet" default>
     ``` js
     local ext = import '../../vendor/konn/extension.libsonnet';
-    local helper = import '../../vendor/konn/helpers.libsonnet';
 
     local testExt = ext.new(
       function(ctx, config, props)
@@ -41,44 +40,39 @@ Returns an array of Kubernetes manifests as JSON or YAML.
               name: 'flask',
             },
           },
-        ],
+        ]
     );
 
-    {
-      testExt: testExt.render(),
-    }
+    testExt.render()
     ``` 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
     ```yaml
-    testExt:
-      - kind: Deployment
-        metadata:
-          name: nginx
-      - kind: Deployment
-        metadata:
-          name: flask
+    - kind: Deployment
+      metadata:
+        name: nginx
+    - kind: Deployment
+      metadata:
+        name: flask
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
-    {
-       "testExt": [
-          {
-             "kind": "Deployment",
-             "metadata": {
-                "name": "nginx"
-             }
-          },
-          {
-             "kind": "Deployment",
-             "metadata": {
-                "name": "flask"
-             }
+    [
+       {
+          "kind": "Deployment",
+          "metadata": {
+             "name": "nginx"
           }
-       ]
-    }
+       },
+       {
+          "kind": "Deployment",
+          "metadata": {
+             "name": "flask"
+          }
+       }
+    ]
     ```
     </TabItem>
 </Tabs>

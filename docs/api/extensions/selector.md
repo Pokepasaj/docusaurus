@@ -56,50 +56,53 @@ local testExtension = extension.new(
   extends=testManifest
 );
 
-testExtension.render()
+testExtension
 ```
 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
 ```yaml
-- kind: Deployment
-  metadata:
-    name: nginx
-- kind: Deployment
-  metadata:
-    name: flask
-- kind: Deployment
-  metadata:
-    label: extended
-    name: kong
+body:
+  - kind: Deployment
+    metadata:
+      name: nginx
+  - kind: Deployment
+    metadata:
+      name: flask
+  - kind: Deployment
+    metadata:
+      label: extended
+      name: kong
 ```
 
   </TabItem>
   <TabItem value="json" label="JSON Output">
     
 ```json
-[
-   {
-      "kind": "Deployment",
-      "metadata": {
-         "name": "nginx"
+{
+   "body": [
+      {
+         "kind": "Deployment",
+         "metadata": {
+            "name": "nginx"
+         }
+      },
+      {
+         "kind": "Deployment",
+         "metadata": {
+            "name": "flask"
+         }
+      },
+      {
+         "kind": "Deployment",
+         "metadata": {
+            "label": "extended",
+            "name": "kong"
+         }
       }
-   },
-   {
-      "kind": "Deployment",
-      "metadata": {
-         "name": "flask"
-      }
-   },
-   {
-      "kind": "Deployment",
-      "metadata": {
-         "label": "extended",
-         "name": "kong"
-      }
-   }
-]
+   ]
+}
 ```
 
   </TabItem>
@@ -147,73 +150,76 @@ local serviceAnnotationExt = extension.new(
   extends=testManifest
 );
 
-serviceAnnotationExt.render()
+serviceAnnotationExt
 ```
 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
 ```yaml
-- kind: Deployment
-  metadata:
-    name: nginx
-- kind: Service
-  metadata:
-    annotations:
-      custom-annotation: added-via-extension
-    name: nginx-service
-- kind: Deployment
-  metadata:
-    name: flask
-- kind: Service
-  metadata:
-    annotations:
-      custom-annotation: added-via-extension
-    name: flask-service
+body:
+  - kind: Deployment
+    metadata:
+      name: nginx
+  - kind: Service
+    metadata:
+      annotations:
+        custom-annotation: added-via-extension
+      name: nginx-service
+  - kind: Deployment
+    metadata:
+      name: flask
+  - kind: Service
+    metadata:
+      annotations:
+        custom-annotation: added-via-extension
+      name: flask-service
 ```
 
   </TabItem>
   <TabItem value="json" label="JSON Output">
     
 ```json
-[
-   {
-      "kind": "Deployment",
-      "metadata": {
-         "name": "nginx"
+{
+   "body": [
+      {
+         "kind": "Deployment",
+         "metadata": {
+            "name": "nginx"
+         }
+      },
+      {
+         "kind": "Service",
+         "metadata": {
+            "annotations": {
+               "custom-annotation": "added-via-extension"
+            },
+            "name": "nginx-service"
+         }
+      },
+      {
+         "kind": "Deployment",
+         "metadata": {
+            "name": "flask"
+         }
+      },
+      {
+         "kind": "Service",
+         "metadata": {
+            "annotations": {
+               "custom-annotation": "added-via-extension"
+            },
+            "name": "flask-service"
+         }
       }
-   },
-   {
-      "kind": "Service",
-      "metadata": {
-         "annotations": {
-            "custom-annotation": "added-via-extension"
-         },
-         "name": "nginx-service"
-      }
-   },
-   {
-      "kind": "Deployment",
-      "metadata": {
-         "name": "flask"
-      }
-   },
-   {
-      "kind": "Service",
-      "metadata": {
-         "annotations": {
-            "custom-annotation": "added-via-extension"
-         },
-         "name": "flask-service"
-      }
-   }
-]
+   ]
+}
 ```
 
   </TabItem>
 </Tabs>
 
-### Example with [extends](/api/extensions/api-extensions-extend)
+### Example with extends
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
     
@@ -244,50 +250,57 @@ local testExtension = extension.new(
   extends=testManifest
 );
 
-testExtension.render()
+testExtension
 ```
 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
 ```yaml
-- kind: Deployment
-  metadata:
-    annotations:
-      extended: "true"
-    name: nginx
-- kind: Deployment
-  metadata:
-    annotations:
-      extended: "true"
-    name: flask
+body:
+  - kind: Deployment
+    metadata:
+      annotations:
+        extended: "true"
+      name: nginx
+  - kind: Deployment
+    metadata:
+      annotations:
+        extended: "true"
+      name: flask
 ```
 
   </TabItem>
   <TabItem value="json" label="JSON Output">
     
 ```json
-[
-   {
-      "kind": "Deployment",
-      "metadata": {
-         "annotations": {
-            "extended": "true"
-         },
-         "name": "nginx"
+{
+   "body": [
+      {
+         "kind": "Deployment",
+         "metadata": {
+            "annotations": {
+               "extended": "true"
+            },
+            "name": "nginx"
+         }
+      },
+      {
+         "kind": "Deployment",
+         "metadata": {
+            "annotations": {
+               "extended": "true"
+            },
+            "name": "flask"
+         }
       }
-   },
-   {
-      "kind": "Deployment",
-      "metadata": {
-         "annotations": {
-            "extended": "true"
-         },
-         "name": "flask"
-      }
-   }
-]
+   ]
+}
 ```
 
   </TabItem>
 </Tabs>
+
+
+### Cross-linking to Other API Docs
+[manifest documentation](/api/manifest/api-manifest-new)

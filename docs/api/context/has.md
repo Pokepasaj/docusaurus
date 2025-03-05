@@ -44,9 +44,7 @@ Returns `true` if a configuration matches the specified path and value, otherwis
     // Check if a configuration exists by path and value
     local hasConfig = initialCtx.has('metadata.name', 'nginx-service');
 
-    
     hasConfig
-    
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">

@@ -6,17 +6,7 @@ title: is-config
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# `isConfig`
 
-## Table of Contents
-- [`isConfig`](#isconfig)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Parameters](#parameters)
-  - [Return Value](#return-value)
-  - [Usage Examples](#usage-examples)
-
-## Overview
 Tests if a given target is a configuration object.
 
 ## Parameters
@@ -70,3 +60,7 @@ Returns `true` if the target is a configuration object, otherwise `false`.
     ```
   </TabItem>
 </Tabs>
+
+### Cross-linking to Other API Docs
+#### [config documentation](/api/config/api-config-new)
+

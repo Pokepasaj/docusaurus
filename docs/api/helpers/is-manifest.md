@@ -7,15 +7,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 
-# `isManifest`
 
-## Table of Contents
-- [`isManifest`](#ismanifest)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Parameters](#parameters)
-  - [Return Value](#return-value)
-  - [Usage Examples](#usage-examples)
 
 ## Overview
 Tests if a given target is a manifest object.
@@ -73,3 +65,8 @@ Returns `true` if the target is a manifest object, otherwise `false`.
     ```
   </TabItem>
 </Tabs>
+
+
+### Cross-linking to Other API Docs
+#### [manifest documentation](/api/manifest/api-manifest-new)
+

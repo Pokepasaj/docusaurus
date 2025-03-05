@@ -45,9 +45,7 @@ Returns `true` if a Kubernetes resource matches the specified kind and name (if 
     // Check if a Kubernetes resource exists by kind and name
     local hasResource = initialCtx.khas('Service', 'nginx-service');
 
-    
     hasResource
-    
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">

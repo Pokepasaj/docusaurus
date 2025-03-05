@@ -8,17 +8,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 
-# `onlyIf`
 
-## Table of Contents
-- [`onlyIf`](#onlyif)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-    - [Parameters](#parameters)
-    - [Return Value](#return-value)
-  - [Usage Examples](#usage-examples)
-    - [Example 1](#example-1)
-    - [Example 2](#example-2)
 
 ## Overview
 Applies a patch conditionally based on a test. If the test is true, the patch is applied; otherwise, a default value is returned.
@@ -33,13 +23,19 @@ Returns the patch if the test is true, otherwise returns the default value.
 
 ## Usage Examples
 
-### Example 1
+
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
     ```js
     local util = import '../../vendor/konn/util.libsonnet';
 
-    local patch = { kind: 'Deployment', metadata: { name: 'nginx' } };
+    local patch = {
+      kind: 'Deployment',
+      metadata:
+        {
+          name: 'nginx',
+        },
+    };
 
     util.onlyIf(true, patch)
     ``` 
@@ -63,15 +59,27 @@ Returns the patch if the test is true, otherwise returns the default value.
   </TabItem>
 </Tabs>
 
-### Example 2
+
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
     ```js
-    local util = import '../../vendor/konn/util.libsonnet';
+   local util = import '../../vendor/konn/util.libsonnet';
 
-    local patch = { kind: 'Deployment', metadata: { name: 'nginx' } };
+  local patch = {
+    kind: 'Deployment',
+    metadata:
+      {
+        name: 'nginx',
+      },
+  };
 
-    util.onlyIf(false, patch, { kind: 'Service', metadata: { name: 'default' } })
+  util.onlyIf(false, patch, {
+    kind: 'Service',
+    metadata:
+      {
+        name: 'default',
+      },
+  })
     ``` 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">

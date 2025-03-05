@@ -7,15 +7,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 
-# `from`
-
-## Table of Contents
-- [`from`](#from)
-  - [Table of Contents](#table-of-contents)
-  - [Overview](#overview)
-  - [Parameters](#parameters)
-  - [Return Value](#return-value)
-    - [Basic Usage](#basic-usage)
 
 ## Overview
 The `from` function is used for conversions in Konn. Every type has a way of converting a plain object into its own type. If the object is already of the correct type, `from` simply returns it unchanged.
