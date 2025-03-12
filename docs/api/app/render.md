@@ -36,7 +36,7 @@ Processes the application's features and extensions, applying any necessary tran
       ],
     );
 
-    myApp.render()  // we use render just like anywhere else
+    myApp.render() 
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">

@@ -1,5 +1,5 @@
 ---
-id: konn-intro
+id: intro
 title: Introduction to Konn
 ---
 
@@ -25,33 +25,8 @@ Konn brings several advantages over plain Jsonnet, especially in the context of 
 
 
 
-# Getting Started with Konn
 
-## Table of Contents
-- [Getting Started with Konn](#getting-started-with-konn-1)
-  - [Table of Contents](#table-of-contents)
-  - [Introduction](#introduction)
-  - [Installation](#installation)
-    - [Installing Konn](#installing-konn)
-  - [Basic Usage](#basic-usage)
-    - [Creating a Configuration](#creating-a-configuration)
-    - [Rendering the Configuration to YAML or JSON from VScode](#rendering-the-configuration-to-yaml-or-json-from-vscode)
-  - [Examples](#examples)
-    - [Example 1: Creating a Service](#example-1-creating-a-service)
-    - [Example 2: Using Extensions](#example-2-using-extensions)
-  - [Advanced Topics](#advanced-topics)
-    - [Using Profiles](#using-profiles)
-    - [Conditional Configurations](#conditional-configurations)
-  - [Resources](#resources)
-
-## Introduction
-Welcome to Konn! Konn is a powerful tool for managing Kubernetes configurations and manifests. This guide will help you get started with Konn, from installation to creating your first application.
-
-## Installation
-
-### Installing Konn
-To install Konn, check [Installtion](konn-install).
-
+## Installing Konn → [Installtion](/intro/install)
 
 
 ## Basic Usage
@@ -68,18 +43,14 @@ Konn allows you to create and manage Kubernetes configurations using a simple an
         metadata: {
           name: 'nginx',
         },
-      },
-      {}
-    );
+      });
 
-    {
-      deployment: deployment.render(),
-    }
+    deployment
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
     ```yaml
-    deployment:
+    body:
       kind: Deployment
       metadata:
         name: nginx
@@ -88,12 +59,12 @@ Konn allows you to create and manage Kubernetes configurations using a simple an
   <TabItem value="json" label="JSON Output">
     ```json
     {
-       "deployment": {
+      "body": {
           "kind": "Deployment",
           "metadata": {
-             "name": "nginx"
+            "name": "nginx"
           }
-       }
+      }
     }
     ```  
   </TabItem>
@@ -107,11 +78,11 @@ To render in YAML or JSON in VScode use `Ctrl` + `Shift` + `P` and search for:
 :::note
 Make sure you have the Jsonnet Language Server Plugin. 
 Also you should setup your lib paths because jsonnet does not find them automatically
-This topic is covered in [Installtion](konn-install).
+This topic is covered in [Installtion](/intro/install).
 :::
 
 ## Examples
-### Example 1: Creating a Service
+### Creating a Service
 Here's an example of how to create a Kubernetes Service using Konn:
 <Tabs>
     <TabItem value="jsonnet" label="Jsonnet" default>
@@ -124,16 +95,14 @@ Here's an example of how to create a Kubernetes Service using Konn:
        metadata: {
          name: 'nginx-service',
        },
-     },
-   );
-   {
-     service: service.render(),
-   }
+     });
+
+   service
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
     ```yaml
-   service:
+   body:
      kind: Service
      metadata:
        name: nginx-service
@@ -142,7 +111,7 @@ Here's an example of how to create a Kubernetes Service using Konn:
   <TabItem value="json" label="JSON Output">
     ```json
    {
-      "service": {
+      "body": {
          "kind": "Service",
          "metadata": {
             "name": "nginx-service"
@@ -154,7 +123,7 @@ Here's an example of how to create a Kubernetes Service using Konn:
 </Tabs>
 
 
-### Example 2: Using Extensions
+### Using Extensions
 Konn supports extensions to modify or enhance configurations. Here's an example:
 <Tabs>
     <TabItem value="jsonnet" label="Jsonnet" default>

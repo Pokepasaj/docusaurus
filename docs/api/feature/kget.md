@@ -41,23 +41,26 @@ The configuration that matches the kind and name.
         },
       }]);
       
-      testFeature.kget('Deployment', 'nginx').render()
+      testFeature.kget('Deployment', 'nginx')
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
     ```yaml
-    kind: Deployment
-    metadata:
-      name: nginx
+    body:
+      kind: Deployment
+      metadata:
+        name: nginx
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
     {
-       "kind": "Deployment",
-       "metadata": {
-          "name": "nginx"
+       "body": {
+          "kind": "Deployment",
+          "metadata": {
+             "name": "nginx"
+          }
        }
     }
     ```  
@@ -71,29 +74,29 @@ The configuration that matches the kind and name.
     local feature = import '../../vendor/konn/feature.libsonnet';
 
     local testFeature = feature.new([
-        {
-          kind: 'Deployment',
-          metadata: {
-            name: 'nginx',
-          },
+      {
+        kind: 'Deployment',
+        metadata: {
+          name: 'nginx',
         },
-        {
-          kind: 'Deployment',
-          metadata: {
-            name: 'flask',
-          },
+      },
+      {
+        kind: 'Deployment',
+        metadata: {
+          name: 'flask',
         },
-        {
-          kind: 'Deployment',
-          metadata: {
-            name: 'flask',
-          },
+      },
+      {
+        kind: 'Deployment',
+        metadata: {
+          name: 'flask',
         },
-      ]);
-      
+      },
+    ]);
+
     {
       output_without_kget: testFeature,
-      output: testFeature.kget('Deployment', 'flask').render(),
+      output: testFeature.kget('Deployment', 'flask'),
     }
     ```
   </TabItem>
@@ -101,9 +104,10 @@ The configuration that matches the kind and name.
 
     ```yaml
     output:
-      kind: Deployment
-      metadata:
-        name: flask
+      body:
+        kind: Deployment
+        metadata:
+          name: flask
     output_without_kget:
       body:
         - kind: Deployment
@@ -121,9 +125,11 @@ The configuration that matches the kind and name.
     ```json
     {
        "output": {
-          "kind": "Deployment",
-          "metadata": {
-             "name": "flask"
+          "body": {
+             "kind": "Deployment",
+             "metadata": {
+                "name": "flask"
+             }
           }
        },
        "output_without_kget": {

@@ -42,73 +42,30 @@ Returns a new manifest containing only the configurations that match the specifi
       filter=function(ctx, config, props) config.get('metadata').name == 'flask'
     );
 
-    myApp.render()
+    myApp
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
     ```yaml
-    - kind: Deployment
-      metadata:
-        name: flask
+    body:
+      - kind: Deployment
+        metadata:
+          name: flask
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
-    [
-       {
-          "kind": "Deployment",
-          "metadata": {
-             "name": "flask"
+    {
+       "body": [
+          {
+             "kind": "Deployment",
+             "metadata": {
+                "name": "flask"
+             }
           }
-       }
-    ]
+       ]
+    }
     ```  
   </TabItem>
 </Tabs>
 
-
-<Tabs>
-    <TabItem value="jsonnet" label="Jsonnet" default>
-    ```js
-    local app = import '../../vendor/konn/app.libsonnet';
-
-    local myApp = app.new([
-         {
-          kind: 'Service',
-          metadata: {
-            name: 'nginx-svc',
-          },
-        },
-        {
-          kind: 'Service',
-          metadata: {
-            name: 'flask-svc',
-          },
-        },
-      ],
-      filter=function(ctx, config, props) config.get('metadata').name == 'nginx-svc'
-    );
-
-      myApp.render()
-    ```
-  </TabItem>
-  <TabItem value="yaml" label="YAML Output">
-    ```yaml
-    - kind: Service
-      metadata:
-        name: nginx-svc
-    ```
-  </TabItem>
-  <TabItem value="json" label="JSON Output">
-    ```json
-    [
-       {
-          "kind": "Service",
-          "metadata": {
-             "name": "nginx-svc"
-          }
-       }
-    ]
-    ```  
-  </TabItem>
-</Tabs>

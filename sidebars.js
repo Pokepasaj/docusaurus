@@ -1,18 +1,39 @@
 //sidebar.js
 module.exports = {
   
+
+  // Introduction sidebar
   konnSidebar: [
+    
     {
       type: 'doc',
-      id: 'konn-intro', // Existing document ID
+      id: 'intro/intro', 
       label: 'Get Started',
     },
     {
       type: 'doc',
-      id: 'konn-install', // Existing document ID
+      id: 'intro/install', 
       label: 'Installation',
     },
+    {
+      type: 'doc',
+      id: 'intro/why-how',
+      label: 'Why and How to use Konn',
+    },
+    {
+      type: 'doc',
+      id: 'intro/learning-resources',
+      label: 'Learning Resources',
+    },
+    {
+      type: 'doc',
+      id: 'intro/ecosystem',
+      label: 'Ecosystem',
+    },
   ],
+
+
+    // API sidebar 
     apiSidebar: [
       {
       type: 'category',
@@ -161,35 +182,23 @@ module.exports = {
       },
     ],
 
+    // Tutorial sidebar
     tutorialSidebar: [
       {
         type: 'doc',
-        id: 'config', 
+        id: 'tutorial/config', 
         label: 'Config',
       },
       {
         type: 'doc',
-        id: 'features', 
+        id: 'tutorial/features', 
         label: 'Features',
       },
       {
         type: 'doc',
-        id: 'manifests', 
+        id: 'tutorial/manifests', 
         label: 'Manifests',
       },
     ],
-    // api: [
-    //   {
-    //     type: 'category',
-    //     label: 'API Reference',
-    //     items: [
-    //       {
-    //         type: 'doc',
-    //         id: 'app', 
-    //         label: 'app',
-    //       },
-         
-    //     ],
-    //   },
-    // ],
+
 };

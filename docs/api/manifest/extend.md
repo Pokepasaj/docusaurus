@@ -50,38 +50,40 @@ local extendedManifest = baseManifest.extend(
         },
       },
     ]
-  )
-);
+  ));
 
-extendedManifest.render()
+extendedManifest
 ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 ```yaml
-- kind: Deployment
-  metadata:
-    name: nginx
-- kind: Service
-  metadata:
-    name: nginx-svc
+body:
+  - kind: Deployment
+    metadata:
+      name: nginx
+  - kind: Service
+    metadata:
+      name: nginx-svc
 ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
 ```json
-[
-  {
-    "kind": "Deployment",
-    "metadata": {
-      "name": "nginx"
-    }
-  },
-  {
-    "kind": "Service",
-    "metadata": {
-      "name": "nginx-svc"
-    }
-  }
-]
+{
+   "body": [
+      {
+         "kind": "Deployment",
+         "metadata": {
+            "name": "nginx"
+         }
+      },
+      {
+         "kind": "Service",
+         "metadata": {
+            "name": "nginx-svc"
+         }
+      }
+   ]
+}
 ```
   </TabItem>
 </Tabs>
@@ -119,38 +121,40 @@ local extendedPropsManifest = propsManifest.extend(
   ),
   {
     newName: 'flask',
-  }
-);
+  });
 
-extendedPropsManifest.render()
+extendedPropsManifest
 ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 ```yaml
-- kind: Deployment
-  metadata:
-    name: nginx
-- kind: Deployment
-  metadata:
-    name: flask
+body:
+  - kind: Deployment
+    metadata:
+      name: nginx
+  - kind: Deployment
+    metadata:
+      name: flask
 ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
 ```json
-[
-  {
-    "kind": "Deployment",
-    "metadata": {
-      "name": "nginx"
-    }
-  },
-  {
-    "kind": "Deployment",
-    "metadata": {
-      "name": "flask"
-    }
-  }
-]
+{
+   "body": [
+      {
+         "kind": "Deployment",
+         "metadata": {
+            "name": "nginx"
+         }
+      },
+      {
+         "kind": "Deployment",
+         "metadata": {
+            "name": "flask"
+         }
+      }
+   ]
+}
 ```
   </TabItem>
 </Tabs>
@@ -182,26 +186,29 @@ local extendedFilterManifest = filterManifest.extend(
   filter=function(ctx, config, props) config.get('kind') == 'Service'
 );
 
-extendedFilterManifest.render()
+extendedFilterManifest
 ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 ```yaml
-- kind: Service
-  metadata:
-    name: nginx-svc
+body:
+  - kind: Service
+    metadata:
+      name: nginx-svc
 ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
 ```json
-[
-  {
-    "kind": "Service",
-    "metadata": {
-      "name": "nginx-svc"
-    }
-  }
-]
+{
+   "body": [
+      {
+         "kind": "Service",
+         "metadata": {
+            "name": "nginx-svc"
+         }
+      }
+   ]
+}
 ```
   </TabItem>
 </Tabs>
@@ -230,34 +237,36 @@ local extendedMapManifest = mapManifest.extend(
         env: 'production',
       },
     },
-  }
-);
+  });
 
-extendedMapManifest.render()
+extendedMapManifest
 ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 ```yaml
-- kind: Deployment
-  metadata:
-    labels:
-      env: production
-    name: nginx
+body:
+  - kind: Deployment
+    metadata:
+      labels:
+        env: production
+      name: nginx
 ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
 ```json
-[
-  {
-    "kind": "Deployment",
-    "metadata": {
-      "labels": {
-        "env": "production"
-      },
-      "name": "nginx"
-    }
-  }
-]
+{
+   "body": [
+      {
+         "kind": "Deployment",
+         "metadata": {
+            "labels": {
+               "env": "production"
+            },
+            "name": "nginx"
+         }
+      }
+   ]
+}
 ```
   </TabItem>
 </Tabs>

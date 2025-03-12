@@ -40,7 +40,7 @@ Returns the rendered configurations by applying the `lib.renderConfigs` function
         },
       ]);
 
-    testManifest.render()  // without render we can't display the output
+    testManifest.render()
     ``` 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">

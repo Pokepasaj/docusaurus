@@ -103,28 +103,31 @@ local filteredJson = std.filter(
 
 local filteredManifest = manifest.from(filteredJson);
 
-filteredManifest.render()
+filteredManifest
 ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 ```yaml
-- apiVersion: v1
-  kind: Pod
-  metadata:
-    name: nginx
+body:
+  - apiVersion: v1
+    kind: Pod
+    metadata:
+      name: nginx
 ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
 ```json
-[
-   {
-      "apiVersion": "v1",
-      "kind": "Pod",
-      "metadata": {
-         "name": "nginx"
+{
+   "body": [
+      {
+         "apiVersion": "v1",
+         "kind": "Pod",
+         "metadata": {
+            "name": "nginx"
+         }
       }
-   }
-]
+   ]
+}
 ```
   </TabItem>
 </Tabs>

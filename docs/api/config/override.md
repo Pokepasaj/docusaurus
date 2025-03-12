@@ -32,25 +32,27 @@ The `override` function does not return a direct value but modifies the `props` 
       function(props)
         {
           name: 'override-' + props.name,
-        }
-    );
+        });
 
-    testConfig.render()
+    testConfig
     ``` 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
     ```yaml
-    kind: Deployment
-    metadata:
-      name: override-my-deployment
+    body:
+      kind: Deployment
+      metadata:
+        name: override-my-deployment
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
     {
-       "kind": "Deployment",
-       "metadata": {
-          "name": "override-my-deployment"
+       "body": {
+          "kind": "Deployment",
+          "metadata": {
+             "name": "override-my-deployment"
+          }
        }
     }
     ```

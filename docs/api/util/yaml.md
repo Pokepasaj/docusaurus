@@ -28,7 +28,12 @@ Returns the parsed YAML document(s). If `single` is true and there is only one d
     ```js
     local util = import '../../vendor/konn/util.libsonnet';
 
-    local yamlString = "apiVersion: v1\nkind: Pod\nmetadata:\n  name: %(name)s\n";
+    local yamlString = |||
+      apiVersion: v1
+      kind: Pod
+      metadata:
+        name: %(name)s
+    |||;
 
     util.yaml(yamlString, { name: 'nginx' })
     ``` 
@@ -54,50 +59,3 @@ Returns the parsed YAML document(s). If `single` is true and there is only one d
   </TabItem>
 </Tabs>
 
-
-<Tabs>
-  <TabItem value="jsonnet" label="Jsonnet" default>
-    ```js
-    local util = import '../../vendor/konn/util.libsonnet';
-
-    local yamlStrings = [
-      "apiVersion: v1\nkind: Pod\nmetadata:\n  name: %(name)s\n",
-      "apiVersion: v1\nkind: Service\nmetadata:\n  name: %(name)s\n"
-    ];
-
-    util.yaml(yamlStrings, { name: 'nginx' })
-    ``` 
-  </TabItem>
-  <TabItem value="yaml" label="YAML Output">
-    ```yaml
-    - apiVersion: v1
-      kind: Pod
-      metadata:
-        name: nginx
-    - apiVersion: v1
-      kind: Service
-      metadata:
-        name: nginx
-    ```
-  </TabItem>
-  <TabItem value="json" label="JSON Output">
-    ```json
-    [
-       {
-          "apiVersion": "v1",
-          "kind": "Pod",
-          "metadata": {
-             "name": "nginx"
-          }
-       },
-       {
-          "apiVersion": "v1",
-          "kind": "Service",
-          "metadata": {
-             "name": "nginx"
-          }
-       }
-    ]
-    ```
-  </TabItem>
-</Tabs>

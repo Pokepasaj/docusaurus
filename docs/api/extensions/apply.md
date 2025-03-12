@@ -89,4 +89,6 @@ Returns a new configuration object that has been modified by the extension. This
 </Tabs>
 
 ### Cross-linking to Other API Docs
-For more details on config, extensions and feature, please refer to the [config documentation](/api/config/api-config-new), [helpers documentation](/api/helpers/api-helpers-render-configs) and [context documentation](/api/context/api-context-new).
+#### [config documentation](/api/config/api-config-new)
+#### [helpers documentation](/api/helpers/api-helpers-render-configs)
+#### [context documentation](/api/context/api-context-new)

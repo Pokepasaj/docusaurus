@@ -32,7 +32,7 @@ const config = {
   ],
   themeConfig: {
     navbar: {
-      title: 'Welcome to Konn',
+      title: 'Konn',
       logo: {
         alt: 'My Site Logo',
         src: 'img/konn.jpg',

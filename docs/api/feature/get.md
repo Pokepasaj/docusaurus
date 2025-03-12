@@ -25,35 +25,40 @@ The configuration matching the path or matcher.e path or matcher.
     local feature = import '../../vendor/konn/feature.libsonnet';
 
     local testFeature = feature.new([
-       {
+      {
         kind: 'Deployment',
         metadata: {
           name: 'nginx',
         },
-      }, {
+      },
+      {
         kind: 'Deployment',
         metadata: {
           name: 'flask',
         },
-      }]);
+      },
+    ]);
 
-      testFeature.get('metadata.name', 'flask').render()
+    testFeature.get('metadata.name', 'flask')
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
     ```yaml
-    kind: Deployment
-    metadata:
-      name: flask
+    body:
+      kind: Deployment
+      metadata:
+        name: flask
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
     {
-       "kind": "Deployment",
-       "metadata": {
-          "name": "flask"
+       "body": {
+          "kind": "Deployment",
+          "metadata": {
+             "name": "flask"
+          }
        }
     }
     ```  
@@ -91,17 +96,20 @@ The configuration matching the path or matcher.e path or matcher.
   <TabItem value="yaml" label="YAML Output">
 
     ```yaml
-    kind: Deployment
-    metadata:
-      name: nginx
+    body:
+      kind: Deployment
+      metadata:
+        name: nginx
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
     {
-       "kind": "Deployment",
-       "metadata": {
-          "name": "nginx"
+       "body": {
+          "kind": "Deployment",
+          "metadata": {
+             "name": "nginx"
+          }
        }
     }
     ```  

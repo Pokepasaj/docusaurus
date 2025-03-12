@@ -51,43 +51,46 @@ Retrieves and filters the list of features defined in the application manifest.
         replicas: 3,
       });
 
-    myApp.render()
+    myApp
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
     ```yaml
-    - kind: Service
-      metadata:
-        name: example-app
-      spec:
-        ports:
-          - port: 80
-            targetPort: 80
-        selector:
-          app: example-app
+    body:
+      - kind: Service
+        metadata:
+          name: example-app
+        spec:
+          ports:
+            - port: 80
+              targetPort: 80
+          selector:
+            app: example-app
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
-    [
-       {
-          "kind": "Service",
-          "metadata": {
-             "name": "example-app"
-          },
-          "spec": {
-             "ports": [
-                {
-                   "port": 80,
-                   "targetPort": 80
+    {
+       "body": [
+          {
+             "kind": "Service",
+             "metadata": {
+                "name": "example-app"
+             },
+             "spec": {
+                "ports": [
+                   {
+                      "port": 80,
+                      "targetPort": 80
+                   }
+                ],
+                "selector": {
+                   "app": "example-app"
                 }
-             ],
-             "selector": {
-                "app": "example-app"
              }
           }
-       }
-    ]
+       ]
+    }
     ```  
   </TabItem>
 </Tabs>

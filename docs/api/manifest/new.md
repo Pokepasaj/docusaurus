@@ -54,10 +54,9 @@ local testManifest = manifest.new(
   ],
   {
     name: 'flask',
-  }
-);
+  });
 
-testManifest.render()  // without render we can't display the output
+testManifest.render()
 ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
@@ -73,18 +72,18 @@ testManifest.render()  // without render we can't display the output
   <TabItem value="json" label="JSON Output">
 ```json
 [
-  {
-    "kind": "Deployment",
-    "metadata": {
-      "name": "nginx"
-    }
-  },
-  {
-    "kind": "Deployment",
-    "metadata": {
-      "name": "flask"
-    }
-  }
+   {
+      "kind": "Deployment",
+      "metadata": {
+         "name": "nginx"
+      }
+   },
+   {
+      "kind": "Deployment",
+      "metadata": {
+         "name": "flask"
+      }
+   }
 ]
 ```
   </TabItem>
@@ -111,34 +110,36 @@ local propsManifest = manifest.new(
   {
     name: 'example-app',
     replicas: 3,
-  }
-);
+  });
 
-propsManifest.render()
+propsManifest
 ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 ```yaml
-- kind: Deployment
-  metadata:
-    name: example-app
-  spec:
-    replicas: 3
+body:
+  - kind: Deployment
+    metadata:
+      name: example-app
+    spec:
+      replicas: 3
 ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
 ```json
-[
-  {
-    "kind": "Deployment",
-    "metadata": {
-      "name": "example-app"
-    },
-    "spec": {
-      "replicas": 3
-    }
-  }
-]
+{
+   "body": [
+      {
+         "kind": "Deployment",
+         "metadata": {
+            "name": "example-app"
+         },
+         "spec": {
+            "replicas": 3
+         }
+      }
+   ]
+}
 ```
   </TabItem>
 </Tabs>
@@ -167,26 +168,29 @@ local filterManifest = manifest.new(
   filter=function(ctx, config, props) config.get('kind') == 'Deployment'
 );
 
-filterManifest.render()
+filterManifest
 ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 ```yaml
-- kind: Deployment
-  metadata:
-    name: nginx
+body:
+  - kind: Deployment
+    metadata:
+      name: nginx
 ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
 ```json
-[
-  {
-    "kind": "Deployment",
-    "metadata": {
-      "name": "nginx"
-    }
-  }
-]
+{
+   "body": [
+      {
+         "kind": "Deployment",
+         "metadata": {
+            "name": "nginx"
+         }
+      }
+   ]
+}
 ```
   </TabItem>
 </Tabs>
@@ -212,34 +216,36 @@ local mapManifest = manifest.new(
         env: 'production',
       },
     },
-  }
-);
+  });
 
-mapManifest.render()
+mapManifest
 ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 ```yaml
-- kind: Deployment
-  metadata:
-    labels:
-      env: production
-    name: nginx
+body:
+  - kind: Deployment
+    metadata:
+      labels:
+        env: production
+      name: nginx
 ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
 ```json
-[
-  {
-    "kind": "Deployment",
-    "metadata": {
-      "labels": {
-        "env": "production"
-      },
-      "name": "nginx"
-    }
-  }
-]
+{
+   "body": [
+      {
+         "kind": "Deployment",
+         "metadata": {
+            "labels": {
+               "env": "production"
+            },
+            "name": "nginx"
+         }
+      }
+   ]
+}
 ```
   </TabItem>
 </Tabs>

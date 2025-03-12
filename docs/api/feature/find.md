@@ -40,23 +40,26 @@ The first matching configuration found.
     // Using `find` to get the first Deployment
 
     testFeature.find(
-      function(ctx, config, props) config.get('kind') == 'Deployment').render()
+      function(ctx, config, props) config.get('kind') == 'Deployment')
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
     ```yaml
-     kind: Deployment
-    metadata:
-      name: flask
+    body:
+      kind: Deployment
+      metadata:
+        name: flask
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
     {
-       "kind": "Deployment",
-       "metadata": {
-          "name": "flask"
+       "body": {
+          "kind": "Deployment",
+          "metadata": {
+             "name": "flask"
+          }
        }
     }
     ```  
@@ -100,28 +103,31 @@ The first matching configuration found.
     // find will only take in account the first hit only
 
     testFeature.find(function(ctx, config, props)
-      config.get('metadata.labels.app') == 'api').render()
+      config.get('metadata.labels.app') == 'api')
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
     ```yaml
-    kind: Service
-    metadata:
-      labels:
-        app: api
-      name: flask
+    body:
+      kind: Service
+      metadata:
+        labels:
+          app: api
+        name: flask
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
     {
-       "kind": "Service",
-       "metadata": {
-          "labels": {
-             "app": "api"
-          },
-          "name": "flask"
+       "body": {
+          "kind": "Service",
+          "metadata": {
+             "labels": {
+                "app": "api"
+             },
+             "name": "flask"
+          }
        }
     }
     ```  

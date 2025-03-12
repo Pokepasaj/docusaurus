@@ -53,39 +53,42 @@ local testFeature = feature.new(
     ),
   ]);
 
-testFeature.render()
+testFeature
 ```
 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
 ```yaml
-- kind: Service
-  metadata:
-    name: nginx-svc
-- kind: Service
-  metadata:
-    name: flask-svc
+body:
+  - kind: Service
+    metadata:
+      name: nginx-svc
+  - kind: Service
+    metadata:
+      name: flask-svc
 ```
 
   </TabItem>
   <TabItem value="json" label="JSON Output">
     
 ```json
-[
-   {
-      "kind": "Service",
-      "metadata": {
-         "name": "nginx-svc"
+{
+   "body": [
+      {
+         "kind": "Service",
+         "metadata": {
+            "name": "nginx-svc"
+         }
+      },
+      {
+         "kind": "Service",
+         "metadata": {
+            "name": "flask-svc"
+         }
       }
-   },
-   {
-      "kind": "Service",
-      "metadata": {
-         "name": "flask-svc"
-      }
-   }
-]
+   ]
+}
 ```  
   </TabItem>
 </Tabs>

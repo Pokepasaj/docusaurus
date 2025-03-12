@@ -1,5 +1,5 @@
 ---
-id: konn-install
+id: install
 title: Installation
 ---
 

@@ -23,20 +23,19 @@ The rendered configurations with applied extensions, resolved properties, and fi
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
   ```js
-    local feature = import '../../vendor/konn/feature.libsonnet';
+  local feature = import '../../vendor/konn/feature.libsonnet';
 
-    local renderFeature = feature.new(
-      [
-        {
-          kind: 'Deployment',
-          metadata: {
-            name: 'nginx',
-          },
+  local renderFeature = feature.new(
+    [
+      {
+        kind: 'Deployment',
+        metadata: {
+          name: 'nginx',
         },
-      ],
-    );
+      },
+    ]);
 
-    renderFeature.render()
+  renderFeature.render()
   ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">

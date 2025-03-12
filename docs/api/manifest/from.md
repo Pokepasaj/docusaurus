@@ -76,8 +76,7 @@ local propsManifest = manifest.from(
   ],
   props={
     name: 'modified-example',
-  }
-);
+  });
 
 propsManifest
 ```
@@ -181,8 +180,7 @@ local mapManifest = manifest.from(
   svc,
   map=function(ctx, config, props) config {
     name: config.name + '-mapped',
-  }
-);
+  });
 
 mapManifest
 ```

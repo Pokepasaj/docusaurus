@@ -12,12 +12,12 @@ import TabItem from '@theme/TabItem';
 Initializes a new application manifest with a set of configurations, properties, and extensions. It also enables filtering and mapping to customize the configuration dynamically.
 
 ## Parameters
-- **`features`** - (array) A list of Kubernetes objects or functions that generate them. See [features](api-app-features).
+- **`features`** - (array) A list of Kubernetes objects or functions that generate them. See [features](api-app-new#example-with-features).
 - **`props`** - (object) A set of properties that define application behavior. See [props](api-app-new#example-with-props).
 - **`profiles`** - (object) Named sets of default property values. See [profiles](api-app-new#example-with-profiles).
-- **`extensions`** - (array) A list of functions that modify configurations. See [extensions](api-app-extensions).
-- **`filter`** - (function) A function to determine if a config should be included. See [filter](api-app-filter).
-- **`map`** - (function) A function to transform configs before rendering. See [map](api-app-map).
+- **`extensions`** - (array) A list of functions that modify configurations. See [extensions](api-app-new#example-with-extensions).
+- **`filter`** - (function) A function to determine if a config should be included. See [filter](api-app-new#example-with-filter).
+- **`map`** - (function) A function to transform configs before rendering. See [map](api-app-new#example-with-map).
 
 
 ## Return Value
@@ -54,7 +54,7 @@ local myApp = app.new(
     name: 'example-app',
   });
 
-myApp.render()
+myApp
 ```
 
   </TabItem>
@@ -120,35 +120,38 @@ local myApp = app.new([
   }
 );
 
-myApp.render()
+myApp
 ```
 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
 ```yaml
-- kind: Deployment
-  metadata:
-    name: example-app
-  spec:
-    replicas: 3
+body:
+  - kind: Deployment
+    metadata:
+      name: example-app
+    spec:
+      replicas: 3
 ```
 
   </TabItem>
   <TabItem value="json" label="JSON Output">
     
 ```json
-[
-   {
-      "kind": "Deployment",
-      "metadata": {
-         "name": "example-app"
-      },
-      "spec": {
-         "replicas": 3
+{
+   "body": [
+      {
+         "kind": "Deployment",
+         "metadata": {
+            "name": "example-app"
+         },
+         "spec": {
+            "replicas": 3
+         }
       }
-   }
-]
+   ]
+}
 ```
 
   </TabItem>
@@ -254,37 +257,40 @@ local myApp = app.new(
   extensions=[addLabelsAndReplicas]
 );
 
-myApp.render()
+myApp
 ```
 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
 ```yaml
-- kind: Deployment
-  metadata:
-    labels: custom-label
-    name: nginx
-  spec:
-    replicas: 2
+body:
+  - kind: Deployment
+    metadata:
+      labels: custom-label
+      name: nginx
+    spec:
+      replicas: 2
 ```
 
   </TabItem>
   <TabItem value="json" label="JSON Output">
     
 ```json
-[
-   {
-      "kind": "Deployment",
-      "metadata": {
-         "labels": "custom-label",
-         "name": "nginx"
-      },
-      "spec": {
-         "replicas": 2
+{
+   "body": [
+      {
+         "kind": "Deployment",
+         "metadata": {
+            "labels": "custom-label",
+            "name": "nginx"
+         },
+         "spec": {
+            "replicas": 2
+         }
       }
-   }
-]
+   ]
+}
 ```
 
   </TabItem>
@@ -314,30 +320,33 @@ local myApp = app.new([
   filter=function(ctx, config, props) config.get('kind') == 'Deployment'
 );
 
-myApp.render()
+myApp
 ```
 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
 ```yaml
-- kind: Deployment
-  metadata:
-    name: nginx
+body:
+  - kind: Deployment
+    metadata:
+      name: nginx
 ```
 
   </TabItem>
   <TabItem value="json" label="JSON Output">
     
 ```json
-[
-   {
-      "kind": "Deployment",
-      "metadata": {
-         "name": "nginx"
+{
+   "body": [
+      {
+         "kind": "Deployment",
+         "metadata": {
+            "name": "nginx"
+         }
       }
-   }
-]
+   ]
+}
 ```
 
   </TabItem>
@@ -366,35 +375,38 @@ local myApp = app.new([
     },
   });
 
-myApp.render()
+myApp
 ```
 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
 ```yaml
-- kind: Deployment
-  metadata:
-    labels:
-      env: production
-    name: nginx
+body:
+  - kind: Deployment
+    metadata:
+      labels:
+        env: production
+      name: nginx
 ```
 
   </TabItem>
   <TabItem value="json" label="JSON Output">
     
 ```json
-[
-   {
-      "kind": "Deployment",
-      "metadata": {
-         "labels": {
-            "env": "production"
-         },
-         "name": "nginx"
+{
+   "body": [
+      {
+         "kind": "Deployment",
+         "metadata": {
+            "labels": {
+               "env": "production"
+            },
+            "name": "nginx"
+         }
       }
-   }
-]
+   ]
+}
 ```
 
   </TabItem>
@@ -402,4 +414,5 @@ myApp.render()
 
 
 ### Cross-linking to Other API Docs
-For more details on extensions and features, please refer to the [extensions documentation](https://pokepasaj.github.io/docusaurus/api/extensions/api-extensions-new), [feature documentation](/api/feature/api-feature-new).
+#### [extensions documentation](/api/extensions/api-extensions-new)
+#### [feature documentation](/api/feature/api-feature-new).

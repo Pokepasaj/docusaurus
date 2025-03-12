@@ -20,34 +20,34 @@ The `render` function returns the rendered configuration, which includes the eva
     ```js
     local k = import 'konn/main.libsonnet';
 
-    local render_test = k.config(function(ctx,props){
-        type: 'config2',
-        props:props
+    local render_test = k.config(function(ctx, props) {
+      kind: 'Service',
+      props: props,
     });
     {
-    render_test: render_test.render(props= {  
-        foo: 'bar',
-    })
+      render_test: render_test.render(props={
+        namespace: 'prod',
+      }),
     }
     ``` 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
     ```yaml
     render_test:
-    props:
-        foo: bar
-    type: config2
+      kind: Service
+      props:
+        namespace: prod
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
     {
-      "render_test": {
-        "props": {
-          "foo": "bar"
-        },
-        "type": "config2"
-      }
+       "render_test": {
+          "kind": "Service",
+          "props": {
+             "namespace": "prod"
+          }
+       }
     }
     ```
   </TabItem>
@@ -66,12 +66,12 @@ If you don't supply a `ctx`, it will supply a `ctx` and if you don't supply `pro
     local k = import 'konn/main.libsonnet';
 
     local render_test = k.config(function(ctx,props){
-        type: 'config2',
+        kind: 'Service',
         props:props
     });
     {
     render_test: render_test.render(props= {  
-    //  foo: 'bar',  Now that I have commented the props see how it evaluates 
+    //  namespace: prod,  Now that I have commented the props see how it evaluates 
     })
     }
     ``` 
@@ -79,163 +79,17 @@ If you don't supply a `ctx`, it will supply a `ctx` and if you don't supply `pro
   <TabItem value="yaml" label="YAML Output">
     ```yaml
     render_test:
+      kind: Service
       props: {}
-      type: config2
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
     {
-      "render_test": {
-        "props": { },
-        "type": "config2"
-      }
-    }
-    ```
-  </TabItem>
-</Tabs>
-
-<Tabs>
-  <TabItem value="jsonnet" label="Jsonnet" default>
-    ```js
-    local k = import 'konn/main.libsonnet';
-
-    local render_example = k.config(
-      function(ctx, props) [
-        {
-          kind: 'Deployment',
-          metadata: {
-            name: 'nginx',
-            labels: {
-              app: props.appName,
-            },
-          },
-          spec: {
-            replicas: props.replicas,
-            template: {
-              metadata: {
-                labels: {
-                  app: props.appName,
-                },
-              },
-              spec: {
-                containers: [
-                  {
-                    name: 'nginx-container',
-                    image: props.image,
-                  },
-                ],
-              },
-            },
-          },
-        },
-        {
-          kind: 'Service',
-          metadata: {
-            name: 'flask-service',
-          },
-          spec: {
-            ports: [
-              {
-                port: 80,
-                targetPort: 5000,
-              },
-            ],
-            selector: {
-              app: props.appName,
-            },
-          },
-        },
-      ]
-    );
-
-    {
-      render_example: render_example.render(props={
-        appName: 'my-app',
-        replicas: 3,
-        image: 'nginx:latest',
-      }),
-    }
-    ``` 
-  </TabItem>
-  <TabItem value="yaml" label="YAML Output">
-    ```yaml
-    render_example:
-      - kind: Deployment
-        metadata:
-          labels:
-            app: my-app
-          name: nginx
-        spec:
-          replicas: 3
-          template:
-            metadata:
-              labels:
-                app: my-app
-            spec:
-              containers:
-                - image: nginx:latest
-                  name: nginx-container
-      - kind: Service
-        metadata:
-          name: flask-service
-        spec:
-          ports:
-            - port: 80
-              targetPort: 5000
-          selector:
-            app: my-app
-    ```
-  </TabItem>
-  <TabItem value="json" label="JSON Output">
-    ```json
-    {
-       "render_example": [
-          {
-             "kind": "Deployment",
-             "metadata": {
-                "labels": {
-                   "app": "my-app"
-                },
-                "name": "nginx"
-             },
-             "spec": {
-                "replicas": 3,
-                "template": {
-                   "metadata": {
-                      "labels": {
-                         "app": "my-app"
-                      }
-                   },
-                   "spec": {
-                      "containers": [
-                         {
-                            "image": "nginx:latest",
-                            "name": "nginx-container"
-                         }
-                      ]
-                   }
-                }
-             }
-          },
-          {
-             "kind": "Service",
-             "metadata": {
-                "name": "flask-service"
-             },
-             "spec": {
-                "ports": [
-                   {
-                      "port": 80,
-                      "targetPort": 5000
-                   }
-                ],
-                "selector": {
-                   "app": "my-app"
-                }
-             }
-          }
-       ]
+       "render_test": {
+          "kind": "Service",
+          "props": { }
+       }
     }
     ```
   </TabItem>

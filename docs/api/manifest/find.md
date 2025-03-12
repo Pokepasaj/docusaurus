@@ -44,22 +44,25 @@ Unlike the [find used in the feature API](/api/feature/api-feature-find) we need
     );
 
     testManifest.find(function(ctx, config, props)
-      config.get('kind') == 'Deployment').render()
+      config.get('kind') == 'Deployment')
     ``` 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
     ```yaml
-    kind: Deployment
-    metadata:
-      name: flask
+    body:
+      kind: Deployment
+      metadata:
+        name: flask
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
     {
-       "kind": "Deployment",
-       "metadata": {
-          "name": "flask"
+       "body": {
+          "kind": "Deployment",
+          "metadata": {
+             "name": "flask"
+          }
        }
     }
     ```

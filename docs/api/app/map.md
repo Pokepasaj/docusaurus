@@ -45,75 +45,31 @@ Applies a transformation function to each configuration in the manifest, allowin
         },
       });
 
-    myApp.render()
+    myApp
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
     ```yaml
-    - kind: Deployment
-      metadata:
-        name: default-app
+    body:
+      - kind: Deployment
+        metadata:
+          name: default-app
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
-    [
-       {
-          "kind": "Deployment",
-          "metadata": {
-             "name": "default-app"
+    {
+       "body": [
+          {
+             "kind": "Deployment",
+             "metadata": {
+                "name": "default-app"
+             }
           }
-       }
-    ]
+       ]
+    }
     ```  
   </TabItem>
 </Tabs>
 
 
-<Tabs>
-    <TabItem value="jsonnet" label="Jsonnet" default>
-    ```js
-    local app = import '../../vendor/konn/app.libsonnet';
-
-    local myApp = app.new(
-      props={
-        name: 'service',
-      },
-      features=[
-        function(ctx, props) {
-          kind: 'Service',
-          metadata: {
-            name: props.name,
-          },
-        },
-      ],
-
-      map=function(ctx, config, props) config {
-        metadata+: {
-          name: props.name + '-svc',
-        },
-      });
-
-    myApp.render()
-    ```
-  </TabItem>
-  <TabItem value="yaml" label="YAML Output">
-    ```yaml
-    - kind: Service
-      metadata:
-        name: service-svc
-    ```
-  </TabItem>
-  <TabItem value="json" label="JSON Output">
-    ```json
-    [
-       {
-          "kind": "Service",
-          "metadata": {
-             "name": "service-svc"
-          }
-       }
-    ]
-    ```  
-  </TabItem>
-</Tabs>

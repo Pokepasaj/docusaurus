@@ -25,13 +25,20 @@ Returns the processed string with lines containing null properties removed.
     ```js
     local util = import '../../vendor/konn/util.libsonnet';
 
-    local templateString = "apiVersion: v1\nkind: Pod\nmetadata:\n  name: %(name)s\n  namespace: %(namespace)s\n";
+    local templateString = |||
+      apiVersion: v1
+      kind: Pod
+      metadata:
+        name: %(name)s
+        namespace: %(namespace)s
+    |||;
 
     util.template(templateString, { name: 'nginx', namespace: 'default' })
     ``` 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
     ```yaml
+    |+
     apiVersion: v1
     kind: Pod
     metadata:
@@ -41,46 +48,9 @@ Returns the processed string with lines containing null properties removed.
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
-    {
-       "apiVersion": "v1",
-       "kind": "Pod",
-       "metadata": {
-          "name": "nginx",
-          "namespace": "default"
-       }
-    }
+    "apiVersion: v1\nkind: Pod\nmetadata:\n  name: nginx\n  namespace: default\n\n"
     ```
   </TabItem>
 </Tabs>
 
 
-<Tabs>
-  <TabItem value="jsonnet" label="Jsonnet" default>
-    ```js
-    local util = import '../../vendor/konn/util.libsonnet';
-
-    local templateString = "apiVersion: v1\nkind: Pod\nmetadata:\n  name: %(name)s\n  namespace: %(namespace)s\n";
-
-    util.template(templateString, { name: 'nginx' })  // namespace is null, so the line is removed
-    ``` 
-  </TabItem>
-  <TabItem value="yaml" label="YAML Output">
-    ```yaml
-    apiVersion: v1
-    kind: Pod
-    metadata:
-      name: nginx
-    ```
-  </TabItem>
-  <TabItem value="json" label="JSON Output">
-    ```json
-    {
-       "apiVersion": "v1",
-       "kind": "Pod",
-       "metadata": {
-          "name": "nginx"
-       }
-    }
-    ```
-  </TabItem>
-</Tabs>

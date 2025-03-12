@@ -51,7 +51,6 @@ The feature object with overridden properties.
         name: 'nginx-deployment',  // this propr will be overidden
         label: 'nginx',  // this one wont be overidden (we did not specify it under override func)
       }),
-
     }
     ```
   </TabItem>

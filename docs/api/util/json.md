@@ -27,9 +27,19 @@ Returns the parsed JSON document(s). If `single` is true and there is only one d
     ```js
     local util = import '../../vendor/konn/util.libsonnet';
 
-    local jsonString = '{"apiVersion":"v1", "kind":"Pod", "metadata":{"name": "%(name)s"}}';
+    local jsonString = |||
+      {
+        "apiVersion": "v1",
+        "kind": "Pod",
+        "metadata": {
+          "name": "%(name)s"
+        }
+      }
+    |||;
 
-    util.json(jsonString, { name: 'nginx' })
+    local templatedJsonString = util.template(jsonString, { name: 'nginx' });
+
+    util.json(templatedJsonString)
     ``` 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
@@ -54,49 +64,3 @@ Returns the parsed JSON document(s). If `single` is true and there is only one d
 </Tabs>
 
 
-<Tabs>
-  <TabItem value="jsonnet" label="Jsonnet" default>
-    ```js
-    local util = import '../../vendor/konn/util.libsonnet';
-
-    local jsonStrings = [
-      '{"apiVersion":"v1", "kind":"Pod", "metadata":{"name": "%(name)s"}}',
-      '{"apiVersion":"v1", "kind":"Service", "metadata":{"name": "%(name)s"}}'
-    ];
-
-    util.json(jsonStrings, { name: 'nginx' })
-    ``` 
-  </TabItem>
-  <TabItem value="yaml" label="YAML Output">
-    ```yaml
-    - apiVersion: v1
-      kind: Pod
-      metadata:
-        name: nginx
-    - apiVersion: v1
-      kind: Service
-      metadata:
-        name: nginx
-    ```
-  </TabItem>
-  <TabItem value="json" label="JSON Output">
-    ```json
-    [
-       {
-          "apiVersion": "v1",
-          "kind": "Pod",
-          "metadata": {
-             "name": "nginx"
-          }
-       },
-       {
-          "apiVersion": "v1",
-          "kind": "Service",
-          "metadata": {
-             "name": "nginx"
-          }
-       }
-    ]
-    ```
-  </TabItem>
-</Tabs>

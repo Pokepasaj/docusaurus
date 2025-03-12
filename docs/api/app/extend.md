@@ -61,39 +61,42 @@ local extendedApp = baseApp.extend(
     ]),
   ]);
 
-extendedApp.resolve()
+extendedApp
 ```
 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
 ```yaml
-- kind: Deployment
-  metadata:
-    name: example-app
-- kind: Service
-  metadata:
-    name: example-app
+body:
+  - kind: Deployment
+    metadata:
+      name: example-app
+  - kind: Service
+    metadata:
+      name: example-app
 ```
 
   </TabItem>
   <TabItem value="json" label="JSON Output">
 
 ```json
-[
-   {
-      "kind": "Deployment",
-      "metadata": {
-         "name": "example-app"
+{
+   "body": [
+      {
+         "kind": "Deployment",
+         "metadata": {
+            "name": "example-app"
+         }
+      },
+      {
+         "kind": "Service",
+         "metadata": {
+            "name": "example-app"
+         }
       }
-   },
-   {
-      "kind": "Service",
-      "metadata": {
-         "name": "example-app"
-      }
-   }
-]
+   ]
+}
 ```
 
   </TabItem>
@@ -124,40 +127,41 @@ local baseApp = app.new([
   props={
     name: 'example-app',
     replicas: 3,
-  }
-);
+  });
 local extendedApp = baseApp.extend();
 
-extendedApp.resolve()
-
+extendedApp
 ```
 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
 ```yaml
-- kind: Deployment
-  metadata:
-    name: example-app
-  spec:
-    replicas: 3
+body:
+  - kind: Deployment
+    metadata:
+      name: example-app
+    spec:
+      replicas: 3
 ```
 
   </TabItem>
   <TabItem value="json" label="JSON Output">
 
 ```json
-[
-   {
-      "kind": "Deployment",
-      "metadata": {
-         "name": "example-app"
-      },
-      "spec": {
-         "replicas": 3
+{
+   "body": [
+      {
+         "kind": "Deployment",
+         "metadata": {
+            "name": "example-app"
+         },
+         "spec": {
+            "replicas": 3
+         }
       }
-   }
-]
+   ]
+}
 ```
 
   </TabItem>
@@ -258,7 +262,8 @@ local addLabelsAndReplicas = extension.new(
   }
 );
 
-local baseApp = app.new([
+local baseApp = app.new(
+  [
     ([
        function(ctx, props) {
          kind: 'Deployment',
@@ -274,7 +279,8 @@ local baseApp = app.new([
   extensions=[addLabelsAndReplicas]
 );
 
-local extendedApp = baseApp.extend([
+local extendedApp = baseApp.extend(
+  [
     ([
        function(ctx, props) {
          kind: 'Service',
@@ -283,48 +289,58 @@ local extendedApp = baseApp.extend([
          },
        },
      ]),
-  ]
-);
+  ]);
 
-extendedApp.resolve()
+extendedApp
 ```
 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
 ```yaml
-- body:
-    kind: Deployment
+body:
+  - kind: Deployment
     metadata:
+      labels: default-label
       name: base-app
-- body:
-    kind: Service
+    spec:
+      replicas: 1
+  - kind: Service
     metadata:
+      labels: default-label
       name: base-app
+    spec:
+      replicas: 1
 ```
 
   </TabItem>
   <TabItem value="json" label="JSON Output">
 
 ```json
-[
-   {
-      "body": {
+{
+   "body": [
+      {
          "kind": "Deployment",
          "metadata": {
+            "labels": "default-label",
             "name": "base-app"
+         },
+         "spec": {
+            "replicas": 1
          }
-      }
-   },
-   {
-      "body": {
+      },
+      {
          "kind": "Service",
          "metadata": {
+            "labels": "default-label",
             "name": "base-app"
+         },
+         "spec": {
+            "replicas": 1
          }
       }
-   }
-]
+   ]
+}
 ```
 
   </TabItem>
@@ -356,30 +372,33 @@ local baseApp = app.new([
 
 local extendedApp = baseApp.extend([]);
 
-extendedApp.resolve()
+extendedApp
 ```
 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
 ```yaml
-- kind: Deployment
-  metadata:
-    name: nginx
+body:
+  - kind: Deployment
+    metadata:
+      name: nginx
 ```
 
   </TabItem>
   <TabItem value="json" label="JSON Output">
 
 ```json
-[
-   {
-      "kind": "Deployment",
-      "metadata": {
-         "name": "nginx"
+{
+   "body": [
+      {
+         "kind": "Deployment",
+         "metadata": {
+            "name": "nginx"
+         }
       }
-   }
-]
+   ]
+}
 ```
 
   </TabItem>
@@ -410,39 +429,44 @@ local baseApp = app.new([
 
 local extendedApp = baseApp.extend();
 
-extendedApp.resolve()
+extendedApp
 ```
 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
 
 ```yaml
-- kind: Deployment
-  metadata:
-    labels:
-      env: production
-    name: nginx
+body:
+  - kind: Deployment
+    metadata:
+      labels:
+        env: production
+      name: nginx
 ```
 
   </TabItem>
   <TabItem value="json" label="JSON Output">
 
 ```json
-[
-   {
-      "kind": "Deployment",
-      "metadata": {
-         "labels": {
-            "env": "production"
-         },
-         "name": "nginx"
+{
+   "body": [
+      {
+         "kind": "Deployment",
+         "metadata": {
+            "labels": {
+               "env": "production"
+            },
+            "name": "nginx"
+         }
       }
-   }
-]
+   ]
+}
 ```
 
   </TabItem>
 </Tabs>
 
 ### Cross-linking to Other API Docs
-For more details on config, extensions and feature, please refer to the [config documentation](/api/config/api-config-new), [extensions documentation](/api/extensions/api-extensions-new) and [feature documentation](/api/feature/api-feature-new).
+#### [config documentation](/api/config/api-config-new)
+#### [extensions documentation](/api/extensions/api-extensions-new)
+#### [feature documentation](/api/feature/api-feature-new).

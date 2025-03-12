@@ -56,33 +56,36 @@ Retrieves all extensions associated with the application, including those define
       extensions=[addLabelsAndReplicas]
     );
 
-    myApp.render()
+    myApp
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
     ```yaml
-    - kind: Deployment
-      metadata:
-        labels: custom-label
-        name: nginx
-      spec:
-        replicas: 2
+    body:
+      - kind: Deployment
+        metadata:
+          labels: custom-label
+          name: nginx
+        spec:
+          replicas: 2
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
-    [
-       {
-          "kind": "Deployment",
-          "metadata": {
-             "labels": "custom-label",
-             "name": "nginx"
-          },
-          "spec": {
-             "replicas": 2
+    {
+       "body": [
+          {
+             "kind": "Deployment",
+             "metadata": {
+                "labels": "custom-label",
+                "name": "nginx"
+             },
+             "spec": {
+                "replicas": 2
+             }
           }
-       }
-    ]
+       ]
+    }
     ```  
   </TabItem>
 </Tabs>
@@ -121,36 +124,38 @@ Retrieves all extensions associated with the application, including those define
       props={
         annotations: 'custom-annotation',
         replicas: 3,
-      }
-    );
+      });
 
-    myApp.render()
+    myApp
     ```
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
     ```yaml
-    - kind: Service
-      metadata:
-        annotations: custom-annotation
-        name: nginx-svc
-      spec:
-        replicas: 3
+    body:
+      - kind: Service
+        metadata:
+          annotations: custom-annotation
+          name: nginx-svc
+        spec:
+          replicas: 3
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
-    [
-       {
-          "kind": "Service",
-          "metadata": {
-             "annotations": "custom-annotation",
-             "name": "nginx-svc"
-          },
-          "spec": {
-             "replicas": 3
+    {
+       "body": [
+          {
+             "kind": "Service",
+             "metadata": {
+                "annotations": "custom-annotation",
+                "name": "nginx-svc"
+             },
+             "spec": {
+                "replicas": 3
+             }
           }
-       }
-    ]
+       ]
+    }
     ```  
   </TabItem>
 </Tabs>

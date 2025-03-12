@@ -39,28 +39,29 @@ The `extend` function returns a new configuration object, combining the original
         }
       ), {
         name: 'nginx',
-      }
-    );
+      });
 
-
-    testConfig.render()
+    testConfig
     ``` 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
     ```yaml
-    extended: true
-    kind: Deployment
-    metadata:
-      name: nginx
+    body:
+      extended: true
+      kind: Deployment
+      metadata:
+        name: nginx
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
     {
-       "extended": true,
-       "kind": "Deployment",
-       "metadata": {
-          "name": "nginx"
+       "body": {
+          "extended": true,
+          "kind": "Deployment",
+          "metadata": {
+             "name": "nginx"
+          }
        }
     }
     ```
@@ -106,37 +107,39 @@ The `extend` function returns a new configuration object, combining the original
         name: 'extended-app',
         env: 'staging',
         label: 'some-label',
-      }
-    );
+      });
 
-    baseConfig.render()
+    baseConfig
     ``` 
   </TabItem>
   <TabItem value="yaml" label="YAML Output">
     ```yaml
-    kind: Deployment
-    metadata:
-      annotations:
-        devops.com: team-devops
-      labels:
-        app: some-label
-        env: staging
-      name: extended-app
+    body:
+      kind: Deployment
+      metadata:
+        annotations:
+          devops.com: team-devops
+        labels:
+          app: some-label
+          env: staging
+        name: extended-app
     ```
   </TabItem>
   <TabItem value="json" label="JSON Output">
     ```json
     {
-       "kind": "Deployment",
-       "metadata": {
-          "annotations": {
-             "devops.com": "team-devops"
-          },
-          "labels": {
-             "app": "some-label",
-             "env": "staging"
-          },
-          "name": "extended-app"
+       "body": {
+          "kind": "Deployment",
+          "metadata": {
+             "annotations": {
+                "devops.com": "team-devops"
+             },
+             "labels": {
+                "app": "some-label",
+                "env": "staging"
+             },
+             "name": "extended-app"
+          }
        }
     }
     ```
