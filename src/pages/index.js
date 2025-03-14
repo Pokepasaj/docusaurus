@@ -5,7 +5,7 @@ import styles from "./index.module.css";
 
 export default function Home() {
   return (
-    <Layout title="Konn" description="Introduce logic to your YAML through Konn">
+    <Layout title="Konn" description="Introduce logic to your YAML with Konn">
       <header className={styles.hero}>
         <div className={styles.heroContainer}>
           <h1 className={styles.title}>Konn</h1>
