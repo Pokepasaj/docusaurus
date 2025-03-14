@@ -1,38 +1,39 @@
-name: Deploy to GitHub Pages
-
+name: Deploy to GitHub Pages  
+# event is a trigger for a workflow our event is specified to happen on a push to the main branch once this happens it`s going to run all the jobs within the workflow
 on:
   push:
     branches:
-      - main
-    # Review gh actions docs if you want to further define triggers, paths, etc
-    # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on
+      - main  # self explanatory 
 
 jobs:
   build:
-    name: Build Docusaurus
-    runs-on: ubuntu-latest
+    name: Build Docusaurus  
+    runs-on: ubuntu-latest # we specify our runner here (container that will run our code) 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4 # check out the repository under the GitHub Actions runner /  allows the workflow to access the repository's contents.
         with:
-          fetch-depth: 0
-      - uses: actions/setup-node@v4
+          fetch-depth: 0 # ensures that the entire git history is fetched
+
+      - uses: actions/setup-node@v4 # setup nodeJS env
         with:
           node-version: 18
-          cache: npm
+          cache: npm # enables caching of npm dependencies
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Install dependencies  
+        run: npm ci # installs project dependencies based on package-lock.json
+      
       - name: Build website
         run: npm run build
 
       - name: Upload Build Artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v3 # uploads the build directory as an artifact
         with:
-          path: build
+          path: build # specifies the path to the build directory
+
 
   deploy:
     name: Deploy to GitHub Pages
-    needs: build
+    needs: build # depends on build job to complete before starting
 
     # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
     permissions:
@@ -42,10 +43,10 @@ jobs:
     # Deploy to the github-pages environment
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url }} # dynamically sets the URL of the deployed site
 
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v4 # deploys the build artifacts to GitHub Pages
