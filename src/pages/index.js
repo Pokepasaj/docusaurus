@@ -9,7 +9,7 @@ export default function Home() {
       <header className={styles.hero}>
         <div className={styles.heroContainer}>
           <h1 className={styles.title}>Konn</h1>
-          <p className={styles.subtitle}>Introduce logic to your YAML through Konn</p>
+          <p className={styles.subtitle}>Introduce logic to your YAML with Konn</p>
           <div className={styles.buttons}>
             <Link className={styles.button} to="/intro/intro">
               Get Started
