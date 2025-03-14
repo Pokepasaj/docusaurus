@@ -14,7 +14,7 @@ It`s just like a [Config](config) except it should return an array
 
 :::note
 This is an empty valid manifest
-The [Render](api/manifest/api-manifest-render) function cannot return an object it has to be an array but if you are converting it will automatically convert it for you.
+The Render function cannot return an object it has to be an array but if you are converting it will automatically convert it for you.
 :::
 
 <Tabs>
@@ -38,7 +38,7 @@ The [Render](api/manifest/api-manifest-render) function cannot return an object 
 
 :::tip
 It can be any number of objects to create a config except it has to be an array.
-In the same way of when you run [new.config](api/config/api-config-new)
+In the same way of when you run new.config
 :::
 
 <Tabs>

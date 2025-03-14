@@ -23,7 +23,7 @@ const config = {
           editUrl:
             'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
-        blog: false,
+        blog: false,  // Disable blog
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -56,7 +56,6 @@ const config = {
           position: 'left',
           label: 'Tutorial',
         },
-        
         {
           href: 'https://github.com/facebook/docusaurus',
           label: 'GitHub',
@@ -77,7 +76,7 @@ const config = {
           items: [
             {
               label: 'Konn',
-              to: '/docs/intro',
+              to: '/',  // Update path to a valid one
             },
           ],
         },
@@ -101,10 +100,7 @@ const config = {
         {
           title: 'More',
           items: [
-            {
-              label: 'Blog',
-              to: '/blog',
-            },
+            // Remove blog link
             {
               label: 'GitHub',
               href: 'https://github.com/facebook/docusaurus',

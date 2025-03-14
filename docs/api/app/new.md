@@ -159,7 +159,7 @@ body:
 
 ### Example with profiles
 
-Also an example using profiles can be found [here](api-app-init#adding-envs)
+Also an example using profiles can be found [here](api-app-init#adding-profiles)
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
     

@@ -5,7 +5,7 @@ import TabItem from '@theme/TabItem';
 id: config
 title: config
 ---
-What is a [Config](api/config/api-config-new)
+What is a Config
 
 At its essence, a config in Konn is simply an object with key-value pairs. It serves as the foundation for templating configurations—whether for Kubernetes, infrastructure, applications, or any system that supports structured configuration formats like YAML, JSON, or TOML.
 
@@ -20,12 +20,12 @@ One environment may require an additional debugging pod.
 
 •Instead of maintaining multiple Helm releases, Konn enables you to express these variations efficiently.
 
-In Konn, every configuration is ultimately a [render](api/config/api-config-render) function that returns an object. This approach ensures that configurations remain declarative, reusable
+In Konn, every configuration is ultimately a render function that returns an object. This approach ensures that configurations remain declarative, reusable
 
 
 
 This is a valid config to represent the input and output:
-
+npm
 
 <Tabs>
   <TabItem value="jsonnet" label="Jsonnet" default>
@@ -47,7 +47,7 @@ This is a valid config to represent the input and output:
 </Tabs>
 
 :::note
-There are some helpers built in config such as building them [fromYAML](/api/config/api-config-fromYaml) and [fromJSON](/api/config/api-config-fromJson)
+There are some helpers built in config such as building them fromYAML and fromJSON
 :::
 
 But let`s say we want to add properties to it and we add it in a way that we are going to be able to edit trough various different profiles and we need some way to get the props to the right place.
